@@ -26,4 +26,5 @@
     - quadrigradiente -> è covariante
     - le matrici di Lorentz sono anche il jacobiano della trasformazione (bella forza, sono lineari)
     - i vettori covarianti trasformano con l'inversa 
-        - se pensati come vettori colonna con l'inversa della trasposta, perchè in realtà sono vettori riga (si pensi al prodotto scalare che deve rimanere invariante)
+        - se pensati come vettori colonna con l'inversa della trasposta, perchè in realtà sono vettori riga
+        (si pensi al prodotto scalare che deve rimanere invariante)
