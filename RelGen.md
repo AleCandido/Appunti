@@ -25,4 +25,4 @@
     - tensore unità completamente antisimmetrico
     - quadrigradiente -> è covariante
     - le matrici di Lorentz sono anche il jacobiano della trasformazione (bella forza, sono lineari)
-
+    - 
