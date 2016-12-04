@@ -87,3 +87,24 @@
         - fluido perfetto
     - fredda è la materia ordinaria, calda la radiazione
 
+## Campo gravitazionale
+
+- principio di equivalenza
+    - sistemi non inerziali hanno in generale campi che non si annullano all'infinito
+    - i campi dei sistemi non inerziali possono essere annullati con un cambio di coordinate
+        - i campi dei gravi no
+- definizione della metrica
+    - leggi di trasformazione dell'intervallo infinitesimo ds
+    - wlog la si può considerare simmetrica (si pensi a definizione)
+    - in generale non può essere ricondotta in forma inerziale con un cambio di coordinate (si pensi ai gradi di libertà)
+        - è sempre possibile diagonalizzarla in un punto solo!
+- le trasformazioni della teoria sono i diffeomorifismi (trasformazioni generalizzate)
+    - quadrivettori covarianti e controvarianti trasformano con il jacobiano
+        - il prototipo sono i differenziali delle coordinate
+            - NON le coordinate
+    - il quadritensore unità è sempre il solito
+        - le sue componenti sono invarianti per trasformazioni generalizzate
+    - il tensore metrico standard è covariante 
+        - perchè i differenziali standard delle coordinate sono controvarianti
+        - la versione controvariante è definita come l'inverso (quello che contratto con l'originale da l'identità)
+    
