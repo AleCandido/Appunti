@@ -97,14 +97,105 @@
     - leggi di trasformazione dell'intervallo infinitesimo ds
     - wlog la si può considerare simmetrica (si pensi a definizione)
     - in generale non può essere ricondotta in forma inerziale con un cambio di coordinate (si pensi ai gradi di libertà)
-        - è sempre possibile diagonalizzarla in un punto solo!
+        - è sempre possibile diagonalizzarla in un punto dato!
+        - il determinante della metrica g è uguale a -J<sup>-2</sup>, dove J è il jacobiano della trasformazione che porta la metrica in forma galileiana
+            - g < 0
 - le trasformazioni della teoria sono i diffeomorifismi (trasformazioni generalizzate)
     - quadrivettori covarianti e controvarianti trasformano con il jacobiano
         - il prototipo sono i differenziali delle coordinate
             - NON le coordinate
     - il quadritensore unità è sempre il solito
         - le sue componenti sono invarianti per trasformazioni generalizzate
-    - il tensore metrico standard è covariante 
+    - il tensore metrico standard è quello covariante
         - perchè i differenziali standard delle coordinate sono controvarianti
         - la versione controvariante è definita come l'inverso (quello che contratto con l'originale da l'identità)
-    
+    - gli indici si alzano e si abbassano con la metrica
+    - il tensore unità completamente antisimmetrico non è più un tensore (neanche pseudo)
+        - compare il jacobiano davanti ((-g)<sup>-1/2</sup>), che per trasformazioni di Lorentz è sempre 1
+    - così anche per il differenziale di quadrivolume, quindi moltiplicando per l'inverso del jacobiano ottengo uno scalare per trasformazioni generalizzate
+
+#### Principio di covarianza generale
+- un'eq. è vera se:
+    - è covariante rispetto alle trasformazioni generalizzate
+    - ha il corretto limite per uno spazio-tempo piatto
+
+*il senso di questo principio è che la relatività speciale è vera fino in fondo, perciò per un dato processo si può seguire l'evoluzione grazie al principio di equivalenza: intorno per intorno ci si riduce ad uno spazio-tempo piatto e si applicano le leggi note*
+
+*perciò, se si hanno delle equazioni covarianti che sono vere per uno spazio-tempo piatto si ha che una loro soluzione in un riferimento fissato è anche una soluzione del procedimento precedente (risolvere intorno per intorno in spazi piatti), da cui il principio*
+
+esempi: correlazione causale, intervalli luce
+
+### Intervalli spazio-temporali
+
+### Derivazione covariante
+I differenziali dei quadrivettori sono differenze tra funzioni valutate in punti differenti, che perciò trasformano in modo differente: **il differenziale di un quadrivettore non è in generale un quadrivettore**
+- fissato il primo vettore nel primo punto si identifica un corrispondente (covariante) del secondo vettore, sempre nel primo punto: **trasporto parallelo**
+    - in tal modo la differenza fra i due è covariante
+    - in un riferimento galileiano i vettori devono essere invarianti per trasporto parallelo (le loro componenti)
+- sviluppando questa differenza si trova che oltre al differenziale ordinario vi è un altro termine
+    - il nuovo differenziale è il **differenziale covariante**
+    - il termine aggiuntivo è composto dal quadrivettore, il differenziale delle coordinate e i **simboli di Christoffel**
+    - si ottengono in questo modo anche i differenziali covarianti di tensori generici (covarianti, controvarianti e misti)
+        - per gli scalari non c'è differenza fra differenziali ordinari e covarianti, pocihé rimangono invariati per trasporto parallelo
+        (a sua volta determinato dal fatto che rimangono invariati per trasformazioni generalizzate, si pensi alla definizione)
+- simboli di Christoffel
+    - sono simmetrici negli indici inferiori
+    - non sono dei tensori
+    - dipende solo dalla metrica e le sue derivate prime
+- differenziale del determinante della metrica
+- teorema di Gauss covariante generale
+
+### Particella in campo gravitazionale
+- equazioni
+    - dal principio di covarianza generale
+        - si ottengono le **geodetiche**
+        - la quadriforza dipende dai simboli di Christoffel (e dalla quadrivelocità)
+            - la metrica svolge il ruolo di potenziale del campo gravitazionale
+            - coerente col principio di equivalenza: posso sempre annullare la forza in un intorno dato
+    - dal principio di minima azione
+    achtung: stavolta deve variare anche la metrica (ma le variabili dinamiche sono solo le coordinate)
+- limite basse velocità
+    implica che anche il campo deve essere debole
+    - la lagrangiana coincide con quella usuale in meccanica classica
+
+#### Campo gravitazionale costante
+cioè la metrica è indipendente dalla coordinata x<sub>0</sub>, cioè è stazionaria
+- per più corpi non può esservi una metrica stazionaria: moto generato per attrazione gravitazionale
+- se, in una metrica stazionaria, traslo nella coordinata x<sub>0</sub> due eventi simultanei e vicini spazialmene, troverò altri due eventi ancora simultanei
+    - il tempo fisico però può tranquillamente scorrere in modo diverso nei due punti dello spazio -> *redshift gravitazionale*
+        - in una metrica stazionaria il tempo x<sub>0</sub> di viaggio impiegato da un segnale dipende solo dal percorso che effettua (non dall'x<sub>0</sub> a cui parte), quindi le differenze di tempo x<sub>0</sub> fra segnali consecutivi sono preservate, ma quindi non lo sono quelle di tempo fisico
+        - spostamento della frequenza della radiazione EM
+    - se il corpo che genera il campo è immobile non ci possono essere componenti anisotrope nella metrica (cioè le componenti miste con il tempo), perché i due versi del tempo sono identici -> metrica statica
+        - dalle eq. del moto risulta che la componente 0 del quadriimpulso covariante è conservata
+            - all'ordine più basso questa quantità è l'energia meccanica
+
+    **achtung: in relatività generale gli indici si alzano e si abbassano con cautela!** (le quantità fisiche possono cambiare)
+
+### Tensore energia-impulso
+Assumendo una lagrangiana che al più è funzione di un campo e delle sue derivate prime e imponendo minima azione si ottengono le equazioni di Eulero-Lagrange con il campo al posto della coordinata come variabile dinamica
+
+- per generalizzare l'azione si sostituisce l'elemento di quadrivolume, moltiplicandolo semplicemente per (-g)<sup>1/2</sup>, così da formare uno scalare: se la lagrangiana è uno scalare rispetto alle trasformazioni generalizzate l'azione è nuovamente uno scalare, con il giusto limite per lo spazio-tempo piatto
+
+**achtung: prima di variare l'azione bisogna esprimere esplicitamente la metrica (ogni contrazione ne sottointende una!)**
+essa va variata nella variazione dell'azione, anche se in generale non costituisce una variabile dinamica (a meno che non si voglia trovare le equazioni di Einstein)
+
+- si ottengono di nuovo le eq. di Eulero-Lagrange, ma stavolta la lagrangiana compare moltiplicata per (-g)<sup>1/2</sup> all'interno delle derivate
+
+Si può ricavare il tensore energia-impulso per una lagrangiana arbitraria
+- si ha che la derivata covariante del tensore energia-impulso è nulla
+```
+    - si esegue una trasformazione delle coordinate sommando una quantità piccola
+    - si ricava l'azione nelle nuove coordinate (ovviamente al prim'ordine)
+        - la lagrangiana è uno scalare rispetto a trasformazioni generalizzate, quindi non varia nel passaggio alle nuove coordinate
+    - si trova la variazione rispetto all'azione nelle coordinate originali (*è una variazione puramente formale, non rispetto alle variabili dinamiche*)
+        - si impongono le equazioni del moto
+        - si impone che la variazione sia nulla, infatti anche l'azione è invariante per trasformazioni generalizzate
+    - a questo punto si definisce il tensore energia-impulso in modo naturale
+        - non è nullo perché la variazione arbitraria non è quella delle coordinate, ma del termine additivo
+    - si esprime la variazione della metrica in funzione di quella del termine additivo
+    - si integra per parti con Gauss covariante
+     *si tenga di conto che la derivata covariante della metrica è nulla*
+```
+la definizione del tensore energia-impulso è buona finché la lagrangiana non dipende dalle derivate della metrica
+- questo però non porta a un quadriimpulso conservato
+    - infatti, mentre tutte le cose covarianti funzionano bene anche con le nuove derivate, il teorema di Gauss non prevede trasporti di vettori e si applica alle derivate ordinarie
