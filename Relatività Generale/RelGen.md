@@ -126,6 +126,35 @@
 esempi: correlazione causale, intervalli luce
 
 ### Intervalli spazio-temporali
+- tempo reale
+    è quello misurato da un orologio fisico ancorato in un dato punto dello spazio
+    - per ricondursi ad esso a partire da quello scandito dalla coordinata:
+        - si prendono due eventi fissati in quel dato punto
+        - se ne fa la differenza
+        - si ricava l'intervallo e infine il tempo proprio (ds = dt, dove t è il tempo proprio)
+
+si ottiene che g<sub>00</sub> > 0, se non lo fosse significa solo che il dato riferimento non può essere realizzato da un corpo fisico
+
+- distanze spaziale
+    - lancio un impulso EM, lo faccio rimbalzare e conto quanto tempo ci mette ad andare e tornare
+        - la semisomma determina la distanza
+        - risolvendo l'eq. si ottiene anche la merica spaziale dl<sup>2</sup>
+
+    *non ha senso integrare dl, perché dipendendo dal tempo la distanza fra due punti dipenderebbe dalla linea d'universo scelta per l'integrazione* perché la metrica può dipendere dalla coordinata temporale
+    in un riferimento stazionario la metrica non dipende dalla coordinata temporale, e quindi si può anche integrare e anche le distanze finite son ben definite
+
+
+- simultaneità
+    sono simultanei due eventi in un dato riferimento, altrimenti non ha senso (a meno che non siano lo stesso evento). definizione:
+    - si parte da un punto e si arriva in un altro (avanti e indietro nel tempo)
+    - si prende il punto medio tra partenza e arrivo come simultaneo al giro di boa
+
+in questo modo intorno per intorno riesco a sincronizzare i miei orologi, e spostandomi lungo dei cammini posso portare la sincronizzazione in ogni punto dello spazio, **però**: se faccio una linea chiusa trovo che la partenza non è simultanea a se stessa, assurdo
+- non posso sincronizzare univocamente in generale
+    - dipende dal percorso che seguo
+- però con una metrica statica posso farlo
+    - ogni metrica si può ricondurre a statica con le trasformazioni generalizzate
+    - la simultaneità non è un problema dovuto ai campi, ma ai riferimenti balordi
 
 ### Derivazione covariante
 I differenziali dei quadrivettori sono differenze tra funzioni valutate in punti differenti, che perciò trasformano in modo differente: **il differenziale di un quadrivettore non è in generale un quadrivettore**
