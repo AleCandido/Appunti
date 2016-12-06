@@ -17,9 +17,10 @@
     - invarianza prodotto di quadrivettori
     - covarianti e controvarianti
     - quadritensori
-        - T<sup>00</sup> è un triscalare
-        - T<sup>0i</sup> è T<sup>i0</sup> sono trivettori
-        - T<sup>ij</sup> è un tritensore
+        - rispetto alle rotazioni spaziali:
+            - T<sup>00</sup> è un triscalare
+            - T<sup>0i</sup> è T<sup>i0</sup> sono trivettori
+            - T<sup>ij</sup> è un tritensore
     - tensore unità e tensore metrico
         - Lorentz invarianza
     - tensore unità completamente antisimmetrico
