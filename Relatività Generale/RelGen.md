@@ -8,37 +8,22 @@
 - Classificazione intervalli
 - Tempo proprio (dilatazione dei tempi)
 - Trasformazioni di Lorentz
-    - achtung: sono trasformazioni lineari!
-    - i boost lungo una direzione in particolare sono un gruppo a un parametro
-        - lungo una direzione generica un gruppo a 3 parametri
 - Trasformazioni delle velocità
     - si ricavano usando Lorentz per i differenziali
 - Formalismo 4-D
-    - invarianza prodotto di quadrivettori
-    - covarianti e controvarianti
-    - quadritensori
-        - rispetto alle rotazioni spaziali:
-            - T<sup>00</sup> è un triscalare
-            - T<sup>0i</sup> è T<sup>i0</sup> sono trivettori
-            - T<sup>ij</sup> è un tritensore
-    - tensore unità e tensore metrico
-        - Lorentz invarianza
-    - tensore unità completamente antisimmetrico
+    - quadritensori covarianti e controvarianti
+        - rispetto alle rotazioni spaziali
     - quadrigradiente -> è covariante
-    - le matrici di Lorentz sono anche il jacobiano della trasformazione (bella forza, sono lineari)
-    - i vettori covarianti trasformano con l'inversa (è l'inverso del jacobiano, basta pensare come trasformano i differenziali e il quadrigradiente)
+    - i vettori covarianti trasformano con l'inversa
         - se pensati come vettori colonna con l'inversa della trasposta, perchè in realtà sono vettori riga (si pensi al prodotto scalare che deve rimanere invariante)
-        ![](./covtrasf2.png)
-
-            ![](./covtrasf3.png)
+            - $(\Lambda^t)^{-1} = g \Lambda g^{-1}$
+            - $\Lambda = g^{-1} (\Lambda^t)^{-1} g$
+            - $gv \rightarrow g \Lambda v = g \Lambda g^{-1} g v = (\Lambda^t)^{-1} (g v)$
     - l'elemento di quadrivolume è invariante sotto Lorentz
         - perchè il Jacobiano della trasformazione è 1
-    - teoremi di Gauss e Stokes
 - quadrivelocità e quadriimpulso
-    - modulo e componenti
-        - *mass shell*
+    - *mass shell*
     - limiti classico e ultrarelativistico
-        - particelle a massa nulla
 
 ### Teoria dei campi
 
@@ -47,73 +32,56 @@
 - particella libera
     - unica quantità invariante che descrive il moto di una particella
     - limite classico
-    - variazione e equazioni del moto
 
 #### Elettrodinamica
 - quadripotenziale
-    - relazione con i campi
     - invarianza di gauge
 - moto di una carica
     - lagrangiana di interazione con il campo
-    - variazione ed equazioni *(achtung: variabili dinamiche, ora sono le coordinate!)*
-    - tensore dei campi
+    *(achtung: variabili dinamiche, ora sono le coordinate!)*
         - forza di Lorentz e potenza dissipata
 - equazioni omogenee di Maxwell
-    - commutazione derivate (equivalente a considerare la divergenza di un rotore e il rotore di un gradiente)
 - equazioni non omogenee di Maxwell
     - lagrangiana dei campi
     - quadricorrente (flusso di densità di carica)
-        - la quadricorrente è un quadrivettore
-        - eq. di continuità in forma covariante
     - lagrangiana d'interazione in termini di quadricorrente
-    - variazione ed equazioni *(achtung: variabili dinamiche, ora sono le componenti del potenziale!)*
+    *(achtung: variabili dinamiche, ora sono le componenti del potenziale!)*
 
 #### Tensore energia-impulso
 - parallelo con quadricorrente
-    - lui è un flusso di impulso
-        - impulso prende il posto della carica
-- modello a polvere *ferma*
-    - densità di massa
-    - forma covariante
-- fluido perfetto
-    - densità di energia
-    - principio di Pascal
-        - modulo del quadrimpulso e traccia positiva
-        - bound sulla pressione        
-    - forma covariante
-- materia
-    - fredda -> limite non relativistico (E~m, p<<m)
-        - modello a polvere
-    - calda -> limite ultrarelativistico (E~p)
-        - fluido perfetto
-    - fredda è la materia ordinaria, calda la radiazione
+    - impulso prende il posto della carica
+- modello di materia
+    - polvere *ferma*
+    - fluido perfetto
+    per entrambi i casi:
+        - forma covariante
+        - traccia positiva
+- materia (fredda e calda)
+    - nella seconda rientra anche la radiazione
 
 ## Campo gravitazionale
 
 - principio di equivalenza
-    - sistemi non inerziali hanno in generale campi che non si annullano all'infinito
-    - i campi dei sistemi non inerziali possono essere annullati con un cambio di coordinate
-        - i campi dei gravi no
+    - sistemi non inerziali:
+        - hanno in generale campi che non si annullano all'infinito
+        - possono essere annullati con un cambio di coordinate
+            - i campi dei gravi no
 - definizione della metrica
     - leggi di trasformazione dell'intervallo infinitesimo ds
-    - wlog la si può considerare simmetrica (si pensi a definizione)
-    - in generale non può essere ricondotta in forma inerziale con un cambio di coordinate (si pensi ai gradi di libertà)
-        - è sempre possibile diagonalizzarla in un punto dato!
-        - il determinante della metrica g è uguale a -J<sup>-2</sup>, dove J è il jacobiano della trasformazione che porta la metrica in forma galileiana
-            - g < 0
+        - simmetrica
+    - in generale non può essere diagonalizzata globalmente con un cambio di coordinate
+        - è però possibile in un punto
+        - se ne deduce $g= - 1/J^2$
 - le trasformazioni della teoria sono i diffeomorifismi (trasformazioni generalizzate)
-    - quadrivettori covarianti e controvarianti trasformano con il jacobiano
+    - quadrivettori controvarianti
         - il prototipo sono i differenziali delle coordinate
-            - NON le coordinate
-    - il quadritensore unità è sempre il solito
-        - le sue componenti sono invarianti per trasformazioni generalizzate
-    - il tensore metrico standard è quello covariante
+    - il tensore metrico è di default covariante
         - perchè i differenziali standard delle coordinate sono controvarianti
-        - la versione controvariante è definita come l'inverso (quello che contratto con l'originale da l'identità)
+        - la versione controvariante è definita come l'inverso
     - gli indici si alzano e si abbassano con la metrica
     - il tensore unità completamente antisimmetrico non è più un tensore (neanche pseudo)
-        - compare il jacobiano davanti ((-g)<sup>-1/2</sup>), che per trasformazioni di Lorentz è sempre 1
-    - così anche per il differenziale di quadrivolume, quindi moltiplicando per l'inverso del jacobiano ottengo uno scalare per trasformazioni generalizzate
+        - compare il jacobiano davanti ($1/\sqrt{-g}$)
+        - così anche per il differenziale di quadrivolume, quindi moltiplicando per $\sqrt{-g}$ riottengo uno scalare
 
 #### Principio di covarianza generale
 - un'eq. è vera se:
@@ -134,19 +102,19 @@ esempi: correlazione causale, intervalli luce
         - se ne fa la differenza
         - si ricava l'intervallo e infine il tempo proprio (ds = dt, dove t è il tempo proprio)
 
-si ottiene che g<sub>00</sub> > 0, se non lo fosse significa solo che il dato riferimento non può essere realizzato da un corpo fisico
+si ottiene che $g_{_{00}} > 0$, se non lo fosse significa solo che il dato riferimento non può essere realizzato da un corpo fisico
 
 - distanze spaziale
     - lancio un impulso EM, lo faccio rimbalzare e conto quanto tempo ci mette ad andare e tornare
         - la semisomma determina la distanza
         - risolvendo l'eq. si ottiene anche la merica spaziale dl<sup>2</sup>
 
-    *non ha senso integrare dl, perché dipendendo dal tempo la distanza fra due punti dipenderebbe dalla linea d'universo scelta per l'integrazione* perché la metrica può dipendere dalla coordinata temporale
+    *non ha senso integrare dl, perché dipendendo dal tempo la distanza fra due punti dipenderebbe dalla linea d'universo scelta per l'integrazione* (perché la metrica può dipendere dalla coordinata temporale)
     in un riferimento stazionario la metrica non dipende dalla coordinata temporale, e quindi si può anche integrare e anche le distanze finite son ben definite
 
 
 - simultaneità
-    sono simultanei due eventi in un dato riferimento, altrimenti non ha senso (a meno che non siano lo stesso evento). definizione:
+    sono simultanei due eventi in un dato riferimento, altrimenti non ha senso (a meno che non siano lo stesso evento); definizione:
     - si parte da un punto e si arriva in un altro (avanti e indietro nel tempo)
     - si prende il punto medio tra partenza e arrivo come simultaneo al giro di boa
 
