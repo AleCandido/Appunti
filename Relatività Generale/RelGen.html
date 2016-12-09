@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RelGen.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h1 id="relativita-generale-ripasso">Relatività generale - ripasso</h1>
+<h2 id="richiami-di-relativita-ristretta">Richiami di relatività ristretta</h2>
+<ul>
+<li>Postulato di Einstein</li>
+<li>Intervallo
+<ul>
+<li>invarianza intervallo: dimostrazione Landau</li>
+</ul>
+</li>
+<li>Classificazione intervalli</li>
+<li>Tempo proprio (dilatazione dei tempi)</li>
+<li>Trasformazioni di Lorentz</li>
+<li>Trasformazioni delle velocità
+<ul>
+<li>si ricavano usando Lorentz per i differenziali</li>
+</ul>
+</li>
+<li>Formalismo 4-D
+<ul>
+<li>quadritensori covarianti e controvarianti
+<ul>
+<li>rispetto alle rotazioni spaziali</li>
+</ul>
+</li>
+<li>quadrigradiente $\rightarrow$ è covariante</li>
+<li>i vettori covarianti trasformano con l'inversa
+<ul>
+<li>se pensati come vettori colonna con l'inversa della trasposta, perchè in realtà sono vettori riga (si pensi al prodotto scalare che deve rimanere invariante)
+<ul>
+<li>$(\Lambda^t)^{-1} = g \Lambda g^{-1}$</li>
+<li>$\Lambda = g^{-1} (\Lambda^t)^{-1} g$</li>
+<li>$gv \rightarrow g \Lambda v = g \Lambda g^{-1} g v = (\Lambda^t)^{-1} (g v)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>l'elemento di quadrivolume è invariante sotto Lorentz
+<ul>
+<li>perchè il Jacobiano della trasformazione è 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>quadrivelocità e quadriimpulso
+<ul>
+<li><em>mass shell</em></li>
+<li>limiti classico e ultrarelativistico</li>
+</ul>
+</li>
+</ul>
+<h3 id="teoria-dei-campi">Teoria dei campi</h3>
+<ul>
+<li>minima azione
+<ul>
+<li>lagrangiana e densità lagrangiana</li>
+</ul>
+</li>
+<li>particella libera
+<ul>
+<li>unica quantità invariante che descrive il moto di una particella</li>
+<li>limite classico</li>
+</ul>
+</li>
+</ul>
+<h4 id="elettrodinamica">Elettrodinamica</h4>
+<ul>
+<li>quadripotenziale
+<ul>
+<li>invarianza di gauge</li>
+</ul>
+</li>
+<li>moto di una carica
+<ul>
+<li>lagrangiana di interazione con il campo
+<em>(achtung: variabili dinamiche, ora sono le coordinate!)</em>
+<ul>
+<li>forza di Lorentz e potenza dissipata</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>equazioni omogenee di Maxwell</li>
+<li>equazioni non omogenee di Maxwell
+<ul>
+<li>lagrangiana dei campi</li>
+<li>quadricorrente (flusso di densità di carica)</li>
+<li>lagrangiana d'interazione in termini di quadricorrente
+<em>(achtung: variabili dinamiche, ora sono le componenti del potenziale!)</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="tensore-energia-impulso">Tensore energia-impulso</h4>
+<ul>
+<li>parallelo con quadricorrente
+<ul>
+<li>impulso prende il posto della carica</li>
+</ul>
+</li>
+<li>modello di materia
+<ul>
+<li>polvere <em>ferma</em></li>
+<li>fluido perfetto
+per entrambi i casi:
+<ul>
+<li>forma covariante</li>
+<li>traccia positiva</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>materia (fredda e calda)
+<ul>
+<li>nella seconda rientra anche la radiazione</li>
+</ul>
+</li>
+</ul>
+<h2 id="campo-gravitazionale">Campo gravitazionale</h2>
+<ul>
+<li>principio di equivalenza
+<ul>
+<li>sistemi non inerziali:
+<ul>
+<li>hanno in generale campi che non si annullano all'infinito</li>
+<li>possono essere annullati con un cambio di coordinate
+<ul>
+<li>i campi dei gravi no</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>definizione della metrica
+<ul>
+<li>leggi di trasformazione dell'intervallo infinitesimo ds
+<ul>
+<li>simmetrica</li>
+</ul>
+</li>
+<li>in generale non può essere diagonalizzata globalmente con un cambio di coordinate
+<ul>
+<li>è però possibile in un punto</li>
+<li>se ne deduce $g= - 1/J^2$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>le trasformazioni della teoria sono i diffeomorifismi (trasformazioni generalizzate)
+<ul>
+<li>quadrivettori controvarianti
+<ul>
+<li>il prototipo sono i differenziali delle coordinate</li>
+</ul>
+</li>
+<li>il tensore metrico è di default covariante
+<ul>
+<li>perchè i differenziali standard delle coordinate sono controvarianti</li>
+<li>la versione controvariante è definita come l'inverso</li>
+</ul>
+</li>
+<li>gli indici si alzano e si abbassano con la metrica</li>
+<li>il tensore unità completamente antisimmetrico non è più un tensore (neanche pseudo)
+<ul>
+<li>compare il jacobiano davanti ($1/\sqrt{-g}$)</li>
+<li>così anche per il differenziale di quadrivolume, quindi moltiplicando per $\sqrt{-g}$ riottengo uno scalare</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="principio-di-covarianza-generale">Principio di covarianza generale</h4>
+<ul>
+<li>un'eq. è vera se:
+<ul>
+<li>è covariante rispetto alle trasformazioni generalizzate</li>
+<li>ha il corretto limite per uno spazio-tempo piatto</li>
+</ul>
+</li>
+</ul>
+<p><em>il senso di questo principio è che la relatività speciale è vera fino in fondo, perciò per un dato processo si può seguire l'evoluzione grazie al principio di equivalenza: intorno per intorno ci si riduce ad uno spazio-tempo piatto e si applicano le leggi note</em></p>
+<p><em>perciò, se si hanno delle equazioni covarianti che sono vere per uno spazio-tempo piatto si ha che una loro soluzione in un riferimento fissato è anche una soluzione del procedimento precedente (risolvere intorno per intorno in spazi piatti), da cui il principio</em></p>
+<p>esempi: correlazione causale, intervalli luce</p>
+<h3 id="intervalli-spazio-temporali">Intervalli spazio-temporali</h3>
+<ul>
+<li>tempo reale
+è quello misurato da un orologio fisico ancorato in un dato punto dello spazio
+<ul>
+<li>per ricondursi ad esso a partire da quello scandito dalla coordinata:
+<ul>
+<li>si prendono due eventi fissati in quel dato punto</li>
+<li>se ne fa la differenza</li>
+<li>si ricava l'intervallo e infine il tempo proprio (ds = dt, dove t è il tempo proprio)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>si ottiene che $g_{_{00}} &gt; 0$, se non lo fosse significa solo che il dato riferimento non può essere realizzato da un corpo fisico</p>
+<ul>
+<li>
+<p>distanze spaziale</p>
+<ul>
+<li>lancio un impulso EM, lo faccio rimbalzare e conto quanto tempo ci mette ad andare e tornare
+<ul>
+<li>la semisomma determina la distanza</li>
+<li>risolvendo l'eq. si ottiene anche la merica spaziale dl<sup>2</sup></li>
+</ul>
+</li>
+</ul>
+<p><em>non ha senso integrare dl, perché dipendendo dal tempo la distanza fra due punti dipenderebbe dalla linea d'universo scelta per l'integrazione</em> (perché la metrica può dipendere dalla coordinata temporale)
+in un riferimento stazionario la metrica non dipende dalla coordinata temporale, e quindi si può anche integrare e anche le distanze finite son ben definite</p>
+</li>
+<li>
+<p>simultaneità
+sono simultanei due eventi in un dato riferimento, altrimenti non ha senso (a meno che non siano lo stesso evento); definizione:</p>
+<ul>
+<li>si parte da un punto e si arriva in un altro (avanti e indietro nel tempo)</li>
+<li>si prende il punto medio tra partenza e arrivo come simultaneo al giro di boa</li>
+</ul>
+</li>
+</ul>
+<p>in questo modo intorno per intorno riesco a sincronizzare i miei orologi, e spostandomi lungo dei cammini posso portare la sincronizzazione in ogni punto dello spazio, <strong>però</strong>: se faccio una linea chiusa trovo che la partenza non è simultanea a se stessa, assurdo</p>
+<ul>
+<li>non posso sincronizzare univocamente in generale
+<ul>
+<li>dipende dal percorso che seguo</li>
+</ul>
+</li>
+<li>però con una metrica statica posso farlo
+<ul>
+<li>ogni metrica si può ricondurre a statica con le trasformazioni generalizzate</li>
+<li>la simultaneità non è un problema dovuto ai campi, ma ai riferimenti balordi</li>
+</ul>
+</li>
+</ul>
+<h3 id="derivazione-covariante">Derivazione covariante</h3>
+<p>I differenziali dei quadrivettori sono differenze tra funzioni valutate in punti differenti, che perciò trasformano in modo differente: <strong>il differenziale di un quadrivettore non è in generale un quadrivettore</strong></p>
+<ul>
+<li>fissato il primo vettore nel primo punto si identifica un corrispondente (covariante) del secondo vettore, sempre nel primo punto: <strong>trasporto parallelo</strong>
+<ul>
+<li>in tal modo la differenza fra i due è covariante</li>
+<li>in un riferimento galileiano i vettori devono essere invarianti per trasporto parallelo (le loro componenti)</li>
+</ul>
+</li>
+<li>sviluppando questa differenza si trova che oltre al differenziale ordinario vi è un altro termine
+<ul>
+<li>il nuovo differenziale è il <strong>differenziale covariante</strong></li>
+<li>il termine aggiuntivo è composto dal quadrivettore, il differenziale delle coordinate e i <strong>simboli di Christoffel</strong></li>
+<li>si ottengono in questo modo anche i differenziali covarianti di tensori generici (covarianti, controvarianti e misti)
+<ul>
+<li>per gli scalari non c'è differenza fra differenziali ordinari e covarianti, pocihé rimangono invariati per trasporto parallelo
+(a sua volta determinato dal fatto che rimangono invariati per trasformazioni generalizzate, si pensi alla definizione)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>simboli di Christoffel
+<ul>
+<li>sono simmetrici negli indici inferiori</li>
+<li>non sono dei tensori</li>
+<li>dipende solo dalla metrica e le sue derivate prime</li>
+</ul>
+</li>
+<li>differenziale del determinante della metrica</li>
+<li>teorema di Gauss covariante generale</li>
+</ul>
+<h3 id="particella-in-campo-gravitazionale">Particella in campo gravitazionale</h3>
+<ul>
+<li>equazioni
+<ul>
+<li>dal principio di covarianza generale
+<ul>
+<li>si ottengono le <strong>geodetiche</strong></li>
+<li>la quadriforza dipende dai simboli di Christoffel (e dalla quadrivelocità)
+<ul>
+<li>la metrica svolge il ruolo di potenziale del campo gravitazionale</li>
+<li>coerente col principio di equivalenza: posso sempre annullare la forza in un intorno dato</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dal principio di minima azione
+achtung: stavolta deve variare anche la metrica (ma le variabili dinamiche sono solo le coordinate)</li>
+</ul>
+</li>
+<li>limite basse velocità
+implica che anche il campo deve essere debole
+<ul>
+<li>la lagrangiana coincide con quella usuale in meccanica classica</li>
+</ul>
+</li>
+</ul>
+<h4 id="campo-gravitazionale-costante">Campo gravitazionale costante</h4>
+<p>cioè la metrica è indipendente dalla coordinata x<sub>0</sub>, cioè è stazionaria</p>
+<ul>
+<li>
+<p>per più corpi non può esservi una metrica stazionaria: moto generato per attrazione gravitazionale</p>
+</li>
+<li>
+<p>se, in una metrica stazionaria, traslo nella coordinata x<sub>0</sub> due eventi simultanei e vicini spazialmene, troverò altri due eventi ancora simultanei</p>
+<ul>
+<li>il tempo fisico però può tranquillamente scorrere in modo diverso nei due punti dello spazio -&gt; <em>redshift gravitazionale</em>
+<ul>
+<li>in una metrica stazionaria il tempo x<sub>0</sub> di viaggio impiegato da un segnale dipende solo dal percorso che effettua (non dall'x<sub>0</sub> a cui parte), quindi le differenze di tempo x<sub>0</sub> fra segnali consecutivi sono preservate, ma quindi non lo sono quelle di tempo fisico</li>
+<li>spostamento della frequenza della radiazione EM</li>
+</ul>
+</li>
+<li>se il corpo che genera il campo è immobile non ci possono essere componenti anisotrope nella metrica (cioè le componenti miste con il tempo), perché i due versi del tempo sono identici -&gt; metrica statica
+<ul>
+<li>dalle eq. del moto risulta che la componente 0 del quadriimpulso covariante è conservata
+<ul>
+<li>all'ordine più basso questa quantità è l'energia meccanica</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>achtung: in relatività generale gli indici si alzano e si abbassano con cautela!</strong> (le quantità fisiche possono cambiare)</p>
+</li>
+</ul>
+<h3 id="tensore-energia-impulso-2">Tensore energia-impulso</h3>
+<p>Assumendo una lagrangiana che al più è funzione di un campo e delle sue derivate prime e imponendo minima azione si ottengono le equazioni di Eulero-Lagrange con il campo al posto della coordinata come variabile dinamica</p>
+<ul>
+<li>per generalizzare l'azione si sostituisce l'elemento di quadrivolume, moltiplicandolo semplicemente per (-g)<sup>1/2</sup>, così da formare uno scalare: se la lagrangiana è uno scalare rispetto alle trasformazioni generalizzate l'azione è nuovamente uno scalare, con il giusto limite per lo spazio-tempo piatto</li>
+</ul>
+<p><strong>achtung: prima di variare l'azione bisogna esprimere esplicitamente la metrica (ogni contrazione ne sottointende una!)</strong>
+essa va variata nella variazione dell'azione, anche se in generale non costituisce una variabile dinamica (a meno che non si voglia trovare le equazioni di Einstein)</p>
+<ul>
+<li>si ottengono di nuovo le eq. di Eulero-Lagrange, ma stavolta la lagrangiana compare moltiplicata per (-g)<sup>1/2</sup> all'interno delle derivate</li>
+</ul>
+<p>Si può ricavare il tensore energia-impulso per una lagrangiana arbitraria</p>
+<ul>
+<li>si ha che la derivata covariante del tensore energia-impulso è nulla</li>
+</ul>
+<pre><code>    - si esegue una trasformazione delle coordinate sommando una quantità piccola
+    - si ricava l'azione nelle nuove coordinate (ovviamente al prim'ordine)
+        - la lagrangiana è uno scalare rispetto a trasformazioni generalizzate, quindi non varia nel passaggio alle nuove coordinate
+    - si trova la variazione rispetto all'azione nelle coordinate originali (*è una variazione puramente formale, non rispetto alle variabili dinamiche*)
+        - si impongono le equazioni del moto
+        - si impone che la variazione sia nulla, infatti anche l'azione è invariante per trasformazioni generalizzate
+    - a questo punto si definisce il tensore energia-impulso in modo naturale
+        - non è nullo perché la variazione arbitraria non è quella delle coordinate, ma del termine additivo
+    - si esprime la variazione della metrica in funzione di quella del termine additivo
+    - si integra per parti con Gauss covariante
+     *si tenga di conto che la derivata covariante della metrica è nulla*
+</code></pre>
+<p>la definizione del tensore energia-impulso è buona finché la lagrangiana non dipende dalle derivate della metrica</p>
+<ul>
+<li>questo però non porta a un quadriimpulso conservato
+<ul>
+<li>infatti, mentre tutte le cose covarianti funzionano bene anche con le nuove derivate, il teorema di Gauss non prevede trasporti di vettori e si applica alle derivate ordinarie</li>
+</ul>
+</li>
+</ul>
+
+</div></body>
+</html>

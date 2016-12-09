@@ -13,7 +13,7 @@
 - Formalismo 4-D
     - quadritensori covarianti e controvarianti
         - rispetto alle rotazioni spaziali
-    - quadrigradiente -> è covariante
+    - quadrigradiente $\rightarrow$ è covariante
     - i vettori covarianti trasformano con l'inversa
         - se pensati come vettori colonna con l'inversa della trasposta, perchè in realtà sono vettori riga (si pensi al prodotto scalare che deve rimanere invariante)
             - $(\Lambda^t)^{-1} = g \Lambda g^{-1}$
@@ -107,23 +107,22 @@ si ottiene che $g_{_{00}} > 0$, se non lo fosse significa solo che il dato rifer
 - distanze spaziale
     - lancio un impulso EM, lo faccio rimbalzare e conto quanto tempo ci mette ad andare e tornare
         - la semisomma determina la distanza
-        - risolvendo l'eq. si ottiene anche la merica spaziale dl<sup>2</sup>
+        - risolvendo l'eq. si ottiene anche la merica spaziale $dl^2$
 
-    *non ha senso integrare dl, perché dipendendo dal tempo la distanza fra due punti dipenderebbe dalla linea d'universo scelta per l'integrazione* (perché la metrica può dipendere dalla coordinata temporale)
+    *non ha senso integrare $dl$, perché dipendendo dal tempo la distanza fra due punti dipenderebbe dalla linea d'universo scelta per l'integrazione* (perché la metrica può dipendere dalla coordinata temporale)
     in un riferimento stazionario la metrica non dipende dalla coordinata temporale, e quindi si può anche integrare e anche le distanze finite son ben definite
-
 
 - simultaneità
     sono simultanei due eventi in un dato riferimento, altrimenti non ha senso (a meno che non siano lo stesso evento); definizione:
     - si parte da un punto e si arriva in un altro (avanti e indietro nel tempo)
     - si prende il punto medio tra partenza e arrivo come simultaneo al giro di boa
 
-in questo modo intorno per intorno riesco a sincronizzare i miei orologi, e spostandomi lungo dei cammini posso portare la sincronizzazione in ogni punto dello spazio, **però**: se faccio una linea chiusa trovo che la partenza non è simultanea a se stessa, assurdo
-- non posso sincronizzare univocamente in generale
-    - dipende dal percorso che seguo
-- però con una metrica statica posso farlo
-    - ogni metrica si può ricondurre a statica con le trasformazioni generalizzate
-    - la simultaneità non è un problema dovuto ai campi, ma ai riferimenti balordi
+    *in questo modo intorno per intorno riesco a sincronizzare i miei orologi, e spostandomi lungo dei cammini posso portare la sincronizzazione in ogni punto dello spazio, **però**: se faccio una linea chiusa trovo che la partenza non è simultanea a se stessa, assurdo*
+    - non posso sincronizzare univocamente in generale
+        - dipende dal percorso che seguo
+    - però con una metrica statica posso farlo
+        - ogni metrica si può ricondurre a statica con le trasformazioni generalizzate
+        - la simultaneità non è un problema dovuto ai campi, ma ai riferimenti balordi
 
 ### Derivazione covariante
 I differenziali dei quadrivettori sono differenze tra funzioni valutate in punti differenti, che perciò trasformano in modo differente: **il differenziale di un quadrivettore non è in generale un quadrivettore**
@@ -197,3 +196,51 @@ Si può ricavare il tensore energia-impulso per una lagrangiana arbitraria
 la definizione del tensore energia-impulso è buona finché la lagrangiana non dipende dalle derivate della metrica
 - questo però non porta a un quadriimpulso conservato
     - infatti, mentre tutte le cose covarianti funzionano bene anche con le nuove derivate, il teorema di Gauss non prevede trasporti di vettori e si applica alle derivate ordinarie
+
+## Equazioni del campo gravitazionale
+
+### Tensore di Riemann
+- nel trasporto parallelo lungo una geodetica del vettore tangente il trasportato è ancora tangente
+    - l'angolo tra due vettori rimane invariato dopo il trasporto $\rightarrow$ la componente tangente di ogni vettore rimane invariata nel trasporto
+- **il trasporto parallelo non è conservativo**
+    - il differenziale lo è
+    - la differenza va attribuita ai simboli di Christoffel
+        $\Delta A^{\mu} = - \oint \Gamma_{\alpha \beta}^{\mu} A^{\alpha} dx^{\beta}$
+        - si applica Stokes e si ottiene: **il tensore di Riemann**
+        - lo si ottiene considerando una variazione infinitesima
+
+*quando si applica Stokes si deve considerare che i valori del quadrivettore all'interno della superficie non sono univocamente determinati dai valori sulla curva, ma la non univocità è al second'ordine*
+
+- lo spazio-tempo è piatto $\rightarrow R^i_{jkl} = 0$  
+    - si sceglie un sistesma in cui $\Gamma ^i _{jl} = 0$, il resto è il carattere tensoriale di $R^i_{jkl}$
+- vale anche l'inverso: se $R^i_{jkl} = 0$ il trasporto parallelo è un'operazione univoca, quindi dato un'intorno galileiano trasportandolo ottengo un intero riferimento galileiano $\rightarrow$ lo spazio-tempo è piatto
+- commutatività derivate covarianti seconde:
+    $D_i D_j A_a - D_j D_i A_a = -A_b R^b_{aij}$
+    - stessa cosa per derivate di quadrivettori controvarianti e tensori generici
+
+---
+#### Proprietà (tensore di Riemann)
+- antisimettria/simmetria nelle coppie di indici
+- somma ciclica
+- identità di Bianchi
+---
+- tensore di Ricci
+- tensori di Riemann in dimensione varia
+
+esempio: moto relativo
+
+### Equazioni di Einstein
+
+#### dal principio di covarianza generale
+- si parte dell'eq. di Newton (scritta come eq. di Poisson)
+     - si riconosce la metrica e il tensore energia-impulso
+     - sono poche le combinazioni di tensori che soddisfano
+- si riconoscono le eq. per la materia dentro le eq. di Einstein
+
+#### da una lagrangiana invariante
+- si sceglie come azione la curvatura scalare $R$
+    - contiene anche le derivate seconde della metrica, ma non importa perhé sono fattorizzate, e quindi vanno semplicemente a finire in un inessenziale pezzo costante
+*ancora una volta: sono i campi le variabili dinamiche*
+- nell'azione totale ci va messa anche la parte della materia
+    - la si include con il suo tensore energia-impulso
+    - contiene anche la parte elettromagnetica, se presente
