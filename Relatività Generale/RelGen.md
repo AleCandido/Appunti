@@ -231,6 +231,8 @@ esempio: moto relativo
 
 ### Equazioni di Einstein
 
+$R_{ij} - R g_{ij}/2 = 8 \pi G T_{ij}$
+
 #### dal principio di covarianza generale
 - si parte dell'eq. di Newton (scritta come eq. di Poisson)
      - si riconosce la metrica e il tensore energia-impulso
@@ -244,3 +246,14 @@ esempio: moto relativo
 - nell'azione totale ci va messa anche la parte della materia
     - la si include con il suo tensore energia-impulso
     - contiene anche la parte elettromagnetica, se presente
+
+**le eq. di Einstein non sono lineari**
+- tracciando le eq. di Einstein si ottiene un legame tra la traccia del tensore energia-impulso e la curvatura scalare
+- in uno spazio vuoto ($T_{ij} = 0$) si ha che $R_{ij} = 0$, ma questo non significa che lo spazio sia piatto
+
+*poiché la divergenza covariante del primo membro è nulla, allora lo è anche quella del secondo membro, ma quest'ultima condizione non sono altro che le equazioni della materia, che vengono così a essere contenute in quelle del campo*
+
+### Pseudotensore energia-impulso
+poiché l'annullarsi della divergenza covariante del tensore energia-impulso non porta a una legge di conservazione occorre andare a procacciarsela
+
+- si considera un sistema chiuso (asintoticamente galileiano)
