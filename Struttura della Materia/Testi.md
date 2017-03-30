@@ -22,7 +22,6 @@ Testi seguiti nelle lezioni di struttura dal prof.Tredicucci, 2017
   - 75-76, considerazioni preliminari
   - 76-78, operatorore Hamiltoniano ed equazione di Schrödinger
   - 78-80, approssimazione di Born-Oppenheimer
-  
 
 ### Materiale ulteriore
   - [Conduzione termica degli elettroni](C:\Users\candi\Documents\Università\3°anno\Struttura della Materia\lecture_TC.pdf)
