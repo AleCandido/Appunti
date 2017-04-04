@@ -13,4 +13,4 @@
 *.ai
 Makefile
 __pycache__/
-!./notignore/*
+!./notignore/*.*
