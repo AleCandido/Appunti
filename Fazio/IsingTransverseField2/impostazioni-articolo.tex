@@ -1,0 +1,125 @@
+%*********************************************************************************
+% impostazioni-articolo.tex
+% di Lorenzo Pantieri (2013-2016)
+% file che contiene le impostazioni dell'articolo
+%*********************************************************************************
+
+
+%*********************************************************************************
+% Comandi personali
+%*******************************************************
+\newcommand{\myName}{Alessandro Candido}                            % autore
+\newcommand{\myTitle}{1-D Ising Model in a Transverse Field}  % titolo
+\date{\today}                                                       % oggi
+
+\title{\normalfont\spacedallcaps{\myTitle}}
+\author{\spacedlowsmallcaps{\myName}}
+
+
+
+%*********************************************************************************
+% Impostazioni di amsmath, amssymb, amsthm
+%*********************************************************************************
+
+% comandi per gli insiemi numerici (serve il pacchetto amssymb)
+\newcommand{\numberset}{\mathbb} 
+\newcommand{\N}{\numberset{N}} 
+\newcommand{\R}{\numberset{R}} 
+
+% un ambiente per i sistemi
+\newenvironment{sistema}%
+  {\left\lbrace\begin{array}{@{}l@{}}}%
+  {\end{array}\right.}
+
+% definizioni (serve il pacchetto amsthm)
+\theoremstyle{definition} 
+\newtheorem{definizione}{Definizione}
+
+% teoremi, leggi e decreti (serve il pacchetto amsthm)
+\theoremstyle{plain} 
+\newtheorem{teorema}{Teorema}
+\newtheorem{legge}{Legge}
+\newtheorem{decreto}[legge]{Decreto}
+\newtheorem{murphy}{Murphy}[section]
+
+
+%*********************************************************************************
+% Impostazioni di biblatex
+%*********************************************************************************
+\defbibheading{bibliography}{%
+\manualmark
+\phantomsection 
+\addcontentsline{toc}{section}{\refname}
+\section*{\bibname\markboth{\spacedlowsmallcaps{\refname}}
+{\spacedlowsmallcaps{\refname}}}}
+
+
+
+%*********************************************************************************
+% Impostazioni di listings
+%*********************************************************************************
+\lstset{language=[LaTeX]Tex,%C++,
+    keywordstyle=\color{RoyalBlue},%\bfseries,
+    basicstyle=\small\ttfamily,
+    %identifierstyle=\color{NavyBlue},
+    commentstyle=\color{Green}\ttfamily,
+    stringstyle=\rmfamily,
+    numbers=none,%left,%
+    numberstyle=\scriptsize,%\tiny
+    stepnumber=5,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ftff,
+    frame=single
+} 
+
+
+
+%*********************************************************************************
+% Impostazioni di hyperref (decommenta le seguenti righe se non carichi arsclassica)
+%*********************************************************************************
+%\hypersetup{%
+%    hyperfootnotes=false,pdfpagelabels,
+%    %draft,	% = elimina tutti i link (utile per stampe in bianco e nero)
+%    colorlinks=true, linktocpage=true, pdfstartpage=1, pdfstartview=FitV,%
+%    % decommenta la riga seguente per avere link in nero (per esempio per la stampa in bianco e nero)
+%    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=1, pdfstartview=FitV,% 
+%    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+%    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+%    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+%    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
+%    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+%    pdftitle={\myTitle},%
+%    pdfauthor={\textcopyright\ \myName},%
+%    pdfsubject={},%
+%    pdfkeywords={},%
+%    pdfcreator={pdfLaTeX},%
+%    pdfproducer={LaTeX with hyperref and ClassicThesis}%
+%}
+
+
+
+%*********************************************************************************
+% Impostazioni di graphicx
+%*********************************************************************************
+\graphicspath{{Immagini/}} % cartella dove sono riposte le immagini
+
+
+
+%*********************************************************************************
+% Altro
+%*********************************************************************************
+
+% molto utile (Ale)
+\usepackage[sort, noabbrev, capitalise]{cleveref}
+
+% [...] ;-)
+\newcommand{\omissis}{[\dots\negthinspace]}
+
+% eccezioni all'algoritmo di sillabazione
+\hyphenation{Fortran ma-cro-istru-zio-ne nitro-idrossil-amminico}
+
+\areaset[current]{370pt}{750pt}
+\setlength{\marginparwidth}{7em}
+\setlength{\marginparsep}{2em}%

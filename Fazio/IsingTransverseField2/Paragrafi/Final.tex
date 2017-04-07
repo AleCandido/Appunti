@@ -1,0 +1,33 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../IsingTransverseField.tex
+% !TEX spellcheck = en-EN
+
+%************************************************
+\section{Final transformation}
+\label{sec:final}
+%************************************************
+For this part the article of Lieb is very clear, so instead of rewrite here the full text we simply cite him: \textit{Ann.Phys.}, \textbf{16}, 407. In particular the pages we are interested in, in this section, are 452-454 (\textit{Appendix A: To diagonalize a general quadratic form in fermi operators}).
+\footnote{The only one thing that maybe have some sense to do is verify that, according to the cited Appendix A, a linear superposition of fermions with real coefficients is still a fermion.}
+
+The resulting Hamiltonian is, in our case (the one of Pfeuty):
+
+\begin{equation}
+H = \Gamma \sum_k \Lambda_k (\eta_k^\dagger \eta_k - \frac{1}{2})
+\end{equation}
+
+\noindent with $\eta$ and $\eta_k$ fermionic operators, and:
+
+\begin{equation}
+\Lambda_k = 1 + \lambda^2 + 2\lambda \cos k	\qquad	\lambda = \frac{J}{2 \Gamma}
+\end{equation}
+
+So we have found a free Fermi gas with a ground energy of:
+
+\begin{equation}
+E_0 = - \frac{\Gamma}{2} \sum_k \Lambda_k
+\end{equation}
+
+\noindent and an energy for excitation of $\Lambda_k$.
+
+We note that the ground energy depends on the number of particles, and the gap between first excited level and the ground depends on the structure of $\Lambda_k$ (that depends only on $\lambda$) and also on the number of particles, that the determines which fermions are in the ground state and which are the first to be occupied when excited.

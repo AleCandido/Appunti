@@ -1,0 +1,99 @@
+              %******************************************%
+              %                                          %
+              %     Modello di articolo scientifico      %
+              %            di Lorenzo Pantieri ©         %
+              %                                          %
+              %                © 2013-2017               %
+              %                                          %
+              %******************************************%
+       
+% I seguenti commenti speciali impostano:
+% 1. utf8 come codifica di input,
+% 2. PDFLaTeX come motore di composizione;
+% 3. Articolo.tex come documento principale;
+% 4. il controllo ortografico italiano per l'editor.
+
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+% !TEX root = IsingTransverseField.tex
+% !TEX spellcheck = en-EN
+
+\documentclass[11pt,%                       % corpo del font principale
+               a4paper,%                    % carta A4
+               oneside,%                    % solo fronte
+%               twoside,%                    % fronte-retro
+               headinclude,footinclude,%    % testatina e piede di pagina
+               BCOR1mm,%                    % rilegatura di 1 mm
+               captions=tableheading,%      % didascalie in cima alle tabelle
+               ]{scrartcl}                  % classe report di KOMA-Script;
+               
+\usepackage[T1]{fontenc}                    % codifica dei font:
+                                            % NOTA BENE! richiede una distribuzione *completa* di LaTeX,
+                                            % per esempio TeXLive o MiKTeX *complete*
+
+\usepackage[utf8]{inputenc}                 % codifica di input; anche [latin1] va bene
+                                            % NOTA BENE! va accordata con le preferenze dell'editor
+
+\usepackage[english]{babel}         % per scrivere in italiano e in inglese;
+                                            % l'ultima lingua (l'italiano) risulta predefinita
+
+\usepackage{indentfirst}                    % rientra il primo capoverso di ogni sezione
+
+\usepackage{graphicx}                       % immagini
+
+\usepackage{listings}                       % codici
+
+\usepackage[font=small]{quoting}            % citazioni
+
+\usepackage{amsmath,amssymb,amsthm}         % matematica
+
+\usepackage{mathtools,bbold,physics}		% altri pacchetti matematici & co.
+
+\usepackage[english]{varioref}              % riferimenti completi della pagina
+ 
+\usepackage{tabularx}                       % tabelle di larghezza prefissata
+
+\usepackage[style=philosophy-modern,hyperref,square]{biblatex}
+                                            % eccellente pacchetto per la bibliografia;
+                                            % produce uno stile di citazione autore-anno; 
+                                            % lo stile "numeric-comp" produce riferimenti numerici
+                                          
+\addbibresource{Bibliografia.bib}           % database di biblatex 
+                                          
+\usepackage{subfig}                         % sottofigure, sottotabelle
+
+\usepackage{lipsum}                         % testo fittizio
+
+\usepackage{eurosym}                        % simbolo dell'euro
+
+\usepackage[nochapters,%                    % per scrivere un articolo        
+            subfig,%                        % se si usa il pacchetto subfig
+            beramono,%                      % Bera Mono come font a spaziatura fissa
+            eulermath,%                     % AMS Euler come font per la matematica
+            pdfspacing,%                    % migliora il riempimento di riga
+            listings,%                      % codici
+%           parts,%                         % da decommentare in un articolo diviso in parti
+            ]{classicthesis}                % stile ClassicThesis
+
+\usepackage{arsclassica}                    % modifica alcuni aspetti di ClassicThesis
+
+\input{impostazioni-articolo}               % file con le impostazioni personali
+
+\begin{document}
+\pagestyle{scrheadings} 
+%******************************************************************
+% Materiale iniziale
+%******************************************************************
+\input{MaterialeInizialeFinale/Frontespizio}
+\input{MaterialeInizialeFinale/Indici}
+\input{MaterialeInizialeFinale/Sommario+Abstract}
+%******************************************************************
+% Materiale principale
+%******************************************************************
+\input{Paragrafi/First}
+\input{Paragrafi/Final}
+% *****************************************************************
+% Materiale finale
+%******************************************************************
+\input{MaterialeInizialeFinale/Bibliografia}
+\end{document}

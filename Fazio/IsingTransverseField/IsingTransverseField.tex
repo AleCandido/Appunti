@@ -1,0 +1,373 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}	
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bbold}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}  %colori
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{verbatim}
+
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{float}
+
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
+\usepackage[sort, noabbrev, capitalise]{cleveref}
+\usepackage[bottom]{footmisc}
+
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+% macro
+\def\code#1{\texttt{#1}}
+
+\title{1-D Ising Model in a Transverse Field}
+\author{Alessandro Candido}
+
+\begin{document}
+
+\maketitle
+
+The problem is to diagonalise the Ising Hamiltonian in a transverse magnetic field, \cref{IsingH}, with fermionic operators.
+
+This problem is analyzed in the following articles:
+\begin{itemize}
+	\item Lieb, \textit{Ann.Phys.}, \textbf{16}, 407-466 (1961)
+	\item Pfeuty, \textit{Ann.Phys.}, \textbf{57}, 79-90 (1970)
+\end{itemize}
+
+\noindent The notation we use here is consistent with the one used by Pfeuty in his article.
+
+\section*{The problem}
+
+The Hamiltonian is the following:
+
+\begin{equation}
+H = - \Gamma \sum_i S_i^z - J \sum_i S_i^x S_{i+1}^x
+\label{IsingH}
+\end{equation}
+
+Then we define the raising and lowering operators:
+
+\begin{equation}
+\begin{cases}
+S_i^+ = S_i^x + i S_i^y\\
+S_i^- = S_i^x - i S_i^y
+\end{cases}
+\end{equation}
+
+According to the algebra of spin $1/2$ operators, and considering that spin operator referred to different sites commute, we have the following rule of commutation:
+
+\begin{align*}
+\{S_i^+, S_i^-\} = 1; \qquad \qquad \{S_i^+, S_i^+\} = \{S_i^-, S_i^-\} = 0; \\
+\comm{S_i^+}{S_j^-}= \comm{S_i^+}{S_j^+} = \comm{S_i^-}{S_j^-} = 0, \qquad	i\neq j;
+\end{align*}
+
+\section{First transformation}
+
+Now we want to define fermionic operators $c_i$ and $c_i^\dagger$:
+
+\begin{equation}
+\begin{dcases}
+c_i = exp[i\pi \sum_{j=1}^{i-1} S_j^+ S_j^-]~S_i^-\\
+c_i^\dagger = S_i^+~exp[-i\pi \sum_{j=1}^{i-1} S_j^+ S_j^-]
+\end{dcases}
+\label{coperators}
+\end{equation}
+
+Now our program includes the following steps:
+\begin{itemize}
+	\item prove the inverse transformation;
+	\item transform the Hamiltonian in a function of $\{c_i\}_i$ and $\{c_i^\dagger\}_i$;
+	\item prove that $\{c_i\}_i$ and $\{c_i^\dagger\}_i$ are fermionic operators;
+	\item do an additional transformation to diagonalize the new Hamiltonian, a quadratic form in $\{c_i\}_i$ and $\{c_i^\dagger\}_i$.
+\end{itemize}
+
+It's not already clear, but the first three steps are independent among each other, so we proceed in the order we have fixed in the list, but it's not necessary.
+
+\pagebreak
+
+\subsection{Inverse transformation}
+
+The first thing to calculate is the product of the two operators defined, i.e. the number operator, in the language of second quantization.
+
+\begin{equation*}
+	c_i^\dagger c_i = S_i^+~exp[-i\pi \sum_{j=1}^{i-1} S_j^+ S_j^-]~exp[i\pi \sum_{j=1}^{i-1} S_j^+ S_j^-]~S_i^- = S_i^+~S_i^-
+\end{equation*}
+
+We have find the important relation:
+
+\begin{equation}
+	c_i^\dagger c_i = S_i^+~S_i^-
+\label{cnumber}
+\end{equation}
+
+Going straight on:
+
+\begin{align*}
+S_i^+~S_i^- =& (S_i^x + i S_i^y)(S_i^x - i S_i^y) = (S_i^x)^2 + (S_i^y)^2 + i(S_i^y~ S_i^x - S_i^x~ S_i^y) \\
+ =&1/4 + 1/4 + i\comm{S_i^y}{S_i^x} = S_i^z + 1/2
+\end{align*}
+
+So another important relation is:
+
+\begin{equation}
+S_i^z = S_i^+~S_i^- - 1/2
+\label{Sz}
+\end{equation}
+
+\noindent Now, considering \cref{Sz} and \cref{cnumber}, we obtain the expression of $S_i^z$ in terms of $c$ operators.
+
+\subparagraph{}To express also $S_i^+$ and $S_i^-$, and with them even $S_i^x$ and $S_i^y$, we consider \cref{cnumber}, and rewrite \cref{coperators}:
+
+\begin{equation*}
+\begin{dcases}
+c_i = exp[i\pi \sum_{j=1}^{i-1} S_j^+ S_j^-]~S_i^-\\
+c_i^\dagger = S_i^+~exp[-i\pi \sum_{j=1}^{i-1} S_j^+ S_j^-]
+\end{dcases}
+\implies
+\begin{dcases}
+c_i = exp[i\pi \sum_{j=1}^{i-1} c_j^\dagger c_j]~S_i^-\\
+c_i^\dagger = S_i^+~exp[-i\pi \sum_{j=1}^{i-1} c_j^\dagger c_j]
+\end{dcases}
+\implies
+\begin{dcases}
+S_i^- = exp[-i\pi \sum_{j=1}^{i-1} c_j^\dagger c_j]~c_i\\
+S_i^+ = c_i^\dagger ~exp[i\pi \sum_{j=1}^{i-1} c_j^\dagger c_j]
+\end{dcases}
+\end{equation*}
+
+\noindent And so we have found the inverse transformation.
+
+\subsection{New Hamiltonian}
+
+We have said that to find the new Hamiltonian\footnote{More correctly: Hamiltonian expressed in terms of the new variables.} is not necessary the full inverse transformation, and so we do without it to stress this fact. Instead we have to show immediately one fact:
+
+\begin{equation}
+exp[2\pi i c_i^\dagger c_i] = \mathbb{1}
+\label{fact1}
+\end{equation}
+
+This is simply true because of the spectra of $c_i^\dagger c_i$ operators: they are essentially fermionic number operators, so they counts $1$ if the state is occupied and $0$ otherwise. Without proving for now that they are fermionic operators (we do that in \cref{fermiops}) we notice that we have already found these spectra. According to \cref{Sz,cnumber} we have:
+
+\begin{equation}
+c_i^\dagger c_i = S_i^z + 1/2 = \begin{pmatrix}
+1 & 0\\
+0 & 0\\
+\end{pmatrix}
+\label{numinabasis}
+\end{equation}
+
+\noindent where we have choose the basis the diagonalize $S_i^z$ (and we have neglect the other degree of freedom, that essentially consist in an equal degeneracy on both states). This is enough to prove \cref{fact1} (to be more explicit is sufficient to write that equation the same basis we have chosen in this last case).
+
+\subparagraph{}While we now $S_i^z$ in terms of $c_i$ and $c_i^\dagger$ we have only to find what it is $S_i^x S_{i+1}^x$ to find the new Hamiltonian. So we do the calculation:
+
+\begin{equation*}
+4 S_i^x S_{i+1}^x = (S_i^+ + S_i^-)(S_{i+1}^+ + S_{i+1}^-) = S_i^+ S_{i+1}^+ + S_i^- S_{i+1}^+ + S_i^+ S_{i+1}^- + S_i^- S_{i+1}^-
+\end{equation*}
+
+So we have to calculate the four terms in equation above, we do it for one:
+
+\begin{align*}
+S_i^+ S_{i+1}^+ &= S_i^+~exp[- 2\pi i  \sum_{j=1}^{i-1} S_j^+ S_j^-]~S_{i+1}^+ = S_i^+ ~exp[- \pi i  \sum_{j=1}^{i-1} S_j^+ S_j^-]~exp[- \pi i  \sum_{j=1}^{i-1} S_j^+ S_j^-]~ S_{i+1}^+ =\\
+&= S_i^+~exp[- \pi i  \sum_{j=1}^{i-1} S_j^+ S_j^-]~S_{i+1}^+~exp[- \pi i  \sum_{j=1}^{i-1} S_j^+ S_j^-] = c_i^\dagger~c_{i+1}^\dagger~exp[\pi i S_i^+ S_i^-] =\\
+&= c_i^\dagger~c_{i+1}^\dagger~exp[\pi i c_i^\dagger c_i]
+\end{align*}
+
+\noindent where we have used:
+\begin{itemize}
+	\item in the first equality the \cref{fact1};
+	\item in the second the fact that the terms of the sum commutes each other (because they're spin operators referred to different sites) to break the exponential, according to the Baker-Hausdorff formula;
+	\item in the third equality the fact that $S_{i+1}^+$ commutes with the exponential, because in the sum there are no terms related to the $i+1$ site;
+	\item eventually in the last two equality \cref{coperators,cnumber}, respectively.
+\end{itemize}
+
+We can calculate also the other terms in the same way, and finally we'd find:
+
+\begin{align*}
+4 S_i^x S_{i+1}^x &= S_i^+ S_{i+1}^+ + S_i^- S_{i+1}^+ + S_i^+ S_{i+1}^- + S_i^- S_{i+1}^- = \\
+&= c_i^\dagger~c_{i+1}^\dagger~exp[\pi i c_i^\dagger c_i] + c_i~c_{i+1}^\dagger~exp[\pi i c_i^\dagger c_i] + c_i^\dagger~c_{i+1}~exp[-\pi i c_i^\dagger c_i] + c_i~c_{i+1}~exp[-\pi i c_i^\dagger c_i] =\\
+&= (c_i^\dagger + c_i)~(c_{i+1}^\dagger + c_{i+1})~exp[\pi i c_i^\dagger c_i]
+\end{align*}
+
+\noindent where in the last equality we have used \cref{fact1}.
+
+But analyzing the last expression in the base of local eigenstates, we call it $\ket{\uparrow_i, \beta}$ and $\ket{\downarrow_i, \beta}$ (where we labeled with $\beta$ the degree of freedom not referred to $i^{th}$ site), we found that:
+\begin{itemize}
+	\item for $\ket{\uparrow_i, \beta}$ the exp factor is $-1$, according to the examined spectra of $c_i^\dagger c_i$, but it nullifies the term with $c_i^\dagger$ in the first bracket ($c_i^\dagger$ is almost proportional to $S_i^+$, up to a phase);
+	\item for $\ket{\downarrow_i, \beta}$ the exp factor is $1$, but it nullifies the term with $c_i$ in the first bracket ($c_i$ is almost proportional to $S_i^-$, up to a phase).
+\end{itemize}
+
+\noindent So we can rewrite the expression as follows:
+
+\begin{align*}
+4 S_i^x S_{i+1}^x = (c_i^\dagger - c_i)~(c_{i+1}^\dagger + c_{i+1})
+\end{align*}
+
+\noindent and it's correct because it is in all the possible cases.
+
+Now we can rewrite the Hamiltonian:
+
+\begin{equation}
+	H = \frac{\Gamma N}{2} - \Gamma \sum_i c_i^\dagger c_i - \frac{J}{4} \sum_i (c_i^\dagger - c_i)~(c_{i+1}^\dagger + c_{i+1}) + \text{border term}
+	\label{eq:HamiltonianCC}
+\end{equation}
+
+\noindent For reference we write the border term, reported from the article of \textit{Pfeuty}:
+
+\begin{equation}
+\text{border term} = - \frac{J}{4} (c_N^\dagger - c_N)~(c_{1}^\dagger + c_{1})(exp[i \pi L] + 1)
+\label{eq:border}
+\end{equation}
+
+\noindent but we neglect it in the following discussion, assuming that the system has a huge number of sites, so it essentially doesn't care of what happens at the borders.
+
+\subsection{Fermionic operators}
+\label{fermiops}
+
+We have to prove that $c$ operators, as defined in \cref{coperators}, satisfy the algebra of fermions:
+
+\begin{align*}
+\{c_i, c_j^\dagger\} &= \delta_{ij};\\
+\{c_i^\dagger, c_j^\dagger\} = \{&c_i, c_j\} = 0;
+\end{align*}
+
+As first thing we notice some elementary facts:
+
+\begin{align*}
+\{c_i^\dagger, c_j\} = \{c_i, c_j^\dagger\}^\dagger &= \delta_{ij}^\dagger = \delta_{ij};\\
+\{c_i^\dagger, c_j^\dagger\} = \{&c_i, c_j\}^\dagger = 0^\dagger = 0;
+\end{align*}
+
+\noindent Then, according to the second equality we have to study only one of two cases, and we choose $ \{c_i, c_j\} = 0$.
+
+Moreover, even if the first equality appears to be trivial (considering the symmetry of anticommutators), it let us study only the case of $i \leq j$.
+We can do the same in the case of $ \{c_i, c_j\} = 0$, but this is actually trivial.
+
+\subparagraph{}So we start to examine four cases ($2 \cross 2$):
+
+\subsubsection{$\{c_i, c_j\} = 0$}
+
+\paragraph{\underline{i < j}} In this case we have first to evaluate the anticommutators in terms of $S_i^+$ $S_i^-$ operators (of which we know the algebra). We do it explicitly:
+
+\begin{align*}
+\{c_i, c_j\} &= c_i c_j + c_j c_i =\\
+&= exp[i\pi \sum_{m=1}^{i-1} S_m^+ S_m^-]~S_i^- exp[i\pi \sum_{n=1}^{j-1} S_n^+ S_n^-]~S_j^- ~+~ exp[i\pi \sum_{n=1}^{j-1} S_n^+ S_n^-]~S_j^- exp[i\pi \sum_{m=1}^{i-1} S_m^+ S_m^-]~S_i^- =\\
+& \qquad  = S_i^- exp[i\pi \sum_{n=i}^{j-1} S_n^+ S_n^-]~S_j^- ~+~ exp[i\pi \sum_{n=i}^{j-1} S_n^+ S_n^-]~S_j^- S_i^- =\\
+& \qquad \qquad = exp[i\pi \sum_{n=i+1}^{j-1} S_n^+ S_n^-]~ \{S_i^- exp[i\pi S_i^+ S_i^-]~S_j^-\} = \alpha ~S_j^- ~\{exp[i\pi S_i^+ S_i^-]~S_i^-\}
+\end{align*}
+
+\noindent where in third equality we considered that $S_j^{\pm}$ are not present in the arguments of the exponentials, so each exponential commutes with $S_j^{-}$, while only in the same equality and the following we used that also $S_i^{-}$ commutes with almost all exponentials, except the one with $ S_i^+ S_i^-$.
+\footnote{We remind that all $ S_n^+ S_n^-$, fermionic number operators, commutes with each other, because they are referred to different sites, so the exponential can be broken in a product, according to Baker-Hausdorff formula.}
+
+We have also put: 
+\begin{equation*}
+\alpha = exp[i\pi \sum_{n=i+1}^{j-1} S_n^+ S_n^-]
+\end{equation*}
+\noindent and we notice that, according to \cref{numinabasis}, $\alpha$ can be only $\pm 1$. Eventually we have used that $S_j^-$ commutes with $S_i^{\pm}$ to move it out of the anticommutator.
+
+Now we examine:
+
+\begin{equation*}
+\{exp[i\pi S_i^+ S_i^-]~S_j^-\} = exp[i\pi S_i^+ S_i^-]~S_j^-\ + S_j^-~\exp[i\pi S_i^+ S_i^-]
+\end{equation*}
+
+\noindent in a basis (the usual basis of $S_i^z \otimes \hat{\beta}$, with $\hat{\beta}$ an operator that describes all other degree of freedom), finding that:
+\begin{itemize}
+	\item when we consider $\ket{\uparrow, \beta}$ the exponential produces a minus in the second term and a plus in the first, so the commutator nullifies;
+	\item when we consider $\ket{\downarrow, \beta}$ both of the terms nullify because of the lowering operator.
+\end{itemize}
+
+So, because it's null over a complete set of vectors, it is the null operator.
+
+\paragraph{\underline{i = j}} This case is easier than the previous, and it's sufficient to develop the calculation:
+
+\begin{equation*}
+\{c_i, c_i\} = 2 c_i^2 = 2 (S_i^-)^2 = 0
+\end{equation*}
+
+\noindent according to the algebra of spin $1/2$ operators.
+
+\subsubsection{$\{c_i, c_j^\dagger\} = \delta_{ij}$}
+
+\paragraph{\underline{i < j}} This case is very similar to the one of (i < j) already studied above, if we remind \cref{fact1}.
+
+\begin{align*}
+\{c_i, c_j^\dagger\} &= c_i c_j^\dagger + c_j^\dagger c_i =\\
+&= exp[i\pi \sum_{m=1}^{i-1} S_m^+ S_m^-]~S_i^- ~S_j^+ ~exp[-i\pi \sum_{n=1}^{j-1} S_n^+ S_n^-] ~+~ S_j^+ ~exp[-i\pi \sum_{n=1}^{j-1} S_n^+ S_n^-]~ exp[i\pi \sum_{m=1}^{i-1} S_m^+ S_m^-]~S_i^- =\\
+& \qquad  = S_i^- exp[- i\pi \sum_{n=i}^{j-1} S_n^+ S_n^-]~S_j^+ ~+~ exp[- i\pi \sum_{n=i}^{j-1} S_n^+ S_n^-]~S_j^+ S_i^- =\\
+& \qquad \qquad = exp[i\pi \sum_{n=i+1}^{j-1} S_n^+ S_n^-] \{S_i^- exp[i\pi S_i^+ S_i^-]~S_j^+\} = \alpha ~S_j^+ ~\{exp[i\pi S_i^+ S_i^-]~S_i^-\}
+\end{align*}
+
+\noindent And we can conclude as in the previous cases
+
+\paragraph{\underline{i = j}} This case can also be just developing the calculation:
+
+\begin{align*}
+\{c_i, c_i^\dagger\} &= c_i c_i^\dagger + c_i^\dagger c_i =\\
+&= S_i^- S_i^+ + S_i^+ S_i^- = (S_i^x - iS_i^y)(S_i^x + iS_i^y) + (S_i^x + iS_i^y)(S_i^x - iS_i^y) =\\
+&= 2(S_i^x)^2 + 2(S_i^y)^2 + i\comm{S_i^x}{S_i^y} - i\comm{S_i^x}{S_i^y} =\\
+&= \mathbb{1}
+\end{align*}
+
+\noindent where we used again \cref{cnumber} and the algebra of $1/2$ spin operators.
+
+\section{The actual diagonalization}
+
+\subsection{Final transformation}
+
+For this part the article of Lieb is very clear, so instead of rewrite here the full text we simply cite him (see at the top). In particular the pages we are interested in, in this section, are 452-454 (\textit{Appendix A: To diagonalize a general quadratic form in fermi operators}).
+\footnote{The only one thing that maybe have some sense to do is verify that, according to the cited Appendix A, a linear superposition of fermions with real coefficients is still a fermion.}
+
+The resulting Hamiltonian is, in our case (the one of Pfeuty):
+
+\begin{equation}
+H = \Gamma \sum_k \Lambda_k (\eta_k^\dagger \eta_k - \frac{1}{2})
+\end{equation}
+
+\noindent with $\eta$ and $\eta_k$ fermionic operators, and:
+
+\begin{equation}
+\Lambda_k = \sqrt{1 + \lambda^2 + 2\lambda \cos k}	\qquad	\lambda = \frac{J}{2 \Gamma}
+\end{equation}
+
+So we have found a free Fermi gas with a ground energy of:
+
+\begin{equation}
+	E_0 = - \frac{\Gamma}{2} \sum_k \Lambda_k
+\end{equation}
+
+\noindent and an energy for excitation of $\Lambda_k$.
+
+We note that the ground energy depends on the number of particles, and the gap between first excited level and the ground depends on the structure of $\Lambda_k$ (that depends only on $\lambda$) and also on the number of particles, that the determines which fermions are in the ground state and which are the first to be occupied when excited.
+
+\subsection{Fazio's method}
+
+Fazio has presented in his lesson a method to done the transformation explicitly saying the sense of what is doing in it.
+I list here the operation, and maybe later I expand with all the calculations.
+
+This is what he did:
+\begin{description}
+	\item[Fourier transform] we can do the Fourier transform of $c_k$ and $c_k^\dagger$ operator:
+	\begin{align}
+		\tilde{c}_m = \sum_k e^{-ikm} c_k\\
+		\tilde{c}_m^\dagger = \sum_k e^{ikm} c_k^\dagger
+	\end{align}
+	Writing the inverse transformation (is simply the Fourier anti-transform) and substituting in the Hamiltonian we obtain a form almost diagonalized: the resulting operator is block diagonal, with $2\cross2$ blocks, that contains only the terms in $m$ and $-m$;
+	\item[$2\cross2$ blocks diagonalization] we only have to diagonalize small blocks, so we can explicit put a linear superpositions of the two operators in the Hamiltonian and find the correct value for the coefficients.
+\end{description}
+
+Obviously the result is the same obtain above.
+
+\paragraph{Observation} Fazio has pointed out that the border term, neglected in  \cref{eq:HamiltonianCC}, has an interesting behaviour (topological excitation), mostly in the field of quantum information.s
+
+\end{document}
