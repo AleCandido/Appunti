@@ -3,9 +3,9 @@
 \usepackage[T1]{fontenc}	
 \usepackage[italian]{babel}
 
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools,bbold,physics}
+
 \usepackage{graphicx}
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -14,8 +14,10 @@
 \usepackage{booktabs}
 \usepackage{verbatim}
 \usepackage{subfig}
+\usepackage{multicol}
+
 \usepackage[dvipsnames]{xcolor}  %colori
-\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
+\usepackage[colorlinks=true, linkcolor=MidnightBlue, urlcolor=blue, citecolor=Emerald, filecolor=RoyalBlue]{hyperref}   %per gli hyperlink
 
 \usepackage{braket}
 
@@ -31,18 +33,33 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 
 \section{Coda di lavoro}
 Scrivo qui di seguito la lista delle cose pratiche da fare in ordine, almeno quelle che sono ben note, così da avere il lavoro pronto quando ho le energie per farlo:
 
 \begin{itemize}
-	\item Polkovnikov, finire di leggere;
-	\item Articoli sperimentali 2$^a$ mandata;
 	\item Articoli teorici 2$^a$ mandata;
 	\item Teoria di Floquet, il capitolo originale della 1$^a$ mandata.
 \end{itemize}
 
 La lista è in divenire, però mi propongo di inserire le cose in coda per lo più.
+
+\section{Domande per Rossini}
+In generale scrivo qui tutti i problemi concettuali, le questioni più tecnicamente legate ai singoli articoli le scriverò nelle sezioni ad essi dedicate:
+
+\begin{enumerate}
+	\item Problema enorme: ma quali sono gli articoli che trattano di psuedotermalizzazione? Cioè: su cosa la faccio io la tesi?
+	\item Tutti gli articoli sperimentali sostengono di non osservare termalizzazione sulle scale temporali tipiche del sistema, ma che alla fine osservano un andamento che porta in quella direzione, perché i sistemi sono sempre un minimo accoppiati con l'esterno. Ma allora perché non si considera davvero che un sistema quantistico è sempre accoppiato con l'esterno e mai isolato oltre un certo livello per cui in realtà termalizzano tutti per il solo fatto di non poter essere mai isolati?
+\end{enumerate}
+
+\section{Note secondarie}
+Lista delle note secondarie:
+
+\begin{itemize}
+	\item \href{./Polkovnikov_review.pdf}{Polkovnikov\_review.pdf};
+	\item \href{./ExperimentalEvidences.pdf}{ExperimentalEvidences.pdf}.
+\end{itemize}
 
 \section{Argomenti}
 
@@ -170,20 +187,19 @@ I sistemi classici presentano più instabilità di quelli quantistici $^{[\texti
 
 \section{Experimental results}
 
-\subsection{Quantum Newton's cradle} Generano due condensati, confinati in un potenziale "a sigaro" (parabolico e stretto in due direzioni ortogonali e piatto al centro, e magari nuovamente parabolico ai lati, e allungato nella terza), indistinguibili (penso) e localizzati ai margini del lato lungo, con impulsi uguali e opposti (e convergenti, ma dovrebbe essere uguale a meno di una fase temporale).
-
-Li lasciano andare e vedono che continuano a oscillare anziché termalizzare.
-
-\'E importante perché è stato il punto di partenza per altri lavori sperimentali e anche per tutto il filone teorico.
+Si rimanda alla nota sulle \href{./ExperimentalEvidences.pdf}{evidenze sperimentali}.
 
 \section{Glossario}
 
 \begin{description}
-	\item[QCP:] punto critico quantistico, corrisponde a una transizione di fase a temperatura nulla (quindi a ground state) e può essere del secondo ordine, ma può anche essere associata a una discontinuità nell'entropia (come faccio ad avere un salto, non sono sempre a entropia nulla?);
+	\item[QCP:] punto critico quantistico, corrisponde a una transizione di fase a temperatura nulla (quindi a ground state) e può essere del secondo ordine, ma può anche essere associata a una discontinuità nell'entropia;
 	\item[quench:] è il modo più facile per portare un sistema fuori equilibrio, cioè una brusca variazione di qualche parametro dell'Hamiltoniana;
 	\item[density of excitations:]
 	\item[correlation length:]
 	\item[gapped/gapless systems:] è associata al gap al limite termodinamico fra il fondamentale e il primo/i primi eccitati, i due tipi di sistemi presentano caratteristiche sostanzialmente differenti;
+	\item[KZM:] Kibble-Zurek mechanism, lo scaling dei difetti con l'approssimarsi al punto critico (al prim'ordine: avvicinamento a velocità costante);
+	\item[GGE:] generalized Gibbs ensemble;
+	\item[CFT:] conformal field theory;
 \end{description}
 
 \end{document}
