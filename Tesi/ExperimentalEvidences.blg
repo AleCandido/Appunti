@@ -1,0 +1,8 @@
+[0] Config.pm:354> INFO - This is Biber 2.6
+[1] Config.pm:357> INFO - Logfile is 'ExperimentalEvidences.blg'
+[522] biber-MSWIN64:302> INFO - === 
+[924] Biber.pm:359> INFO - Reading 'ExperimentalEvidences.bcf'
+[1154] Utils.pm:180> ERROR - Error: Found biblatex control file version 3.3, expected version 3.2.
+This means that your biber (2.6) and biblatex (3.7) versions are incompatible.
+See compat matrix in biblatex or biber PDF documentation.
+[1154] Biber.pm:113> INFO - ERRORS: 1

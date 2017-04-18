@@ -1,0 +1,259 @@
+\documentclass[a4paper,10pt,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}	
+\usepackage[italian]{babel}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools,bbold,physics}
+
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}  %colori
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{verbatim}
+\usepackage{lipsum}
+
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{multicol}
+
+\usepackage[colorlinks=true, linkcolor=MidnightBlue, urlcolor=blue, citecolor=Emerald, filecolor=RoyalBlue]{hyperref}   %per gli hyperlink
+\usepackage[italian, sort, noabbrev, capitalise]{cleveref}
+\usepackage[bottom]{footmisc}
+
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+
+% macro
+\def\code#1{\texttt{#1}}
+
+\title{Nonequilibrium dynamics\\ of closed interacting quantum systems\\ - \textit{A. Polkovnikov}}
+\author{Alessandro Candido}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section*{}
+
+La nota principale sulla tesi è \href{./Appunti.pdf}{Appunti.pdf}, guarda quella per conoscere gli sviluppi globali.
+
+
+\section{Introduzione}
+
+Gli esperimenti nel campo della materia condensata negli ultimi 20-30 anni si sono evoluti al punto da ribaltare il rapporto fra teoria ed esperimenti:
+
+\begin{description}
+	\item[Prima:] la teoria cercava di sviluppare modelli efficaci per riprodurre sistemi fisici osservabili
+	\item[Ora:] gli esperimenti sono in grado di riprodurre una gran quantità di modelli teorici, perciò contribuiscono direttamente agli sviluppi della teoria, permettendo di indagare caratteristiche specifiche della materia simulandole in laboratorio
+\end{description}
+
+\noindent I sistemi all'equilibrio sono studiati con:
+
+\begin{itemize}
+	\item mean field;
+	\item renormalization group;
+	\item universality (esponenti critici).
+\end{itemize}
+
+\noindent Ci sono vari modi di portare un sistema fuori equilibrio:
+
+\begin{itemize}
+	\item driving fields;
+	\item pumping energy or particles through external reservoirs (problemi di trasporto);
+	\item quantum quench (variazione di uno dei parametri del sistema, cioè dell'Hamiltoniana):
+		\begin{itemize}
+			\item sia rapidamente (caso tipico);
+			\item sia lentamente.
+		\end{itemize}
+\end{itemize}
+
+\noindent Si esamina in particolare l'ultimo caso, ed è interessante il fatto che anche se il sistema è chiuso, e quindi non può scambiare energia fino ad arrivare ad un rilassamento globale, è comunque spesso possibile descrivere la dinamica a tempi lunghi e caratterizzarla con gli stati asintotici di osservaili fisiche (misurabili).
+
+Le due domande principali sono:
+
+\begin{itemize}
+	\item cosa accomuna la dinamica dei vari sistemi dopo un quench?
+	\item quali sono le caratteristiche degli stati asintotici/stazionari raggiunti dopo un quench? quando sono termici?
+\end{itemize}
+
+Per quel che riguarda il contenuto delle varie sezioni si rimanda ad esse, comunque principalmente nella \cref{nearAdiabtic} si risponde alla prima domanda e nella \cref{integrability} alla seconda.
+\newline
+
+Inoltre è importante sapere che sono studiati vari metodi di analisi teorica dei sistemi fuori equilibrio: DMRG e TEBD sono due, applicati principalmente a sistemi 1D, ma si cerca di estenderli anche in più dimensioni, poi la tecnica Keldysh per derivare le equazioni cinetiche quantistiche e i metodi relativi all'evoluzione nello spazio delle fasi.
+
+
+\section{Dinamica quasi adiabatica in sistemi quantistici}
+\label{nearAdiabtic}
+
+Aspetti universali dei sistemi quasi adiabatici vicini a QCP e in generici sistemi gapped e gapless. Si analizza lo scaling principalmente nel numero di difetti/eccitazioni locali e del calore in funzione del quench rate.
+
+\subsection{Universalità}
+
+\section{Integrabilità e non: ergodicità e termalizzazione}
+\label{integrability}
+
+Termalizzazione di sistemi quantistici dopo un quench, che in alcuni casi può non avvenire.
+
+La non-linearità delle interazioni non è di per sé sufficiente per la termalizzazione, ad esempio per la catena anarmonica questa avviene solo se l'intensità iniziale dell'interazione supera una certa soglia (sotto si generano solitoni e la soluzione è quasi-periodica, conseguenza del teorema KAM).
+
+Criteri sufficienti per la termalizzazione in sistemi quantistici non sono noti in generale, anzi: degli esperimenti hanno mostrato che sistemi quasi-integrabili di molte particelle non termalizzano per tempi lunghi (si cerca quindi una generalizzazione del teorema KAM al caso quantistico).
+\newline
+
+\noindent Sorgono spontanee le domande:
+\begin{enumerate}
+	\item bastano le interazioni per far comportare un sistema ergodicamente?
+	\item se si considera un sottosistema di un sistema chiuso il resto può essere considerato come un bagno termico?
+	\item e se non si può, ci sono effetti osservabili sulla dinamica?
+\end{enumerate}
+
+\subsection{Quantum and classical ergodicity}
+In meccanica classica è chiaro cosa significa ergodicità: intuitivamente le medie sull'ensemble (sullo spazio delle fasi) coincidono con le medie temporali, più formalmente si definisce così: posta una condizione iniziale $X_0$ si ha un'energia fissata (l'energia si conserva!) $E = H(X_0)$, si ha allora:
+
+\begin{equation}
+	\overline{\delta[X - X(t)]} = \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{0}^{T} dt \delta(X-X(t)) = \rho_{mc} (E)
+\end{equation}
+
+\noindent cioè il sistema esplora nel tempo tutta la regione a energia fissata in modo uniforme, per quasi ogni \footnote{tranne un insieme a misura nulla} condizione iniziale $X_0$.
+\newline
+
+In meccanica quantistica è più complicato.
+
+\noindent La descrizione statistica passa per la matrice densità: bisogna definire una matrice densità per l'ensemble microcanonico,
+
+\begin{equation}
+	\hat{\rho}_{mc}(E) = \sum_{\alpha \in \mathcal{H}(E)} 1/N(E) \ket{\Psi_\alpha}\bra{\Psi_\alpha} 
+\end{equation}
+
+\noindent dove $\mathcal{H}(E)$ è l'insieme degli stati a energia $E$, mentre $N(E)$ è la cardinalità.
+Se si considera però una generica condizione iniziale $\ket{\Psi_0} = \sum_{\alpha \in \mathcal{H}(E)} c_\alpha \ket{\Psi_\alpha}$ l'evoluzione (in assenza di degenerazione) porta ad un altro ensemble:
+
+\begin{equation}
+	\overline{\ket{\Psi_0} \bra{\Psi_0}} = \sum_{\alpha} \abs{c_\alpha}^2 \ket{\Psi_\alpha} \bra{\Psi_\alpha} = \hat{\rho}_{diag}
+\end{equation}
+
+\noindent che è chiamato ensemble diagonale. Infatti gli elementi fuori diagonale mediano a $0$ perché oscillanti.
+
+\noindent Per cui la più immediata definizione di ergodicità $\rho_{diag} = \rho_{mc}$ fallisce per quasi tutte le condizioni iniziali (dovrebbe essere $\abs{c_\alpha}^2 = 1 / N$).
+\newline
+
+Bisogna cercare di venirne fuori:
+\begin{itemize}
+	\item o veramente la maggior parte dei sistemi non sono ergodici;
+	\item oppure la matrice densità in sé non è così rilevante per caratterizzare il comportamento termico.
+\end{itemize}
+
+L'esperienza (e se non quella gli esperimenti) sembrano suggerire che la prima opzione sia falsa, perciò è la seconda: von Neumann suggerisce di concentrarsi sulle osservabili macroscapiche (che chiamermo $\{M_\beta\}$).
+
+\begin{equation}
+\bra{\Psi(t)} M_\beta \ket{\Psi(t)} \rightarrow_{t \rightarrow + \infty} \text{Tr}[M_\beta \hat{\rho}_{mc}] \equiv \langle M_\beta \rangle_{mc}
+\end{equation}
+
+\noindent cioè ci è sufficiente che le variabili macroscopiche si comportino ergodicamente, con un minimo di attenzione dicendo che $\infty$ significa tempi lunghi (c'è un problema di quantum revivals), per ovviare al problema:
+
+\begin{itemize}
+	\item $ \overline{(\langle M_\beta \rangle_{\Psi(t)} - \langle M_\beta \rangle_{mc})^2} \rightarrow_{t \rightarrow + \infty} 0$;
+	\item $ \overline{\bra{\Psi(t)} M_\beta \ket{\Psi(t)}} = \Tr[M_\beta \hat{\rho}_{diag}] = \expval{M_\beta}_{mc}$
+\end{itemize}
+
+\noindent In questo modo si definisce il \emph{macrostato} tramite le variabili macroscopiche, che ovviamente commutano tra di loro.
+von Neumann ha dimostrato che per quasi ogni condizione iniziale e quasi ogni set di variabili il sistema è ergodico.
+
+E... magia: pseudotermalizzazione, l'intera matrice densità di un sottosistema è descritta dall'ensemble canonico (Popescu 2006, Gogolin 2011)
+
+\subsection{Nonergodic behavior: GGE}
+Per le cose concrete: più che chiederci in astratto se esiste un insieme di osservabili macroscopiche $\{ M_\beta \}$ ergodiche che definisce il macrostato, ha senso chiedersi se quelle che usiamo di solito sono ergodiche o no (si comportano ergodicamente).
+
+Per sistemi integrabili la risposta è chiaramente: falso, non c'è niente di ergodico. Si usa come esempio una catena armonica:
+
+\begin{equation}
+H = \sum_{j=1}^{M-1} \left[\frac{p_j^2}{2m} + \frac{m \nu^2}{2} (x_j - x_{j+1})^2\right]
+\end{equation}
+
+Eccitando il sistema si fissano delle ampiezze per i suoi modi normali (che in tutto sono M), che evolveranno liberi. 
+Il sistema non termalizza, ma può lo stesso raggiungere uno stato asintotico:
+\begin{itemize}
+	\item si suppone di non eccitare modi a frequenza troppo elevata, per cui si può linearizzare lo spettro;
+	\item l'eccitazione iniziale si propagherà alla velocità del suono, e in approssimazione di spettro lineare non ci sarà dispersione, per cui non c'è rilassamento;
+	\item la nonlinearità si farà sentire su scale temporali $t^* \sim (\omega_{\bar{n} + 1} + \omega_{\bar{n} - 1} - 2\omega_{\bar{n}})^{-1}$, con $\omega_{\bar{n}}$ la portante del pacchetto (per la catena armonica $t^* \sim M^2 / \omega_{\bar{n}}$), e per tempi molto grandi su questa scala i vari modi perderanno la correlazione iniziale.
+\end{itemize}
+
+\noindent Le ampiezze, quindi la distribuzione delle energie nei vari modi, è conservata, mentre le fasi sono randomizzate.
+
+I modi con impulso opposto in generale mantengono la correlazione, perciò ci saranno altri $M$ integrali del moto corrispondenti alle fasi relative ($A_{-q} = A_q^\star$, perché le ampiezze abbiamo scelto di considerarle complesse, ma le equazioni sono reali e hanno soluzioni reali, ma in realtà si potrebbe direttamente eliminare i modi con $q < 0$).
+
+Se le fasi oscillanti mediano a $0$, ad esempio perché non c'è degenerazione, o comunque diventano irrilevanti allora lo stato asintotico è fissato dagli integrali del moto.
+
+\paragraph{GGE idea} Gli integrali del moto possono anche essere parecchi, in questo caso ad esempio scalano linearmente con la dimensione del sistema (in generale con il numero di modi normali), e ne serviranno altri in ogni caso in cui c'è degenerazione, ma lo spazio di Hilbert degli stati scala esponenzialmente con il numero dei modi normali!
+
+Per cui gli stati asintotici, anche se non termici, possono essere descritti da un ensemble che prenda in considerazione tutti questi integrali, e questa è già una conquista.
+
+\paragraph{Ising in transverse field} Per la risoluzione esatta del problema si rimanda alla corrispondente nota.
+
+La cosa importante è che come nel caso della catena armonica anche questo problema si disaccoppia in modi normali liberi (fermioni), con la legge di dispersione:
+
+\begin{equation}
+E_k = 2\sqrt{[g - cos(k)]^2 + sin(k)^2}
+\end{equation}
+
+dove $g = h/J$ è l'accopiamento del campo in unità adimensionali. 
+
+Anche qui per i modi non degeneri si ha che le correlazioni svaniscono col tempo perché le fasi oscillanti mediano a $0$ e studiando osservabili macroscopiche come la magnetizzazione si ha che sono perfettamente descritte dai numeri di occupazione, da cui la naturale descrizione dello stato asintotico mediante GGE (Rigol 2007).
+
+\paragraph{GGE definition} \'E stato definito da Jaynes (1957) come:
+
+\begin{equation}
+\hat{\rho}_G = \frac{e^{-\sum_{\alpha} \lambda_\alpha I_\alpha}}{Z}
+\end{equation}
+
+\noindent dove $Z$ è la normalizzazione (funzione di partizione) e $I_\alpha$ sono gli integrali del moto.
+
+Ci sono però un paio di cose a cui fare attenzione:
+\begin{itemize}
+	\item se tutte le costanti del moto vanno bene scelgo il proiettore su un autostato dell'Hamiltoniana e ottengo un risultato tautologico (sto nuovamente specificando lo stato nella base dell'Hamiltoniana);
+	\item per sistemi con un continuo di gradi di libertà e operatori di annichilazione $\hat{A}(\theta)$ la somma all'esponente va sostituita con $\int \
+	\text{d}\theta \lambda(\theta) \hat{A}^\dagger(\theta) \hat{A}(\theta)$, che è abbastanza naturale pensando all'ensemble canonico.
+\end{itemize}
+
+Per il primo punto si esamina la derivazione dell'ensemble canonico, e si scopre che è cruciale l'additività dell'energia fra sistemi statisticamente indipendenti, da cui la distribuzione esponenziale (\textbf{meglio verificare questo punto con le mie mani}). Per cui possiamo richiedere questo tipo di additività (o quasi) per ogni integrale del moto da usare per il GGE.
+
+Per il secondo punto è stato mostrato che, per sistemi integrabili 1D relativisticamente invarianti e per stati iniziali \emph{con invarianza traslazionale}, il limite per tempi lunghi di osservabili locali è descritto dal GGE.
+Tali stati sono nella forma:
+
+\begin{equation}
+\ket{\Psi_0} = \mathcal{N} e^{- \int \text{d}\theta K(\theta) \hat{A}^\dagger(\theta) \hat{A}^\dagger(-\theta)}
+\end{equation}
+
+\paragraph{F idea} è stato mostrato che prendendo un ensemble $\rho \propto \exp(- F)$ con $F$ una combinazione complessa degli integrali del moto trovata perturbativamente è possibile riprodurre l'andamento delle ampiezze nello stato stazionario e altre osservabili.
+
+\paragraph{Limiti} il GGE non funziona sempre: se ad esempio si considera Ising 1D quantistico si ha che il GGE prevede sempre $\expval{\delta n_k \delta n_{k'}} = 0$ o $\expval{\gamma_k^\dagger(t) \gamma_{-k} (t)} = 0$ (\textbf{verificare queste due affermazioni}), mentre se lo stato iniziale non soddisfa l'invarianza per traslazioni (cioè tante eccitazioni in $k$ quante in $-k$) allora questi valori di aspettazione, calcolati sullo stato iniziale, sono non nulli. Però se l'Hamiltoniana è invariante per traslazioni (vedi \cref{sec:dom}) è stato mostrato che i termini fuori diagonale decadono a zero e viene recuperata l'invarianza per traslazioni nello stato finale.
+
+\paragraph{Open questions}
+\begin{itemize}
+	\item quando si può applicare il GGE?
+	\begin{itemize}
+		\item per fermioni e bosoni liberi è stato mostrato che vale per ogni osservabile locale
+		\item nel caso interagente si ha che la località delle osservabili naturali (quelle nel sistema di partenza) non coincide con la località nelle quasiparticelle che diagonalizzano il problema, ma allora le osservabili locali saranno descritte da un GGE? o vale solo per le quasiparticelle\footnote{Per loro vale di sicuro perché è equivalente al caso scritto sopra di particelle libere}?
+		
+		Può darsi che la risposta dipenda dalle simmetrie dello stato iniziale
+	\end{itemize}
+	\item tutte le osservabili di sistemi integrabili si comportano non termicamente? no, alcune sono comunque termiche, dipende sempre dalla \emph{località} nelle quasiparticelle che diagonalizzano; un esempio è stato mostrato su quantum Ising chain, per cui i correlatori del parametro d'ordine $\sigma_z$ rilassano su uno stato termico con temperatura efficace fissata dall'energia iniziale dopo un quench (Rossini 2009)
+\end{itemize}
+
+\subsection{Eigenstate Thermalization Hypothesis}
+
+
+\section{Domande}
+\label{sec:dom}
+\begin{enumerate}
+	\item sezione 3.B: "l'ensemble canonico emerge per piccoli sottosistemi dall'ipotesi di indipendenza statistica per grandi sottosistemi", penso di aver capito, ma non ne sono sicuro: significa che dividiamo il sistema isolato in due parti, e che lo stato di quella grande non è influenzato da quello di quella piccola? 
+	\item sezione 3.B: "i numeri di occupazione diventano approssimativamente additivi per piccoli sottosistemi", non sono additivi e basta? questo mi sa che non l'ho proprio capito\dots
+	\item sezione 3.B: che significa che l'Hamiltoniana è "traslazionalmente invariante" in questo contesto?
+	\item perché è interessante studiare i correlatori delle osservabili, in generale? (prima di questa domanda rido un'occhiata all'espansione in cluster)
+\end{enumerate}
+
+\end{document}
