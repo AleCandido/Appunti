@@ -1,0 +1,47 @@
+% Pantieri lo chiama colophon, va bene per scrivere qualcosa in seconda pagina.
+\phantomsection
+\thispagestyle{empty}
+
+\hfill
+
+\vfill
+
+\noindent Alessandro Candido: \textit{Appunti - Struttura della materia,}
+%tipo di opera,
+\textcopyleft\ \DTMMonthname{\the\month} \the\year
+\newline
+
+\lipsum[2]
+
+\pdfbookmark{\contentsname}{tableofcontents}
+\setcounter{tocdepth}{2}
+\tableofcontents
+\markboth{\scshape{\contentsname}}{\scshape{\contentsname}}
+
+\clearpage
+\phantomsection
+\thispagestyle{empty}
+\pdfbookmark{Dedica}{Dedica}
+
+\vspace*{3cm}
+
+\begin{center}
+	Citazione a caso, magari facciamola un po' più lunga. \\ \medskip
+	--- Oscar Wilde    
+\end{center}
+
+\medskip
+
+\begin{center}
+	Dedica generica, o altra frase se gira diversamente.
+	Usare la dedica solo per riempire una pagina di sinistra, cioè se l'indice occupa un numero dispari di pagine, altrimenti \textbf{niente dedica}.
+\end{center}
+
+\pdfbookmark{Introduzione}{introduzione}
+
+\chapter*{Introduzione}
+
+Descrizione del contenuto dell'opera e motivazioni/altre chiacchiere varie.
+\newline
+
+\lipsum[1]

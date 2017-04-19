@@ -1,0 +1,310 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../Appunti.tex
+
+\section{Introduzione}
+
+In seguito si considera un modello di \textit{gas perfetto} per illustrare alcune delle affermazioni generali fatte.
+
+\begin{defn}[Gas perfetto]
+	Un \textit{gas perfetto} è un insieme di particelle (o, generalizzando, strutture elementari) \textit{non interagenti}.
+\end{defn}
+
+Per rendere il sistema \textit{non integrabile}, e quindi \textit{ergodico}, si deve però assumere che ci sia qualche modo per far scambiare impulso fra le particelle, e quindi farle interagire. Si può pensare ad un interazione mediata dalle pareti della scatola che contiene il gas.
+
+\paragraph{Osservabili macroscopiche} A livello microscopico il sistema è quindi caratterizzato dall'Hamiltoniano di singola particella, e non c'è altro da aggiungere. Si vuole però caratterizzare il sistema nel suo insieme attraverso delle \textit{osservabili macroscopiche} e trovare le relazioni fra esse: si vuole trovare \textit{l'equazione di stato} del sistema complessivo.
+
+Si vuole quindi indagare a livello microscopico l'origine di concetti macroscopici quali: \textit{entropia}, \textit{irreversibilità} e \textit{equilibrio}.
+
+\subsection{Principi della Meccanica Statistica}
+Per colmare il salto che separa la descrizione \textit{microscopica} dalle proprietà \textit{macroscopiche} del sistema la Meccanica Statistica di equilibrio pone essenzialmente due principi:
+
+\begin{description}
+	\item[Perdita di memoria:] all'equilibrio, che si suppone sempre raggiunto da un sistema dopo un tempo sufficientemente lungo (rispetto alle scale temporali delle interazioni microscopiche), il \textit{macrostato} del sistema è indipendente dalle condizioni iniziali.
+	\item[Equiprobabilità a priori:] all'equilibrio ogni possibile \textit{microstato} è equiprobabile. La disponibilità di un data microstato dipende dai vincoli che deve soddisfare il sistema (es.: conservazione dell'energia).
+\end{description}
+
+\subsubsection{Equilibrio}
+
+Si è parlato di \textit{equilibrio}, senza specificare cosa si intenda per esso. Non è una questione banale, ma a questo livello se ne può dare una definizione approssimativa.
+
+\begin{defn}[Equilibrio]
+	\label{def:eq}
+	Si dice che un sistema macroscopico è all'\textit{equilibrio} quando tutte le osservabili macroscopiche sono \textit{stazionarie}, cioè non evolvono nel tempo.
+\end{defn}
+
+La \cref{def:eq} è approssimativa in quanto si considereranno in seguito trasformazioni fra stati di equilibrio.
+\`E però una buona definizione se si specifica che la scala temporale su cui va valutata la stazionarietà è \textit{mesoscopica}: per tempo \textit{microscopici} il sistema evolve secondo la dinamica data dalle singole interazioni, mentre a livello \textit{macroscopico} l'evoluzione è data dalla trasformazione considerata.
+
+Infatti per mantenere la condizione di equilibrio la scala microscopica e quella macroscopica sono separate da diversi ordini di grandezza, per cui è possibile la verifica della stazionarietà delle osservabili su scale intermedie, che vanno però considerate come nettamente distinte dalle altre (si può pensare a tre stati diversi, analogamente all'elettronica digitale in confronto alla natura analogica dei segnali).
+
+\paragraph{Sulla natura dei principi fisici} \`E importante tenere presente che le due assunzioni fatte sono \textit{principi}, quindi non necessariamente verificati per ogni sistema fisico, ma sperimentalmente veri per un buon numero di sistemi e assunti per tutti gli altri.
+
+A differenza di altri principi, che connettono l'astrazione teorica al mondo fisico, per natura stessa della meccanica statistica questi connettono due branche della teoria, quella microscopica e quella macroscopica, per cui è possibile che queste assunzioni siano false a livello formale per alcune classi di sistemi. Questo è il caso dei sistemi \textit{integrabili} (e quindi \textit{non ergodici}) in meccanica classica, ed è il caso di quasi tutti i sistemi quantistici (in cui la situazione è molto più sottile).
+
+\'E sufficiente però considerare che questi sistemi sono pochi nel caso classico, mentre nel caso quantistico il problema si aggira in un altro modo, per cui i principi considerati consentono la descrizione di una classe enorme di sistemi (la quasi totalità).
+
+\subsection{Entropia}
+\label{sec:entro}
+
+Si supponga che il sistema abbia $\Gamma$ possibili microstati, con $\Gamma \equiv \Gamma(E,N,V)$, cioè una funzione del volume, dell'energia e del numero totale dei componenti (d'ora in avanti \textit{particelle}) del sistema.
+
+\begin{defn}[Entropia, microscopica]
+	L'\textit{entropia} di un sistema è definita in base alle proprietà microscopiche di un sistema come:
+	\begin{equation*}
+	S = k \log\Gamma
+	\end{equation*}
+\end{defn}
+
+In questo modo anche l'entropia è una funzione di volume, energia e numero di particelle del sistema $S \equiv S(E,N,V)$.
+
+Invertendo l'entropia come funzione dell'energia si ottiene $E(S,N,V)$, e da questa espressione si possono studiare le variazioni dell'energia totale.
+
+\begin{equation*}
+	\dd E = \left(\frac{\partial E}{\partial S}\right)_{N,V} \dd S + \left(\frac{\partial E}{\partial V}\right)_{S,N} \dd V + \left(\frac{\partial E}{\partial N}\right)_{S,V} \dd N
+\end{equation*}
+
+\begin{note}[Invertibilità di $S(E,N,V)$]
+	\'E sempre possibile invertire l'entropia in funzione dell'energia a $V$ e $N$ fissati, infatti se non c'è un limite superiore per l'energia di singola particella il numero di microstati sarà una funzione crescente dell'energia, e quindi anche l'entropia.
+\end{note}
+
+\paragraph{Osservabili intensive} Le osservabili estensive caratteristiche di un sistema macroscopico $E, N, V$ sono state definite in modo naturale a partire dalle caratteristiche microscopiche.
+
+A questo punto si possono definire le osservabili intensive dalle variazioni dell'energia, distinguendo le varie sorgenti.
+
+\begin{defn}[Osservabili Intensive]
+	\label{def:ossint}
+	Si definisce \textit{temperatura:}
+	\begin{equation*}
+	T = \left(\frac{\partial E}{\partial S}\right)_{N,V}
+	\end{equation*}
+	
+	Si definisce \textit{pressione:}
+	\begin{equation*}
+	P = - \left(\frac{\partial E}{\partial V}\right)_{S,N}
+	\end{equation*}
+	
+	Si definisce \textit{potenziale chimico:}
+	\begin{equation*}
+	\mu = \left(\frac{\partial E}{\partial N}\right)_{S,V}
+	\end{equation*}
+\end{defn}
+
+Le definizioni che si sono date sono del tutto \textit{formali}, a priori senza alcun senso fisico alle spalle. Si esamina quindi una di queste (la temperatura) per capire la corrispondenza della definizione a un concetto fisico.
+
+\paragraph{Temperatura} Il concetto fisico di temperatura è dato dal \textit{principio zero} della termodinamica: essa è una caratteristica del sistema che ne descrive l'equilibrio termico rispetto ad altri sistemi. La temperatura è quindi un numero reale:
+\begin{itemize}
+	\item condiviso per sistemi fra loro all'equilibrio;
+	\item per sistemi non in equilibrio indica il verso in cui fluisce il calore.
+\end{itemize}
+
+Quando due sistemi, con numero di microstati $\Gamma_1$ e $\Gamma_2$, sono separati, il numero di microstati totale sarà $\Gamma_1\Gamma_2$.
+Quando i sistemi sono posti in contatto, a $V$ e $N$ fissati per ciascuno, tutto ciò che può succedere macroscopicamente è che una parte dell'energia di uno fluisca nell'altro, e per la monotonicità dell'entropia quindi se aumenta $S_1$ allora diminuirà $S_2$ e viceversa.
+
+Se i sistemi sono all'equilibrio l'entropia totale è allora in un massimo, altrimenti aumenterebbe tramite scambio di energia. Inoltre anche l'energia totale è conservata, per cui:
+
+\begin{align*}
+&\begin{rcases*}
+\delta(E_1 + E_2) = 0 \\
+\delta E_i = T_i \delta S_i
+\end{rcases*}
+\implies T_1 \delta S_1 + T_2 \delta S_2 = 0 \\
+&\delta(S_1 + S_2) = 0
+\end{align*}
+
+\noindent Da cui si ottiene facilmente $T_1 = T_2$.
+
+Si può verificare anche l'affermazione sul verso del flusso di energia (calore): sia $T_1 < T_2$, l'energia è sempre conservata, inoltre si considera che l'entropia totale può solo aumentare:
+
+\begin{align*}
+&\begin{rcases*}
+\delta(E_1 + E_2) = 0 \\
+\delta E_i = T_i \delta S_i
+\end{rcases*}
+\implies T_1 \delta S_1 + T_2 \delta S_2 = 0 \implies \implies \delta S_1 = - \frac{T_2}{T_1} \delta S_2\\
+& \delta(S_1 + S_2) \geq 0 \implies \delta S_1 \geq - \delta S_2
+\end{align*}
+
+Da cui si ottiene:
+
+\begin{equation*}
+- \frac{T_2}{T_1} \delta S_2 \geq - \delta S_2 \implies (1 - \frac{T_2}{T_1}) \delta S_2 \geq 0 \implies \delta S_2 \leq 0
+\end{equation*}
+
+E per la monotonicità dell'entropia si ha anche $\delta E_2 \leq 0$, che corrisponde a quanto atteso.
+
+\paragraph{Equazione di stato} A questo punto si è in grado di calcolare, astrattamente, l'\textit{l'equazione di stato}, eliminando l'entropia dalle due equazioni:
+
+\begin{align*}
+	&T(S,V,N) = \left(\frac{\partial E}{\partial S}\right)_{N,V} \\
+	&P(S,V,N) = - \left(\frac{\partial E}{\partial V}\right)_{S,N}
+\end{align*}
+
+\subsection{Precisazioni teoriche sui fondamenti}
+\label{sec:teorpipterm}
+Anche se le temperatura di due sistemi è la stessa l'operazione di metterli a contatto non è senza conseguenze: si perde traccia dell'energia esatta di ognuno dei due sistemi, mantenendo l'informazione su quella totale.
+
+Per cui si pongono due questioni:
+\begin{itemize}
+	\item quanta incertezza viene introdotta?
+	\item negli argomenti usati precedentemente nello studio della temperatura, funziona tutto bene anche avendo perso traccia delle singole energie nel contatto termico?
+\end{itemize}
+
+La risposta alla prima domanda è: sostanzialmente poca, ed è per questo che la meccanica statistica funziona bene (si veda la \cref{sec:fluct}, per una trattazione più estesa).
+
+La risposta alla seconda domanda è che non ci serve sapere quantitativamente l'energia, ma che è sufficiente sapere che il sistema è isolato e la sua energia è fissata.
+\newline
+
+C'è un punto ancora più sottile: oltre all'incertezza termodinamica sull'energia, se consentiamo le transizioni fra microstati a livello quantistico non siamo in uno stato stazionario, ma in stati con tempo di vita finito, e quindi vi è un'incertezza del tutto quantistica sulla loro energia.
+
+Comunque se il numero di particelle è abbastanza grande questa incertezza non è rilevante: $\Gamma \sim 10^N$, per cui se anche l'errore sul conteggio degli stati fosse dell'ordine di $ N $ l'errore sul logaritmo (cioè sull'entropia) diventa irrisorio per grandi $ N $.
+
+\paragraph{Descrizione canonica} Si può però rinunciare alla descrizione \textit{microcanonica} (energia fissata, vedi \cref{sec:statmech}) e decidere di considerare un piccolo sottosistema di un grande sistema isolato: per esso non sarà fissata l'energia, ma la temperatura, attraverso il contatto col resto del sistema che fungerà da \textit{bagno termico}.
+
+L'energia del sistema quindi sarà libera di fluttuare, ma la descrizione si sposterà sulla \textit{densità di stati}, che non è soggetta a incertezza quantistica.
+
+\begin{note}[Legge di dispersione]
+	La \textit{densità di stati} tipicamente è determinata dal seguente procedimento:
+	\begin{itemize}
+		\item si assume che sia piatta sullo spazio delle fasi accessibile;
+		\item si trasforma in una funzione dell'energia, una volta nota l'energia come funzione degli impulsi e delle poszioni.
+	\end{itemize}
+	Quest'ultima è a volte nota come \textit{legge di dispersione}.
+\end{note}
+
+\subparagraph{Fluttuazioni} \`E importante distinguere fra due tipi di fluttuazioni:
+\begin{description}
+	\item[fluttuazioni microscopiche:] si è detto che un sistema in equilibrio esplora tutti i microstati accessibili \textit{ergodicamente}, ma questo tipo di fluttuazioni fra microstati non sono fluttuazioni dell'equilibrio: l'equilibrio ha origine proprio da una media su queste transizioni;
+	\item[fluttuazioni macroscopiche:] quando si è introdotto l'approccio \textit{canonico} si è inserita la possibilità che l'energia non fosse fissata, ma fluttuasse; queste fluttuazioni sono di tipo macroscopico, perché al livello microscopico descritto prima tanto il microcanonico quanto il canonico fluttuano.
+\end{description}
+
+% quest'ultima parte sulle fluttuazioni va rivista graficamente e dal punto di vista dell'italiano.
+
+\section{Termodinamica}
+\label{sec:termod}
+
+
+\subsection{I principi della termodinamica}
+La \textit{termodinamica} è fondamentalmente un sistema logico basato su quattro assiomi.
+
+\paragraph{Principio zero} Il principio zero è stato già citato e discusso nella \cref{sec:teorpipterm}, esso caratterizza la relazione di equilibrio termico fra sistemi. Si riporta lo stesso un enunciato conciso:
+
+\begin{defn}[Principio zero della termodinamica]
+	La relazione di equilibrio termico è transitivi, quindi è una relazione di equivalenza.
+	
+	Più esplicitamente: se A è in equilibrio con B e con C, allora B è in equilibrio con C.
+\end{defn}
+
+\begin{note}
+	C'è da fare attenzione anche in questo caso all'applicabilità fisica di questo principio: la verifica dell'equilbrio termico è effettuata mediante contatto termico, per cui per stabilire che due corpi non sono in equilibrio è necessario veder fluire calore.
+	
+	Se il calore che fluisce non è poco due corpi non in equilibrio potrebbero diventarlo. Cioè: la verifica dell'equilibrio fra due corpi può alterare la situazione iniziale, anzi, in generale \textbf{deve} farlo.
+	
+	Per aggirare questo problema ci si può servire di corpi sufficientemente piccoli di test (detti \textit{termometri}) che possono mediare il processo di verifica della situazione di equilibrio senza alterare apprezzabilmente lo stato dei corpi da testare, ed è in questo senso che va inteso il principio zero.
+\end{note}
+
+\paragraph{Primo principio} Il primo principio asserisce la \textit{conservazione dell'energia}: esso, macroscopicamente, corrisponde all'istituzione stessa di una quantità, detta energia, che si conservi in sistemi isolati.
+
+\begin{defn}[Primo principio della termodinamica]
+	L'energia è una quantità conservata per sistemi isolati.
+	
+	Più esplicitamente: se l'energia interna a un sottosistema del sistema isolato globale (da qui in poi detto \textit{universo}) non è conservata, essa è stata scambiata con altre parti dell'universo. Lo scambio di energia può assumere due forme: lavoro meccanico o calore.
+	
+	\begin{equation*}
+		\dd E = \dd Q + \dd W
+	\end{equation*}
+	
+	$Q$ è il calore assorbito dal sottosistema, mentre $W$ è il lavoro fatto sul sottosistema.
+\end{defn}
+
+\noindent Si noti che il lavoro meccanico corrisponde ad un trasporto di energia \textit{macroscopico}, mentre il calore è essenzialmente un trasporto di energia \textit{microscopico}. Questa è la principale differenza tra i due.
+
+Per il \textit{gas perfetto} si può legare il lavoro alla variazione delle osservabili macroscopiche:
+
+\begin{equation*}
+\dd W = \mathcal{F} \dd x = \frac{\mathcal{F}}{A} (A\dd x) = - P \dd V
+\end{equation*}
+
+\noindent In generale è possibile identificare il lavoro, nell'ambito della meccanica lagrangiana, fermandosi alla prima uguaglianza e considerando come $\dd x$ gli spostamenti generalizzati e com $ \mathcal{F} $ le forze generalizzate corrispondenti (bisognerà inoltre sommare su tutti i possibili contributi).
+\newline
+
+Si ottiene quindi che:
+\begin{equation*}
+	\left(\frac{\partial E}{\partial V}\right)_Q = - P
+\end{equation*}
+
+\noindent Che può essere confrontato con la definizione data nella \cref{sec:entro}.
+
+Questo è legato al fatto che una trasformazione \textit{isoentropica} avviene senza scambio di calore, infatti variando in modo sufficientemente lento il volume per il \textit{teorema adiabatico} i microstati cambieranno, ma ci sarà una corrispondenza uno a uno fra vecchi e nuovi, quindi il loro numero è fissato.
+
+Queste ultime affermazioni in realtà sono tutte nell'ottica della meccanica statistica, perché a livello termodinamico l'entropia è definita nell'ambito del \textit{secondo principio}, che non è stato ancora esposto.
+
+\paragraph{Secondo principio} Il secondo principio è enunciato nel modo più termodinamicamente corretto nelle forme di \textit{Kelvin} e di \textit{Clausius}, ben note e reperibili. Esse consentono la dimostrazione del teorema di \textit{Carnot}, e conseguentemente di quello di \textit{Clausius}, che consente di definire l'entropia.
+
+Si sceglie allora di assumere noto il teorema di \textit{Clausius}, definendo l'entropia, e servendosi di essa per enunciare il secondo principio, ma deve essere noto che questo non è realmente possibile in termodinamica, in quanto il secondo principio è logicamente precedente alla definizione stessa di entropia.
+
+\begin{defn}[Entropia]
+	La variazione di entropia fra uno stato A e uno stato B è:
+	\begin{equation*}
+	\Delta S = \int_{A \rightarrow B} \frac{\dd Q}{T}
+	\end{equation*}
+	dove l'integrazione è effettuata su un cammino costituito da una trasformazione \textit{reversibile}.
+	
+	L'entropia è quindi definita così a meno di una costante, che fissa il valore dell'entropia per un certo stato.
+\end{defn}
+
+\noindent E dunque:
+
+\begin{defn}[Secondo principio della termodinamica]
+	L'entropia di un sistema isolato fuori equilibrio tende ad aumentare.
+\end{defn}
+
+\noindent Gli stati di equilibrio sono quindi caratterizzati come massimi dell'entropia.
+
+\paragraph{Terzo principio} Il terzo principio si colloca ai margini della termodinamica, e più che farne parte ne specifica i limiti. Infatti esso afferma che:
+
+\begin{defn}[Terzo principio della termodinamica]
+	L'entropia a temperatura nulla (zero assoluto) è nulla.
+\end{defn}
+
+\noindent che in modo equivalente può essere inteso come: \textit{la temperatura nulla non è raggiungibile da processi termodinamici.}
+
+\subsection{Grandezze termodinamiche}
+\label{sec:thermquant}
+
+Vi sono quattro variabili termodinamiche indipendenti:
+
+\begin{equation*}
+\begin{matrix}
+S	&	V \\
+T	&	P \\
+\end{matrix}
+\end{equation*}
+
+\noindent Organizzate nel modo seguente:
+\begin{itemize}
+	\item la prima riga sono estensive;
+	\item la seconda riga intensive;
+	\item le variabili appartenenti alla stessa colonna sono coniugate.
+\end{itemize}
+
+\noindent Le variabili coniugate compaiono a coppie nell'espressione dell'energia. Ogni variabile termodinamica può essere espressa come funzione della variabile coniugata e di una delle altre due (si verifica a partire dalle espressioni date nella \cref{def:ossint}).
+
+Perciò è sempre possibile scegliere una coppia di variabili, non coniugate, come \textit{indipendenti}, le altre due saranno quindi \textit{dipendenti} e ottenibili come funzioni delle prime.
+\newline
+
+Le variabili termodinamiche scelte come \textit{dipendenti} possono essere ricavate da un singolo \textit{potenziale termodinamico}, se le variabili indipendenti scelte sono le variabili \textit{proprie} del potenziale.
+
+I potenziali termodinamici sono ottenuti come opportune trasformate di Legendre dell'energia, si passa quindi ad illustrarli.
+
+\paragraph{Energia} Le sue variabili proprie sono $S$ e $V$. L'espressione del suo differenziale è:
+
+\begin{equation*}
+\dd E = T \dd S - P \dd V
+\end{equation*}
+
+\section{Meccanica Statistica}
+\label{sec:statmech}
+
+\subsection{Fluttuazioni}
+\label{sec:fluct}

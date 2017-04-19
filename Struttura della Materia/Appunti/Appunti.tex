@@ -1,0 +1,76 @@
+\documentclass[a4paper,10pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[italian]{babel}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools,bbold,physics}
+
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}  %colori
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{verbatim}
+\usepackage{lipsum}
+\usepackage{textcomp}		%copyleft symbol
+
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{indentfirst}				% rientra il primo capoverso di ogni sezione
+\usepackage[italian]{varioref}			% riferimenti completi della pagina
+
+\usepackage[colorlinks=true, linkcolor=MidnightBlue,%
+urlcolor=blue, citecolor=Emerald,%
+filecolor=RoyalBlue]{hyperref}		%per gli hyperlink
+\usepackage[italian, sort, noabbrev, capitalise]{cleveref}
+\usepackage[bottom]{footmisc}
+
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+\usepackage[italian]{datetime2}
+\usepackage{datetime2-calc}
+
+% teoremi (con amsthm)
+\theoremstyle{plain}% default
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem*{cor}{Corollario}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{es}{Esempio}[section]
+\newtheorem{ex}{Esercizio}[section]
+\newtheorem*{note}{Nota}
+
+% macro
+\def\code#1{\texttt{#1}}
+
+\title{Appunti \\
+		\Large Struttura della Materia}
+\author{Alessandro Candido}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\input{MaterialeIniziale.tex}
+
+\mainmatter
+\chapter{Termodinamica e Meccanica Statistica}
+
+\input{Capitoli/TermStat.tex}
+
+\chapter{Gas perfetto}
+
+\chapter{Fluttuazioni e Rumore}
+
+\chapter{Cristalli}
+
+\appendix
+
+\end{document}
