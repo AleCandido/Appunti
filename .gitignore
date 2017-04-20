@@ -14,5 +14,4 @@
 Makefile
 __pycache__/
 !notignore/*.*
-
-! */Immagini/*.pdf
+!*/Immagini/*.pdf
