@@ -297,14 +297,223 @@ Le variabili termodinamiche scelte come \textit{dipendenti} possono essere ricav
 
 I potenziali termodinamici sono ottenuti come opportune trasformate di Legendre dell'energia, si passa quindi ad illustrarli.
 
-\paragraph{Energia} Le sue variabili proprie sono $S$ e $V$. L'espressione del suo differenziale è:
+\paragraph{Energia E} Le sue variabili proprie sono $S$ e $V$. L'espressione del suo differenziale è:
 
 \begin{equation*}
 \dd E = T \dd S - P \dd V
 \end{equation*}
 
+\paragraph{Energia libera F} Le sue variabili proprie sono $T$ e $V$. La sua espressione in funzione dell'energia $E$ è:
+
+\begin{equation*}
+F = E - T S
+\end{equation*}
+
+E dunque l'espressione del suo differenziale è:
+
+\begin{equation*}
+\dd F = - S \dd T - P \dd V
+\end{equation*}
+
+\begin{note}
+	Le variabili proprie dell'energia libera sono particolarmente comode (il motivo è per lo più che non contengono l'entropia), per cui essa è decisamente utile ai fini del calcolo dell'equazione di stato, cioè $ P(V,T) $ (un altro motivo è che si esprime in modo semplice in termini della \textit{funzione di partizione}, vedi \cref{sec:stmechintro}).
+\end{note}
+
+\paragraph{Energia libera di Gibbs G }Le sue variabili proprie sono $T$ e $P$. La sua espressione in funzione dell'energia $E$ è:
+
+\begin{equation*}
+G = E - T S + P V
+\end{equation*}
+
+E dunque l'espressione del suo differenziale è:
+
+\begin{equation*}
+\dd G = - S \dd T + V \dd P
+\end{equation*}
+
+\begin{note}
+	Anche questo potenziale ha una sua utilità specifica: esso è espresso in funzione delle variabili \textit{intensive}, questo lo rende particolarmente per caratterizzare alcune situazioni (es: \textit{transizioni di fase}).
+\end{note}
+
+
+\paragraph{Entalpia H}Le sue variabili proprie sono $S$ e $P$. La sua espressione in funzione dell'energia $E$ è:
+
+\begin{equation*}
+H = E + P V
+\end{equation*}
+
+E dunque l'espressione del suo differenziale è:
+
+\begin{equation*}
+\dd H = T \dd S + V \dd P
+\end{equation*}
+
+Si nota che l'entalpia ha una proprietà per cui in inglese è chiamata anche \textit{heat function}, ed è:
+
+\begin{equation*}
+\dd H)_P = T \dd S)_P = \dd Q)_p
+\end{equation*}
+
+\subsubsection{Relazioni di Maxwell}
+Applicando il \textit{teorema di Schwarz} (di cui supponiamo sempre verificate le ipotesi, lontano da punti critici) si ha la commutazione delle derivate seconde, e applicando questo risultato ai vari potenziali termodinamici si ottengono le cosiddette \textit{relazioni di Maxwell}.
+
+Si riporta solo il caso dell'energia libera a titolo di esempio:
+
+\begin{equation*}
+\left(\frac{\partial P}{\partial T}\right)_V = \frac{\partial}{\partial T} \left(- \left(\frac{\partial F}{\partial V}\right)_T\right)_V = \frac{\partial}{\partial V} \left(- \left(\frac{\partial F}{\partial T}\right)_V\right)_T = \left(\frac{\partial S}{\partial V}\right)_T
+\end{equation*}
+
+\`E noto un diagramma che riassume le proprietà dei potenziali termodinamici, cioè le variabili proprie e le relazioni di Maxwell, ed è considerato un utile strumento mnemonico (\cref{fig:maxrel}).
+
+\begin{figure}[t]
+	\centering
+	\input{MaxRel.pdf_tex}
+	\caption{Diagramma illustrativo delle relazioni fra potenziali termodinamici (noto anche come \textit{diagramma di koenig} )}
+	\label{fig:maxrel}
+\end{figure}
+
+\subsubsection{Numero di particelle}
+Fino ad adesso si è considerato costante il numero di particelle, ma in base alla scelta che si fa del sottosistema anche esso può essere variabile: non è necessario che un sottosistema sia identificato dalla scelta di alcune particelle, che in generale è impossibile da effettuare (vedi \cref{secidpart}), ma potrebbe essere descritto da altre proprietà (es: il volume che occupa, un certo insieme di stati, \dots).
+
+Perciò, coerentemente con la \cref{def:ossint}, si può scrivere:
+
+\begin{equation*}
+\dd E = T \dd S - P \dd V + \mu \dd N
+\end{equation*}
+
+\noindent Da questa inoltre risultano le espressioni degli altri potenziali termodinamici, ottenute differenziando le opportune trasformate di Legendre.
+
+\begin{note}
+	Un'importante osservazione è che le variazioni dei potenziali termodinamici rispetto a qualunque nuova osservabile, tenendo costanti le variabili proprie, sono tutte uguali, infatti:
+	
+	\begin{equation*}
+	\mu \delta N = (\delta E)_{S, V} = (\delta F)_{T,V} = (\delta G)_{T,P} = (\delta H)_{S,P}
+	\end{equation*}
+\end{note}
+
+Inoltre si noti che $E$ è una grandezza estensiva, le cui variabili proprie sono anch'esse estensive; sfruttando questa proprietà si ha che scalando di una quantià $\lambda$ il sistema\footnote{Si immagini di frazionare in parti il sistema, se il sistema è sufficientemente grande posso coprire tutto $\mathbb{Q}^+$, e passando al limite $\mathbb{R}^+$.}:
+
+\begin{align*}
+& \dd (\lambda E) = T \dd (\lambda S) - P \dd (\lambda V) + \mu \dd (\lambda N) \implies\\ 
+& \qquad \implies E \dd \lambda + \lambda \dd E  = T (S \dd \lambda + \lambda \dd S) - P (V \dd \lambda + \lambda \dd V) + \mu (N\dd \lambda + \lambda \dd N)
+\end{align*}
+
+Raccogliendo $\lambda$ e $\dd lambda$, e considerando che poiché $\lambda$ è arbitrario le due identità risultanti devono essere soddisfatte separatamente, si ottiene l'equazione di Eulero:
+
+\begin{equation*}
+E = TS - PV + \mu N
+\end{equation*}
+
+Da cui si ottiene l'espressione per la variazione del potenziale chimico:
+
+\begin{equation*}
+\dd \mu = - \frac{S}{N} \dd T + \frac{V}{N} \dd P
+\end{equation*}
+
+L'equazione di Eulero per l'energia implica che anche gli altri potenziali termodinamici possano avere una forma simile. In particolare:
+
+\begin{equation*}
+G = \mu N
+\end{equation*}
+
+\paragraph{Gran Potenziale $\Omega$} Si può definire un ulteriore potenziale termodinamico, invertendo le nuove variabili $N \rightarrow \mu$. Le sue variabili proprie sono $T$, $V$ e $\mu$. La sua espressione in funzione dell'energia $E$ è:
+
+\begin{equation*}
+\Omega = F - \mu N = E - TS - \mu N
+\end{equation*}
+
+E dunque l'espressione del suo differenziale è:
+
+\begin{equation*}
+\dd \Omega = - S \dd T - P \dd V - N \dd \mu
+\end{equation*}
+
+Dall'equazione di Eulero si ricava:
+
+\begin{equation*}
+\Omega = - P V
+\end{equation*}
+
+\subsection{Variabili Magnetiche}
+Lo studio del magnetismo in termodinamica è frequente, e la definizione di variabili magnetiche non è affatto dissimile dall'introduzione di pressione e volume per il gas perfetto come forza e spostamento \textit{generalizzati}.
+
+Si nota solo che il ruolo di forza generalizzata in questo ambito è svolto dal campo magnetico $ H $, mentre lo spostamento generalizzato è $ \dd (M V) $ dove $M$ è la magnetizzazione del mezzo e $V$ è ancora il volume.
+
+\subsection{Principio variazionale}
+Il principio variazionale fondamentale in termodinamica è quello fissato dal \textit{secondo principio}: l'entropia per uno stato di equilibrio è massima.
+
+Questo si riflette in una serie di principi variazionali ausiliari, dettati dalla possibilità di raggiungere l'equilibrio tenendo costanti alcune delle variabili termodinamiche.
+
+\begin{align*}
+	T, V, N = cost. \qquad \implies \qquad F = \text{minimum}\\
+	T, P, N = cost. \qquad \implies \qquad G = \text{minimum}\\
+	T, V, \mu = cost. \qquad \implies \qquad \Omega = \text{minimum}\\
+\end{align*}
+
+Si posson ottenere considerando il sottosistema che fluttua alla ricerca dell'equilibrio e il bagno termico, il cui stato di equilibrio non è influenzato dalle fluttuazioni del sottosistema. Perciò si ha:
+
+\begin{equation*}
+\begin{rcases*}
+\begin{rcases*}
+\dd E' = T \dd S' - \dd W'\\
+\delta (E + E') = 0
+\end{rcases*} \dd E + T \dd S' - \dd W' = 0\\
+\delta (S + S') \geq 0
+\end{rcases*}
+\delta E \leq T \delta S + p \delta V
+\end{equation*}
+
+Dall'ultima espressione si ottiene facilmente l'enunciato per $F$, ponendo $\delta V = 0$ e $T \delta S = \delta (T S)$. Analogamente si può fare per gli altri due casi.
+
+\subsection{Derivate termodinamiche}
+
+Si è visto nella \cref{sec:thermquant} come le variabili termodinamiche possano essere ottenute come derivate prime dei potenziali termodinamici, che costituisce la prima definizione data di alcune di esse (\cref{def:ossint}).
+
+Si consideri d'ora in avanti i potenziali termodinamici come le quantità termodinamiche \textit{massimamente integrate}, le altre grandezze termodinamiche saranno caratterizzate dall'essere ottenute a un qualche ordine di derivazione da esse.
+
+Perciò, se le variabili stesse costituiscono il \textit{primo ordine di derivazione}, si prenderà in esame adesso il \textit{secondo ordine di derivazione}. Si è già parlato di esso nella \cref{sec:thermquant}, a proposito delle \textit{relazioni di Maxwell}; in quell'ambito si sono considerate solo le derivate seconde miste, passiamo quindi a considerare le altre.
+
+\begin{defn}[Capacità termica]
+	Si definisce \textit{capacità termica a volume costante} la quantità $C_V$:
+	\begin{equation*}
+	C_V = T \left(\frac{\partial S}{\partial T}\right)_V
+	\end{equation*}
+	Si definisce \textit{capacità termica a pressione costante} la quantità $C_P$:
+	\begin{equation*}
+	C_P = T \left(\frac{\partial S}{\partial T}\right)_P
+	\end{equation*}
+\end{defn}
+
+\noindent La capacità termica quantifica la variazione di temperatura $\delta T$ in base allo scambio di calore $T \delta S$.
+
+Per la capacità termica $C_V$ si nota la relazione:
+\begin{equation*}
+C_V = \left(\frac{\partial E}{\partial T}\right)_V
+\end{equation*}
+
+\noindent è però importante rendersi conto che la temperatura $T$ non è una delle variabili proprie dell'energia.
+
+Per entrambe le capacità termiche si può esprimere però propriamente in funzione dei potenziali termodinamici con le variabili proprie adeguate:
+
+\begin{align*}
+C_V = T \left(\frac{\partial^2 F}{\partial T^2}\right)_V\\
+C_P = T \left(\frac{\partial^2 G}{\partial T^2}\right)_P
+\end{align*}
+
+\noindent che giustifica il fatto che esse siano grandezze del \textit{secondo ordine} (d'ora in poi è omesso che si tratti di derivate).
+\newline
+
+Analogamente si possono definire le compressibilità:
+
+
 \section{Meccanica Statistica}
 \label{sec:statmech}
+
+\subsection{Introduzione}
+\label{sec:stmechintro}
+
+\subsection{Particelle identiche}
+\label{sec:idpart}
 
 \subsection{Fluttuazioni}
 \label{sec:fluct}
