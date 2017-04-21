@@ -728,8 +728,226 @@ Il compito della meccanica statistica è principalmente \textit{contare il numer
 
 Da esso infatti sarà possibile trovare l'espressione per l'entropia, e invertendo ques'ultima si avrà l'energia in funzione delle sue variabili proprie, che determina in modo completo la dinamica macroscopica.
 
+In reltà non è conveniente cercare di ottenere $E(S,V,N)$, perché l'entropia non è una variabile così naturale, specie dal punto di vista sperimentale. Si cercherà invece di ottenere la funzione $ F(T,V,N) $, oppure $ \Omega(T,V,\mu) $, le cui variabili proprie risultano molto più intuitive (si ribadisce che l'equazione per la pressione a partire da $ F $ è direttamente l'equazione di stato).
+
+\subsubsection{Derivazione}
+Poiché si è interessati a un sistema in cui è fissata la sola temperatura $ T $, o essa e il potenziale chimico $ \mu $, anziché l'energia, si ricorrerà alla descrizione \textit{canonica} introdotta nella \cref{sec:teorpipterm}, nel primo caso; nel caso in cui sia variabile anche il numero di particelle occorre passare alla descrizione \textit{grancanonica}: essa non è una sostanziale novità, infatti è sufficiente partire dal caso canonico, e ammettere che il sistema possa scambiare \textit{particelle} col bagno termico, oltre che energia (in questo contesto infatti il bagno termico viene anche detto \textit{riserva}).
+\newline
+
+Si consideri quindi un sistema isolato\footnote{Le cui variabili di equilibrio saranno indicate da uno $0$ a pedice, mentre quelle fuori equilibrio da una $t$ a pedice.}, composto da un piccolo sottosistema\footnote{Le cui variabili saranno disadorne.}, che è ciò che si vuole descrivere, e un bagno termico, detto anche \textit{mezzo}\footnote{Le cui variabili saranno primate.}.
+\newline
+
+Il mezzo sarà all'equilibrio, e questo suo stato non è affatto influenzato dalle variazioni nel sottosistema, che risulta troppo piccolo per poterlo perturbare abbastanza da portarlo fuori equilibrio.
+Si avrà quindi:
+\begin{align*}
+&S_t \leq S_0	\qquad \iff \qquad	\Gamma_t \leq \Gamma_0\\
+&\dd E' = T \dd S' - P \dd V' + \mu 	\dd N'
+\end{align*}
+
+\noindent La prima è data dal secondo principio e la seconda dalla condizione di equilibrio del mezzo (e il primo principio naturalmente). Le variabili del sistema isolato $E_0, V_0, N_0$ sono costanti e esattamente conservate a causa dell'isolamento, perciò le variabili che descrivono lo stato del mezzo dovranno dipendere dallo stato del sottosistema.
+
+Si può considerare il sottosistema contenuto in un volume fissato (qualcosa deve essere fissato per definire in cosa consista il sottosistema). Si userà l'approssimazione che per ogni microstato $\alpha$:
+\begin{align*}
+&E_\alpha \ll E_0\\
+&N_\alpha \ll N_0
+\end{align*}
+
+\noindent I possibili microstati in realtà sarebbero tutti, quindi anche quelli in cui l'energia o il numero di particelle del sottosistema siano uguali a quelli dell'intero sistema isolato. L'approssimazione non è così drastica però, infatti la condizione che la temperatura e il potenziale chimico siano fissati dalle proprietà del sistema isolato rende estremamente improbabili i microstati che non rientrano nell'approssimazione effettuata, per cui contribuirebbero comunque in modo trascurabile alla statistica.
+
+Per lo stato fuori equilibrio si avrà:
+\begin{align*}
+&\Gamma_t = \Gamma \Gamma'\\
+&S_t = S + S'
+\end{align*}
+
+\noindent e per le probabilità di un singolo microstato del sistema isolato all'equilibrio:
+
+\begin{equation*}
+w_{eq} = \frac{1}{\Gamma_0}
+\end{equation*}
+
+Se si fissa invece il microstato del sottosistema a essere $\alpha$, si avrà:
+
+\begin{equation*}
+\Gamma_{t\alpha} = 1 \cdot \Gamma'_\alpha
+\end{equation*}
+
+\noindent poiché il sottosistema è esattamente in uno stato, e quindi la probabilità che si realizza sarà:
+
+\begin{equation*}
+w_\alpha = \frac{\Gamma'_{\alpha}}{\Gamma_0}
+\end{equation*}
+
+\noindent e il mezzo avrà un'entropia $S'_\alpha \equiv S'(E_0 - E_\alpha, N_0 - N_\alpha)$:
+\begin{align*}
+&S'_\alpha = k_B \log \Gamma'_\alpha \implies \\
+& \qquad \implies S_0 - S'_\alpha = - k_B \log \frac{\Gamma'_{\alpha}}{\Gamma_0} = - k_B \log w_\alpha
+\end{align*}
+
+Non è possibile identificare $S_0 - S'_\alpha$ con l'entropia del sottosistema (che è nulla perché si trova in uno stato determinato). Tale differenza è frutto del fatto che il sistema non è all'equilibrio, avendo imposto il vincolo che il sottosistema sia in $\alpha$.
+
+Si può ottenere però l'entropia del sottosistema all'equilibrio sottraendo a quella totale quella del mezzo, mediata su tutti i possibili microstati\footnote{Che coincide con mediare la quantità trovata nell'espressione precedente}.
+\begin{align*}
+S &= \overline{S_0 - S'_\alpha} = S_0 - \overline{S'_\alpha} = \overline{- k_B \log w_\alpha} = \\
+&= - \sum_{\alpha} w_\alpha \log w_\alpha
+\end{align*}
+
+Quest'ultima espressione è definibile per ogni distribuzione di probabilità discreta, e nel contesto della teoria dell'informazione è chiamata \textit{entropia di Shannon}.
+Tornando un passo indietro si era ottenuto:
+\begin{align*}
+	&w_\alpha = \exp \left(- \frac{S_0 - S_\alpha}{k_B}\right) = A \exp \left(\frac{S_\alpha}{k_B}\right) \qquad \qquad \qquad A = cost.\\
+	&\qquad \qquad S'_\alpha = S'(E_0 - E_\alpha, N_0 - N_\alpha) \simeq S'(E_0, N_0) - \partfix{S'}{E'}{V',N'} E_\alpha - \partfix{S'}{N'}{V',E'} N_\alpha =\\
+	&\qquad \qquad \qquad = cost. - \frac{E_\alpha}{T} + \frac{\mu N_\alpha}{T} \implies\\
+	&\implies w_\alpha = \frac{1}{\mathcal{Z}} \exp \left(- \frac{E_\alpha - \mu N_\alpha}{k_BT}\right)
+\end{align*}
+
+\noindent Nell'espressione precedente si è sfruttata l'approssimazione prima discussa per calcolare l'entropia del mezzo al prim'ordine, e si è infine trovata un'espressione per le probabilità $w_\alpha$ in funzioni delle variabili macroscopiche del sottosistema.
+
+La quantità $\mathcal{Z}$ è molto importante, e viene chiamata \textit{funzione di granpartizione}.
+
+\begin{defn}[Funzione di granpartizione]
+	La \textit{funzione di granpartizione} è la quantità:
+	\begin{equation*}
+	\mathcal{Z} = \sum_{\alpha} \exp \left(- \frac{E_\alpha - \mu N_\alpha}{k_BT}\right)
+	\end{equation*}
+	
+	Essa è una funzione della temperatura $T$ e del potenziale chimico $\mu$.
+\end{defn}
+
+Si definisce analogamente la \textit{funzione di partizione}, nel caso in cui il numero di particelle sia fissato:
+
+\begin{defn}[Funzione di partizione]
+	La \textit{funzione di partizione} è la quantità:
+	\begin{equation*}
+	Z = \sum_{\alpha} \exp \left(- \frac{E_\alpha}{k_BT}\right)
+	\end{equation*}
+	
+	Essa è una funzione della temperatura $T$.
+\end{defn}
+
+Si ricava infine una proprietà fondamentale delle quantità ora definite:
+
+\begin{align*}
+S &= - \sum_{\alpha} w_\alpha \log w_\alpha =\\
+&= k_B \log \mathcal{Z} \sum_{\alpha} w_\alpha + \frac{1}{T} \sum_{\alpha} w_\alpha E_\alpha - \frac{\mu}{T} \sum_{\alpha} w_\alpha N_\alpha =\\
+&= k_B \log \mathcal{Z} + \frac{E - \mu N}{T} \implies\\
+\implies & - k_B T \log \mathcal{Z} = E - T S - \mu N = F - \mu N = \Omega
+\end{align*}
+
+Allo stesso modo si dimostra $F = E - T S = - k_B T \log Z$.
+
+\subsection{Densità di stati}
+
+Si osservi che si è ottenuta la probabilità di un singolo stato $\alpha$ del sottosistema dallo studio dell'entropia del mezzo. Quest'ultimo tuttavia non distingue i vari stati del sottosistema, ma rileva solo la sua energia e il numero di particelle (da qui in avanti il numero di particelle sarà considerato fisso).
+
+Questo si risolve nel fatto che:
+\begin{equation*}
+\Gamma'_{E_\alpha} = \Gamma'_\alpha
+\end{equation*}
+\noindent cioè l'entropia del mezzo è la stessa anche nel caso in cui si specifichi solo l'energia. Ciò che cambia è l'entropia del sottosistema, per cui:
+\begin{align*}
+&\Gamma_{tE_\alpha} = \rho_{E_\alpha} \Gamma'_\alpha \implies \\
+\implies w&(E_\alpha) = \frac{\Gamma_{tE_\alpha}}{\Gamma_0} = \frac{\rho_{E_\alpha} \Gamma'_\alpha}{\Gamma_0} = \rho_{E_\alpha} w_\alpha
+\end{align*}
+
+\noindent dove si è usata la quantità $\rho_{E_\alpha}$, detta \textit{densità di stati}.
+
+\begin{defn}[Densità di stati]
+	La \textit{densità di stati} $\rho_{E_\alpha}$ è definita:
+	\begin{itemize}
+		\item per valori discreti dell'energia: è il numero di stati per livello energetico, cioè è la funzione che associa ad ogni livello la sua \textit{degenerazione};
+		\item per valori continui: è propriamente la densità degli stati in funzione dell'energia, cioè, se integrata su un certo intervallo, corrisponde al numero di stati in quel dato intervallo.
+	\end{itemize}
+\end{defn}
+
+\noindent La densità di stati è determinata unicamente dalla \textit{legge di dispersione}, di cui si è già trattato nella \cref{sec:teorpipterm}.
+
+Il risultato trovato per la probabilità in funzione dell'energia è intuitivo: poiché la probabilità di un microstato dipende solo dalla sua energia allora la probabilità di una certa energia $E_\alpha$ corrisponde alla probabilità di un qualunque microstato con energia $E_\alpha$ moltiplicata per il numero di microstati con energia $E_\alpha$, cioè la densità di stati.
+
+\begin{oss}
+	La probabilità in energia è una quantità più naturale che la probabilità per i singoli microstati. Infatti è atteso che un sistema a una data temperatura $T$ abbia un'energia pari a $\sim k_B T$. La probabilità degli autostati è però esponenzialmente depressa, per cui sembrano favoriti gli stati a bassa energia a qualunque temperatura.
+	
+	Quello che accade è che la densità di stati aumenta con l'energia,  si annulla per energia nulla (in realtà va a $1$, se discreta\footnote{E per basse energie è sempre discreta, perché comincia la zona dello spettro discreto per gli atomi.}, seguendo il terzo principio) e va a $\infty$ per energie grandi\footnote{Si assume sempre che lo spettro delle particelle non è limitato dall'alto.}. 
+	
+	\`E la combinazione di questi due effetti che porta $w(E_\alpha)$ a formare un picco, centrato approssimativamente in $k_B T$, e la cui larghezza si annulla per sistemi molto grandi (si veda la \cref{sec:fluct}).
+\end{oss}
+
+Poiché i livelli energetici di un corpo macroscopico sono molto ravvicinati si possono sostituire le somme con integrazioni (per una discussioni più dettagliata si veda più avanti la \cref{sec:sumasint}).
+
+Si otterrà perciò che la media di un'osservabile $f$ è data da:
+
+\begin{align*}
+\bar{f} &= \int_{0}^{\infty} f(\mathcal{E}) w(\mathcal{E})\dd \mathcal{E} = \frac{1}{Z} \int_{0}^{\infty} f(\mathcal{E}) \rho(\mathcal{E}) e^{-\mathcal{E}/k_B T}\dd \mathcal{E}\\
+& Z = \int_{0}^{\infty} \rho(\mathcal{E}) e^{-\mathcal{E}/k_B T}\dd \mathcal{E}\
+\end{align*}
+
+\noindent in cui $Z$ è ancora la funzione di partizione, ma espressa anch'essa in forma d'integrale.
+
+Si è usato il simbolo $\mathcal{E}$ per evidenziare che si tratta di una variabile continua, diversamente da prima.
+
+\begin{note}
+	Integrando fino a $\infty$ non si rispetta l'approssimazione sotto cui si erano ricavate le probabilità per i singoli stati, e le altre espressioni che ne scaturivano. Questa in realtà non è una nuova approssimazione, ma è consistente con la vecchia: si era ricavato infatti che la probabilità per gli stati era soppressa esponenzialmente ad alta energia, e questo giustifica l'estensione del limite di integrazione, anzi è concettualmente più corretta.
+	
+	Infatti gli stati che erano stati trascurati esistono, solo non contribuiscono statisticamente, che è esattamente quello che sta accadendo nell'integrazione.
+\end{note}
+
+La nuova espressione per l'energia libera sarà quindi anch'essa in forma di integrale (deriva direttamente da quella di $Z$). Si è quindi ridotto l'intero problema della meccanica statistica a trovare la funzione $\rho(\mathcal{E})$, infatti:
+
+\begin{itemize}
+	\item tramite integrazione $\rho(\mathcal{E})$ determina $F(T,V)$;
+	\item dall'espressione dell'energia libera si può ricavare tutta la termodinamica.
+\end{itemize}
+
+Per la gioia del lettore: i passi avanti che si sono fatti sono solo formali, infatti il problema iniziale era trovare $\Gamma(E,V,N)$, adesso si chiama $\rho(\mathcal{E}, N)$, ma il problema è sempre un conteggio.
+
+\subsubsection{Approssimazione di Einstein}
+
+Si ha che, anche per la probabilità in funzione dell'energia si ottiene un'espressione analoga in funzione dell'entropia.
+\begin{align*}
+&w(E_\alpha) = \frac{\rho_{E_\alpha} \Gamma'_\alpha}{\Gamma_0} = \exp \left(- \frac{S_0 - S_t(E_\alpha)}{k_B}\right) = A \exp \left(\frac{S_t(E_\alpha)}{k_B}\right) \qquad \qquad A = cost.\\
+\end{align*}
+
+Al posto dell'energia in realtà può esserci una qualunque quantità $x$ che influenzi il bagno termico (lo si può ricavare ripercorrendo il modo in cui si era introdotta l'energia). Si avrà dunque:
+\begin{align*}
+&S'_x \simeq S'_{\bar{x}} - \partdev{S'}{x}(\bar{x} - x)\\
+&w(x) = A_{x_0} \exp \left(\frac{S_t(x)}{k_B}\right)
+\end{align*}
+
+\noindent Imponendo la condizione di massimo per l'entropia totale si ha:
+\begin{align*}
+S_t(x) \simeq S_t(\bar{x}) + &\partfix{S_t}{x}{x=\bar{x}}(x - \bar{x}) + \frac{1}{2} \partfix{^2 S_t}{x^2}{x=\bar{x}}(x - \bar{x})^2 = S_t(\bar{x}) - \beta(x - \bar{x})^2 \implies\\
+&\implies w(x) = D \exp \left(-\frac{\beta(x - \bar{x})^2}{k_B}\right)
+\end{align*}
+
+\noindent in cui $\beta \geq 0$ e la costante $D$ è fissata dalla normalizzazione:
+\begin{equation*}
+\int w(x) \dd x = 1 = D \sqrt{\frac{2 \pi k_B}{\beta}}
+\end{equation*}
+
+L'approssimazione effettuata corrisponde a considerare una forma gaussiana per $w(x)$ (cioè: tutti i picchi sono una campana), e quindi com'è noto tutti i contributi vengon dalla zona attorno a $\bar{x}$.
+
+\subsection{Proprietà di $Z$ e $\mathcal{Z}$}
+
+Dalla funzione di partizione si può ricavare direttamente l'energia. Il modo più facile per vederlo è introdurre la variabile $\beta = (k_B T)^{-1}$ e derivare l'espressione di $Z$:
+\begin{align*}
+Z &= \int_{0}^{\infty} \rho(\mathcal{E}) e^{-\beta \mathcal{E}}\dd \mathcal{E} \implies\\
+\implies - \partdev{Z}{\beta} &= \int_{0}^{\infty} \mathcal{E}\rho(\mathcal{E}) e^{-\beta \mathcal{E}}\dd \mathcal{E}\ = Z \mathcal{E} \implies\\
+\implies E &= - \partdev{\log Z}{\beta}
+\end{align*}
+
+Che si può trasformare in un'espressione esplicita della temperatura semplicemente applicando \textit{chain rule}:
+\begin{align*}
+E &= - \partdev{\log Z}{T} \partdev{T}{\beta} = k_B T^2 \partfix{\log Z}{T}{V,N}
+\end{align*}
+
+\noindent Per completezza: si può ottenere la stessa espressione ricavando $F$ da $Z$, e $E$ da $F$ (dalla definizione di $F$ si ha che $E = F + T S$) e tenendo conto che anche $S$ può essere ricavata da $F$ tramite una derivata in $T$.
+
+
 \subsection{Particelle identiche}
 \label{sec:idpart}
+
+\subsection{Integrazione sugli stati}
+\label{sec:sumasint}
 
 \subsection{Fluttuazioni}
 \label{sec:fluct}

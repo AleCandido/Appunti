@@ -1,6 +1,11 @@
-\documentclass[a4paper,10pt]{book}
-\usepackage[utf8]{inputenc}
-\usepackage[italian]{babel}
+\documentclass[10pt,%					% corpo del font principale
+			a4paper,%					% carta A4
+			cleardoublepage=empty,%		% pagine vuote senza testatina e piede di pagina
+			]{book}
+\usepackage[utf8]{inputenc}				% codifica di input; anche [latin1] va bene
+										% NOTA BENE! va accordata con le preferenze dell'editor
+\usepackage[english,italian]{babel}		% per scrivere in italiano e in inglese;
+										% l'ultima lingua (l'italiano) risulta predefinita
 \input{Macros/font.tex}
 
 \usepackage{graphicx}
@@ -9,10 +14,10 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \geometry{a4paper}
 
-\usepackage{verbatim}
-\usepackage{textcomp}		%copyleft symbol
-\usepackage{lipsum}
+\usepackage{textcomp}					% copyleft symbol
+\usepackage{lipsum}						% genera testo di prova
 
+% --- TYPOGRAPHY ---
 \usepackage{multicol}
 \usepackage{booktabs}
 \usepackage{subfig}
@@ -20,6 +25,9 @@
 \usepackage{float}
 \usepackage{indentfirst}				% rientra il primo capoverso di ogni sezione
 \usepackage[bottom]{footmisc}
+\usepackage{emptypage}
+\usepackage{verbatim}
+% --------------------
 
 % cleveref è esigenete: amsthm deve andare prima di lui,
 % ma la definizione dei newtheorem dopo
@@ -37,7 +45,6 @@ filecolor=RoyalBlue]{hyperref}		%per gli hyperlink
 \usepackage[italian]{datetime2}
 \usepackage{datetime2-calc}
 
-
 % --- SEARCH PATHS ---
 \makeatletter
 \providecommand*{\input@path}{}
@@ -46,13 +53,15 @@ filecolor=RoyalBlue]{hyperref}		%per gli hyperlink
 \graphicspath{{Immagini/}}
 % --------------------
 
-%\title{Appunti \\
-%		\Large Struttura della Materia}
-%\author{Alessandro Candido}
+\title{Struttura della Materia}
+\author{Alessandro Candido}
 
 \begin{document}
 
 \frontmatter
+% Se si desidera una copertina semplice decommentare 
+% la linea seguente e commentare quella ancora dopo.
+%\maketitle
 \input{Copertina.tex}
 
 \clearpage
