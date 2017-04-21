@@ -1,11 +1,9 @@
 \documentclass[a4paper,10pt]{book}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{cmbright}
 \usepackage[italian]{babel}
 
-\usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage{mathtools,bbold,physics}
+\input{Macros/font.tex}
+\input{Macros/math.tex}	% newtheorem definitions must go after cleveref
 
 \usepackage{graphicx}
 \usepackage[dvipsnames]{xcolor}  %colori
@@ -14,40 +12,25 @@
 \geometry{a4paper}
 
 \usepackage{verbatim}
-\usepackage{lipsum}
 \usepackage{textcomp}		%copyleft symbol
+\usepackage{lipsum}
 
 \usepackage{booktabs}
 \usepackage{subfig}
+\usepackage{wrapfig}
 \usepackage{float}
 \usepackage{indentfirst}				% rientra il primo capoverso di ogni sezione
-\usepackage[italian]{varioref}			% riferimenti completi della pagina
+\usepackage[bottom]{footmisc}
 
+\usepackage[italian]{varioref}			% riferimenti completi della pagina
 \usepackage[colorlinks=true, linkcolor=MidnightBlue,%
 urlcolor=blue, citecolor=Emerald,%
 filecolor=RoyalBlue]{hyperref}		%per gli hyperlink
-\usepackage[italian, sort, noabbrev, capitalise]{cleveref}
-\usepackage[bottom]{footmisc}
+\usepackage[italian, sort, noabbrev, capitalise]{cleveref} % l'ordine deve essere varioref, hyperref, cleveref
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
 \usepackage[italian]{datetime2}
 \usepackage{datetime2-calc}
-
-% teoremi (con amsthm)
-\theoremstyle{plain}% default
-\newtheorem{thm}{Teorema}[section]
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposizione}
-\newtheorem*{cor}{Corollario}
-
-\theoremstyle{definition}
-\newtheorem{defn}{Definizione}[section]
-\newtheorem{es}{Esempio}[section]
-\newtheorem{ex}{Esercizio}[section]
-\newtheorem*{note}{Nota}
-
-% macro
-\def\code#1{\texttt{#1}}
 
 
 % --- SEARCH PATHS ---

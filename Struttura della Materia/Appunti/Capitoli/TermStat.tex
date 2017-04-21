@@ -503,8 +503,223 @@ C_P = T \left(\frac{\partial^2 G}{\partial T^2}\right)_P
 \noindent che giustifica il fatto che esse siano grandezze del \textit{secondo ordine} (d'ora in poi è omesso che si tratti di derivate).
 \newline
 
-Analogamente si possono definire le compressibilità:
+Analogamente si possono definire le \textit{compressibilità}:
 
+\begin{defn}[Compressibilità]
+	Si definisce \textit{compressibilità isoterma} la quantità $K_T$:
+	\begin{equation*}
+	K_T = - \frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T
+	\end{equation*}
+	Si definisce \textit{compressibilità adiabatica} la quantità $K_S$:
+	\begin{equation*}
+	K_S = - \frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_S
+	\end{equation*}
+\end{defn}
+
+Anche in questo caso è possibile esprimere le compressibilità in funzione di opportune derivate seconde:
+
+\begin{align*}
+&K_T = - \frac{1}{V} \left(\frac{\partial^2 G}{\partial P^2}\right)_T\\
+&K_S = - \frac{1}{V} \left(\frac{\partial^2 H}{\partial P^2}\right)_S = \left[ V \left(\frac{\partial^2 E}{\partial V^2}\right)_S \right]^{-1}
+\end{align*}
+
+\paragraph{Relazioni notevoli} Attraverso la definizione dei differenziali delle variabili termodinamiche si possono ottenere delle importanti relazioni fra le quantità appena definite.
+Ad esempio, per le capacità termiche:
+\begin{align*}
+&\begin{rcases*}
+\dd S = \left(\frac{\partial S}{\partial P}\right)_T \dd P + \left(\frac{\partial S}{\partial T}\right)_P \dd T\\
+\left(\frac{\partial S}{\partial P}\right)_T = - \left(\frac{\partial V}{\partial T}\right)_P
+\end{rcases*}
+\qquad \frac{C_V}{T} = \left(\frac{\partial S}{\partial T}\right)_V = \left(\frac{\partial S}{\partial P}\right)_T \left(\frac{\partial P}{\partial T}\right)_V + \frac{C_P}{T} \implies\\
+&\qquad \qquad \implies \frac{C_P - C_V}{T} = \left(\frac{\partial V}{\partial T}\right)_P \left(\frac{\partial P}{\partial T}\right)_V
+\end{align*}
+
+Da cui si ottiene infine, applicando \textit{chain rule}\footnote{\`E necessario notare che la relazione corretta, dimostrabile mediante l'uso di opportuni Jacobiani, è:
+\begin{equation*}
+	\left(\frac{\partial V}{\partial T}\right)_P \left(\frac{\partial T}{\partial P}\right)_V \left(\frac{\partial P}{\partial V}\right)_T = -1
+\end{equation*}
+}:
+
+\begin{equation*}
+C_P - C_V = T V K_T \left[\left(\frac{\partial P}{\partial T}\right)_V\right]^2 = \frac{T}{V K_T} \left[\left(\frac{\partial V}{\partial T}\right)_P\right]^2
+\end{equation*}
+
+\paragraph{Variabili magnetiche} Anche nel caso di variabili magnetiche le quantità definite dalle derivate seconde non miste sono rilevanti, e vengono chiamate \textit{suscettività.}
+
+\begin{defn}[Suscettività]
+	Si definisce \textit{suscettività isoterma} la quantità $K_T$:
+	\begin{equation*}
+	X_T = \left(\frac{\partial M}{\partial H}\right)_T
+	\end{equation*}
+	Si definisce \textit{suscettività adiabatica} la quantità $K_S$:
+	\begin{equation*}
+	X_S = \left(\frac{\partial M}{\partial H}\right)_S
+	\end{equation*}
+\end{defn}
+
+E anche in questo caso si può ottenere una relazione simile a quella per $C_V$ e $C_T$ nel caso delle capacità termiche a magnetizzazione e campo costante, rispettivamente $C_M$ e $C_H$. 
+
+\begin{equation*}
+C_H - C_M = \frac{T V}{X_T} \left[\left(\frac{\partial M}{\partial T}\right)_H\right]^2
+\end{equation*}
+
+\subsubsection{Funzioni di risposta} Le quantità definite prima caratterizzano la risposta lineare del sistema agli stimoli esterni, per si ha la seguente definizione:
+
+\begin{defn}[Funzioni di risposta]
+	Le capacità, compressibilità e suscettività vengono definite collettivamente \textit{funzioni di risposta.}
+\end{defn} 
+
+\paragraph{Proprietà} Si mostrano ora alcune proprietà delle funzioni di risposta:
+\begin{itemize}
+	\item $K_T \geq 0$: si consideri un sistema isolato con $N,T$ e $V$ costanti, si ha quindi che il sistema tende a minimizzare l'energia libera $F$. Si consideri inoltre il sistema diviso in due parti.
+	\begin{align*}
+	\begin{rcases*}
+	\dd V_1 + \dd V_2 = \dd V = 0\\
+	\delta F \geq 0
+	\end{rcases*}
+		 \frac{\partial F}{\partial V_1} = \frac{\partial F_1}{\partial V_1} + \frac{\partial F_2}{\partial V_1} = \frac{\partial F_1}{\partial V_1} - \frac{\partial F_2}{\partial V_2} = 0
+	\end{align*}
+	dove si è usato solo che $F$ è in un punto stazionario, e si è trovato infine $P_1 = P_2$, che è intuitivo caratterizzi l'equilibrio meccanico (deriva dall'\textit{equilibrio delle forze}).
+	
+	Il fatto che $F$ sia in un minimo da un informazione ulteriore sulle derivate seconde:
+	\begin{equation*}
+	 \frac{\partial^2 F}{\partial V_1^2} =  \frac{\partial}{\partial V_1} (P_2 - P_1) =  -\frac{\partial P_1}{\partial V_1} -\frac{\partial P_2}{\partial V_2} \geq 0 \implies \frac{1}{V_1 K_{T_1}} + \frac{1}{V_2 K_{T_2}} \geq 0
+	\end{equation*}
+	Considerando le due parti del sistema composte dallo stesso numero di particelle, $N_1 = N_2$, si ottiene che, poiché si è dimostrato che la condizione di equilibrio impone che temperatura e pressione siano anch'esse le stesse (e quindi anche i volumi sono uguali per l'equazione di stato), si ha che $K_{T_1} = K_{T_2}$, da cui la tesi.
+	\item $C_V \geq 0$: gli argomenti che si usano nella dimostrazione sono simili al caso precedente, per cui si mettono in luce solo le differenze:
+	\begin{itemize}
+		\item si considera un sistema con isolato, quindi con $E$ e $V$ costanti, anziché $T$ e $V$;
+		\item si ha quindi che il principio variazionale da usare è direttamente quello per $S$, anziché la forma per $F$;
+		\item si trova che all'equilibrio le temperature sono uguali, anziché le pressioni.
+	\end{itemize}
+	\item $C_P \geq 0$: si possono sviluppare argomenti analoghi per $C_P$, ma nella sezione precedente si è dimostrata una relazione notevole per la differenza delle capacità termiche, il cui membro di destra era sempre positivo, per cui: $C_P \geq C_V \geq 0$.
+\end{itemize}
+
+Si noti che le proprietà mostrate dovevano risultare vere già a livello concettuale, prima della dimostrazione formale:
+\begin{description}
+	\item[compressibilità] la positività della compressibilità è equivalente ad affermare che all'aumentare della pressione interna il corpo tenda ad espandersi;
+	\item[capacità termica] la positività della capacità termica è equivalente ad affermare che ad un aumento di temperatura corrisponde un aumento di energia interna.
+\end{description}
+
+L'intuitività del secondo è minata dal fatto che il concetto di temperatura non è affatto intuitivo, ma piuttosto formale; si recupera in parte l'intuizione ricordando che la temperatura è quella quantità che caratterizza il verso del flusso di calore fra due corpi non all'equilibrio. Per cui il segno della capacità termica è stato \textit{scelto} quando si è scelto che il calore fluisse dal corpo a temperatura più alta verso quello a temperatura più bassa.
+
+\subsection{Diagrammi di fase}
+
+\subsubsection{Digressione sul concetto di fase}
+La materia che stiamo considerando è composta da particelle, la cui struttura interna è fissata, ma la struttura che assume l'insieme di questi corpi può dipendere fortemente dalle osservabili macroscopiche. La possibilità di distinguere proprio a livello macroscopico queste tipologie di organizzazione determina il concetto di \textit{fase}.
+
+La definizione del concetto di \textit{fase} non è affato banale, per cui si cita quella data dalla \href{http://www.treccani.it/enciclopedia/fase/#chimica-1}{Treccani}:
+
+\begin{defn}[Fase]
+	In un sistema eterogeneo si definiscono f. le parti omogenee, di uguale composizione chimica e di uguale stato fisico, separabili meccanicamente. Così, i gas che sono sempre completamente miscibili formano un’unica f.; i liquidi formano più f. quando sono fra loro non completamente miscibili; i solidi possono dare un illimitato numero di fasi. Più in generale, si chiama f. una qualsiasi porzione di un sistema fisico-chimico per la quale siano costanti tutti i parametri che la individuano chimicamente e fisicamente (pressione, temperatura, densità, entropia, costituzione chimica ecc.).
+\end{defn}
+
+Questa è una buona definizione a livello enciclopedico, forse un po' povera se confrontata col livello di formalità generale. La cosa importante è chiarire esplicitamente a livello concettuale cosa implica la nozione di fase, per cui si prova a caratterizzarla:
+
+\begin{itemize}
+	\item essa è chiaramente riferita ad una porzione estesa di materia, per cui è richiesta una certa coerenza fra le proprietà \textit{mesoscopiche} all'interno della regione spaziale considerata, al punto da poterle considerare uniformi; è importante considerare le proprietà mesoscopiche, perché:
+	\begin{itemize}
+		\item si vogliono considerare punti spazialmente diversi (le proprietà macroscopiche riguardano l'intero sistema, per cui non possono dipendere dal punto);
+		\item non si stanno considerando le proprietà microscopiche, che invece variano drasticamente sulle scale tipiche delle singole particelle (si pensi agli atomi e i campi elettrici).
+	\end{itemize}
+	\item proprio per l'uniformità richiesta tale nozione implica un certo ordine, un certo tipo di organizzazione (o la sua assenza) che si ripete nei vari punti dello spazio; a posteriori, pensando ai vari tipi di fase noti, è chiaro il senso di questa affermazione. 
+\end{itemize}
+
+\subsubsection{Piano $P-T$}
+
+La presenza delle varie fasi è ben visualizzabile nel piano $P-T$. La \cref{fig:phdiagr} illustra il caso tipico di un diagramma delle fasi.
+
+\begin{wrapfigure}{R}{0.5\textwidth}
+	\vspace{-30pt}
+	\centering
+	\includegraphics[width=0.5\textwidth]{Immagini/PhaseDiagram.png}
+	\caption{}
+	\label{fig:phdiagr}
+	\vspace{-30pt}
+\end{wrapfigure}
+
+Ci sono varie osservazioni da fare:
+\begin{itemize}
+	\item la più importante è la scelta delle variabili $P-T$, esse sono variabili intensive, e il motivo è chiaro: se la \textit{fase} è caratterizzata dall'uniformità essa non potrà direttamente dipendere da proprietà estensive quali il volume, infatti raddoppiando il sistema (numero di particelle compreso) esso manterrà lo stesso tipo di ordine, sarà solo più grande;
+	\item le linee marcate nel diagramma sono note come \textit{linee di coesistenza}, e in quei punti nel sistema sono presenti le due fasi contemporaneamente; essendo oggetti $1$-D sono individuati da una sola variabile, infatti fissata una fra pressione e temperatura l'altra è determinata dalla condizione di coesistenza;
+\end{itemize}
+
+\begin{itemize}
+	\item il punto di intersezione fra le due linee di coesistenza è detto \textit{punto triplo}, in esso coesistono le tre fasi, ed è individuato da una esatta pressione e temperatura;
+	\item la lineaa di coesistenza tra \textit{liquido} e \textit{gas} termina in un punto critico: questo implica che non si può realmente distinguere fra l'uno e l'altro, perché è possibile cambiare fase in modo continuo, aggirando tale punto\footnote{\`E però evidente che se il punto critico è piuttosto distante è abbastanza facile distinguere tra liquido e gas, perché potreste non essere praticamente possibile realizzare un percorso che aggiri il punto critico.}.
+\end{itemize}
+
+Si riporta inoltre un altro diagramma, relativo al piano $P-V$:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{Immagini/PhasePV.png}
+	\caption{}
+	\label{fig:phasepv}
+\end{figure}
+
+Ciò che si vuole evidenziare di esso è che la \textit{"traiettoria"} delle curve isoterme (tratteggiate in figura) nella regione tratteggiata (regione di coesistenza): esse coincidono con delle isobare, corentemente con quanto descritto a proposito delle curve di coesistenza.
+Le variabili $P$ e $T$ non sono quindi sufficienti in questa regione a descrivere il sistema, poiché a $P$ e $T$ fissati sono possibili diversi valori di $V$.
+
+Quello che sta accadendo è che $V$ descrive quanta parte del sistema è in una o in un'altra fase, poiché nella varie fasi cambia il \textit{volume specifico} $V/N$; per cui nella regione ad alto $V$ il sistema sarà prevalentemente nella fase ad alto volume specifico, e viceversa nella regione a basso $V$.
+
+Ci sono altre cose interessanti da notare in questo grafico: la posizione del punto critico e quella del punto triplo, la \textit{separazione} tra solido e liquido, la transizione "diretta" da gas a solido. Si lascia al lettore lo studio di questa proprietà sul diagramma.
+
+\subsubsection{Equazione di Clausius-Clapeyron}
+
+Nella \cref{fig:phdiagr} si può inoltre notare come tutte le curve di coesistenza abbiano derivata sempre positiva. Questa è una proprietà frequente, ma non necessaria.
+
+Il motivo è il seguente, e verrà verificato a posteriori: se l'entropia specifica e il volume specifico crescono in modo concorde da una fase all'altra la pendenza della curva sarà positiva, se discorde sarà negativa.
+
+Intuitivamente ciò che succede è che ad alta temperatura sarà privilegiata la fase più entropica (ha un peso maggiore nell'energia libera di Gibbs) mentre ad alta pressione quella a più alta densità, quindi più basso volume specifico. Se una stessa fase soddisfa entrambi i requisiti allora la pendenza della curva sarà negativa, e la variazione discorde, viceversa nell'altro caso. 
+\newline
+
+Per ricavare il risultato precedente si consideri un sistema isolata, costituito da due sottosistemi, che condividono lo stesso volume e lo stesso insieme di particelle, e sono distinti dallo stato: ciascuno rappresenta una diversa fase.
+
+Dalle condizioni di equilibrio ricavate precedentemente si ha $T_1 = T_2$ e $P_1 = P_2$. Un ulteriore condizione si ottiene considerando:
+\begin{align*}
+\begin{rcases*}
+\dd N_1 + \dd N_2 = \dd V = 0\\
+\delta F \geq 0
+\end{rcases*}
+\frac{\partial F}{\partial N_1} = \frac{\partial F_1}{\partial N_1} + \frac{\partial F_2}{\partial N_1} = \frac{\partial F_1}{\partial N_1} - \frac{\partial F_2}{\partial N_2} = 0
+\end{align*}
+
+\noindent Perciò $\mu_1 = \mu_2$.
+
+Da questa uguaglianza si può ricavare un'equazione per $P$ e $T$:
+
+\begin{equation*}
+\mu_1 (P,T) = \mu_2 (P,T)
+\end{equation*}
+
+Per cui si può risolvere per una delle due variabili e ottenere l'equazione esplicita della curva (si noti che se le fasi che coesistono fossero tre ci sarebbe un'altra equazione da soddisfare, cioè l'uguaglianza con $\mu_3$, questo porterebbe ad individuare un unico punto, il punto triplo).
+
+Per ricavarsi l'equazione della curva è quindi necessaria l'espressione esplicita del potenziale chimico in funzione delle due variabili indicate. Questa può essere ricavata da una teoria microscopica delle fasi.
+
+Si può comunque ricavare un utile risultato dalla relazione di Gibbs-Duhem:
+
+\begin{align*}
+&\dd \mu_1 = \dd \mu_2 \implies -s_1 \dd T + v_1 \dd P = -s_2 \dd T + v_2 \dd P \implies \\
+&\qquad \implies \derivative{ P_0}{T} = \frac{s_2 - s_1}{v_2 - v_1}
+\end{align*}
+
+\noindent dove si è usato $s = S/N$ e $v = V/N$, rispettivamente entropia e volume specifici.
+
+In questo ambito si definisce inoltre il \textit{calore latente}:
+
+\begin{defn}[Calore latente]
+	\`E una grandezza $\lambda$ delle dimensioni di un'energia (un calore), che caratterizza le transizioni di fase discontinue, cioè quelle in cui è presente una differenza finita di entropia specifica tra le due fasi.
+	\begin{equation*}
+		\lambda = T(s_2 - s_1) = T \Delta s
+	\end{equation*} 
+\end{defn}
+
+Alla luce di questa nuova definizione l'equazione di Clausius-Clapeyron è espressa in modo naturale come:
+
+\begin{equation*}
+\derivative{ P_0}{T} = \frac{\lambda}{T(v_2 - v_1)}
+\end{equation*}
 
 \section{Meccanica Statistica}
 \label{sec:statmech}

@@ -1,0 +1,49 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../Appunti.tex
+
+% --- PACKAGES ---
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools,bbold,physics}
+
+% ------------
+
+% --- THEOREMS ---
+% teoremi (con amsthm) in italiano
+\theoremstyle{plain}% default
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem*{cor}{Corollario}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{es}{Esempio}[section]
+\newtheorem{ex}{Esercizio}[section]
+\newtheorem*{note}{Nota}
+
+%% theorems (with amsthm) in english
+%\theoremstyle{plain}% default
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{prop}[thm]{Proposition}
+%\newtheorem*{cor}{Corollary}
+%
+%\theoremstyle{definition}
+%\newtheorem{defn}{Definition}[section]
+%\newtheorem{es}{Example}[section]
+%\newtheorem{ex}{Exercise}[section]
+%\newtheorem*{note}{Note}
+
+% ------------
+
+% --- MACROS ---
+% partial derivative
+\newcommand{\partdev}[2]%
+	{\frac{\partial {#1}}{\partial {#2}}}
+
+% partial derivative with fixed variables
+\newcommand{\partfix}[3]%
+	{\left(\partdev{#1}{#2}\right)_{#3}}
+
+% ------------
