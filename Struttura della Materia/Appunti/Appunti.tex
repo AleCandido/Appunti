@@ -1,9 +1,7 @@
 \documentclass[a4paper,10pt]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-
 \input{Macros/font.tex}
-\input{Macros/math.tex}	% newtheorem definitions must go after cleveref
 
 \usepackage{graphicx}
 \usepackage[dvipsnames]{xcolor}  %colori
@@ -15,6 +13,7 @@
 \usepackage{textcomp}		%copyleft symbol
 \usepackage{lipsum}
 
+\usepackage{multicol}
 \usepackage{booktabs}
 \usepackage{subfig}
 \usepackage{wrapfig}
@@ -22,11 +21,17 @@
 \usepackage{indentfirst}				% rientra il primo capoverso di ogni sezione
 \usepackage[bottom]{footmisc}
 
+% cleveref è esigenete: amsthm deve andare prima di lui,
+% ma la definizione dei newtheorem dopo
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
 \usepackage[italian]{varioref}			% riferimenti completi della pagina
 \usepackage[colorlinks=true, linkcolor=MidnightBlue,%
 urlcolor=blue, citecolor=Emerald,%
 filecolor=RoyalBlue]{hyperref}		%per gli hyperlink
 \usepackage[italian, sort, noabbrev, capitalise]{cleveref} % l'ordine deve essere varioref, hyperref, cleveref
+
+\input{Macros/math.tex}	% newtheorem definitions must go after cleveref
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
 \usepackage[italian]{datetime2}
@@ -41,15 +46,16 @@ filecolor=RoyalBlue]{hyperref}		%per gli hyperlink
 \graphicspath{{Immagini/}}
 % --------------------
 
-\title{Appunti \\
-		\Large Struttura della Materia}
-\author{Alessandro Candido}
+%\title{Appunti \\
+%		\Large Struttura della Materia}
+%\author{Alessandro Candido}
 
 \begin{document}
 
 \frontmatter
-\maketitle
+\input{Copertina.tex}
 
+\clearpage
 \input{MaterialeIniziale.tex}
 
 \mainmatter
