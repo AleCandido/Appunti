@@ -853,6 +853,7 @@ Questo si risolve nel fatto che:
 \noindent dove si è usata la quantità $\rho_{E_\alpha}$, detta \textit{densità di stati}.
 
 \begin{defn}[Densità di stati]
+	\label{def:statdens}
 	La \textit{densità di stati} $\rho_{E_\alpha}$ è definita:
 	\begin{itemize}
 		\item per valori discreti dell'energia: è il numero di stati per livello energetico, cioè è la funzione che associa ad ogni livello la sua \textit{degenerazione};
@@ -928,7 +929,7 @@ L'approssimazione effettuata corrisponde a considerare una forma gaussiana per $
 
 \subsection{Proprietà di $Z$ e $\mathcal{Z}$}
 
-Dalla funzione di partizione si può ricavare direttamente l'energia. Il modo più facile per vederlo è introdurre la variabile $\beta = (k_B T)^{-1}$ e derivare l'espressione di $Z$:
+Dalla funzione di partizione si può ricavare direttamente l'energia. Il modo più facile per vederlo è introdurre la variabile\footnote{Si ottiene in modo naturale come moltiplicatore di Lagrange in una derivazione alternativa dell'ensemble canonico.} $\beta = (k_B T)^{-1}$ e derivare l'espressione di $Z$:
 \begin{align*}
 Z &= \int_{0}^{\infty} \rho(\mathcal{E}) e^{-\beta \mathcal{E}}\dd \mathcal{E} \implies\\
 \implies - \partdev{Z}{\beta} &= \int_{0}^{\infty} \mathcal{E}\rho(\mathcal{E}) e^{-\beta \mathcal{E}}\dd \mathcal{E}\ = Z \mathcal{E} \implies\\
@@ -940,14 +941,509 @@ Che si può trasformare in un'espressione esplicita della temperatura sempliceme
 E &= - \partdev{\log Z}{T} \partdev{T}{\beta} = k_B T^2 \partfix{\log Z}{T}{V,N}
 \end{align*}
 
-\noindent Per completezza: si può ottenere la stessa espressione ricavando $F$ da $Z$, e $E$ da $F$ (dalla definizione di $F$ si ha che $E = F + T S$) e tenendo conto che anche $S$ può essere ricavata da $F$ tramite una derivata in $T$.
+\noindent Per completezza: si può ottenere la stessa espressione ricavando $F$ da $Z$, e $E$ da $F$ (dalla definizione di $F$ si ha che $E = F + T S$) e tenendo conto che anche $S$ può essere ricavata da $F$ tramite una derivata in $T$. Inoltre, si noti che la funzione trovata in entrambi i casi è $E(T,V,N)$, ma si è detto che si è come trovare anche $ S(T,V,N) $, per cui invertendo quest'ultima e compenendo si ottiene l'energia nelle sue variabili proprie.
 
+\begin{ex}
+	Si trovi quindi analogamente che:
+	\begin{equation*}
+	N = - \partdev{\Omega}{\mu} = k_B T \partfix{\log \mathscr{Z}}{\mu}{T,V}
+	\end{equation*}
+\end{ex}
+
+Partendo dall'espressione in termini di microstati (cioè in forma di somma o di integrale) ed effettuando le derivate appena discusse si trova che $E$ e $N$ in termini di microstati non sono altro che delle medie, come per qualunque altra osservabile, verificando la coerenza della teoria.
+
+Seguendo un processo simile si può trovare qual'è il corrispondente microscopico di alcune osservabili macroscopiche meno intuitive.
+
+\begin{es}[Pressione per un singolo microstato]
+	\label{es:micropress}
+	Si ha per la pressione (considerando $N$ costante):
+	\begin{equation*}
+	P = - \partdev{F}{V} = \frac{k_B T}{Z} \partdev{Z}{V} = - \frac{1}{Z} \sum_{\alpha} \derivative{E_\alpha}{V} \exp \left(- \frac{E_\alpha}{k_B T}\right)
+	\end{equation*}
+	
+	Per cui il corrispettivo microscopico della pressione è $-\dd E /\dd V$.
+\end{es}
+
+\noindent Si osservi che l'energia e il numero di particelle di un singolo microstato non dipendono da quantità come $T$ e $\mu$: esse sono proprietà non statistiche dei particolari microstati.
+
+\paragraph{Sistemi indipendenti} Una proprietà importante della funzione di partizione (da cui trae il nome) è che per sistemi indipendenti essa è separabile in modo semplice. Si considerano quindi due sistemi, con Hamiltoniani $G$ e $H$:
+\begin{align*}
+Z &= \sum_{i,j} \exp \left( - \frac{H_i + G_j}{k_B T} \right) =\\
+&= \sum_{i} \exp \left( - \frac{H_i}{k_B T} \right) \sum_{j} \exp \left( - \frac{G_j}{k_B T} \right) =\\
+&= Z_H Z_G
+\end{align*}
+
+L'indipendenza qui è data dal fatto che non ci sono "termini misti" tra i due Hamiltoniani, per cui anche gradi di libertà non interagenti (nel senso appena discusso) dello stesso sistema possono essere considerati in questo modo.
 
 \subsection{Particelle identiche}
 \label{sec:idpart}
 
+Il problema di avere particelle identiche è che diventa necessario imparare a sommare senza contare più volte i singoli microstati. Infatti essendo le singole particelle indistinguibili gli stati che coincidono a meno di una permutazione non costituiscono microstati distinti.
+
+Ci sono essenzialmente due modi per affrontare il problema, a partire dagli stati di singola particella:
+\begin{itemize}
+	\item si distinguono gli stati a molti-corpi (quelli dell'intero sistema), per lo stato di singola particella in qui si trova ogni elemento del sistema;
+	
+	si somma quindi su tutte le alternative e si considera che, essendo il numero di stati di singola particella infinito\footnote{Nella quasi totalità dei casi ogni particella è in uno stato diverso da tutte le altre (nel continuo è a meno di un insieme a misura nulla), questa ipotesi verrà comunque discussa più avanti nella definizione del \textit{gas ideale}.}, per ogni conteggio si ottiene il valore corretto dividendo per il numero delle permutazioni, poiché tali stati del sistema contribuiscono con le stesse proprietà dinamiche, proprio a causa del fatto che le particelle sono identiche;
+	
+	questo metodo è applicabile ugualmente bene anche a sistemi interagenti, è sufficiente che sia possibile definire gli stati di singola particella (che però non saranno più autostati una parte separabile dell'Hamiltoniano complessivo).
+	
+	\item si distiguono gli stati a molti-corpi per il numero di elementi che si trova in ogni stato di singola particella, in questo modo si ottiene direttamente il conteggio corretto (questo metodo non è altro che il formalismo della \textit{seconda quantizzazione});
+	
+	questo metodo è ottimo per sistemi di particelle non-interagenti (cioè il gas perfetto)\footnote{Questi sono tutti i sistemi in cui si sa diagonalizzare l'Hamiltoniano complessivo, dove le particelle sono costituite dalle eccitazioni del sistema.}, ma non può essere generalizzato ulteriormente.
+\end{itemize}
+
+\noindent \`E utile dare subito la definizione di \textit{gas ideale} per discutere i due metodi appena introdotti:
+
+\begin{defn}[Gas ideale]
+	Un gas è detto \textit{ideale} quando gli stati di singola particella non sono mai occupati da più di un corpo.
+\end{defn}
+
+Si osserva quindi che per i vari tipi di gas si hanno diversi problemi:
+\begin{description}
+	\item[Perfetto, Ideale] In questo caso entrambi i metodi esposti vanno ugualmente bene;
+	\item[$\neg$ Perfetto, Ideale] \`E il tipico caso di gas interagente: le interazioni non sono abbastanza forti da portare il gas a violare l'idealità nel macrostato in cui si trova; in questo caso il secondo metodo fallisce completamente, mentre il primo è generalizzabile;
+	\item[Perfetto, $\neg$ Ideale] Questo è un caso molto particolare che verrà esaminato estesamente nel \cref{chap:gas}, la non idealità non è causata dalle interazioni, ma dal fatto che il numero di stati a disposizione è ridotto (di solito a causa della bassa temperatura, o dell'alta densità) e quindi entrano in gioco effetti quantistici rilevanti;
+	\item[$\neg$ Perfetto, $\neg$ Ideale] \'E il caso generale, e in generale il modo per risolverlo è il seguente: recuperare la condizione di perfezione diagonalizzando l'Hamiltoniano complessivo e introducendo le cosiddette \textit{quasiparticelle}, cioè stati collettivi di eccitazione del sistema. 
+\end{description}
+
+ Si procede quindi analizzando il primo caso, applicando i due metodi nello studio di aspetti differenti.
+
+\paragraph{Primo metodo} Si applica il primo metodo per osservare gli effetti dell'identità delle particelle.
+
+Poiché il gas è perfetto la funzione di partizione è separabile in termini di funzioni di partizione di singola particella:
+\begin{align*}
+Z_1 = &\sum_{\textbf{q}} \exp \left( - \frac{\varepsilon_{\textbf{q}}}{k_B T}\right)\\
+Z = \frac{1}{N!} (Z_1)^N &\implies F = -N k_B T \log Z_1 + k_B T \log N!
+\end{align*}
+
+\noindent dove $\textbf{q}$ sono i numeri d'onda, che vengono usati in questo contesto per distinguere gli stati di singola particella.
+
+Quindi si ottiene che l'entropia $S = - \partial F / \partial T$ è influenzata dall'identità o meno delle particelle, mentre l'equazione di stato no:
+\begin{align*}
+P(T,V) = - &\partfix{F}{V}{T} = N k_B T \partdev{\log Z_1}{V}\\
+& \partdev{Z_1}{V} = - \frac{1}{k_B T} \sum_{\textbf{q}} \partdev{\varepsilon_{\textbf{q}}}{V}\exp \left( - \frac{\varepsilon_{\textbf{q}}}{k_B T}\right) = \frac{2/3}{V k_B T} \sum_{\textbf{q}} \exp \left( - \frac{\varepsilon_{\textbf{q}}}{k_B T}\right) \implies\\
+\implies P = &\frac{2}{3} \frac{N}{V} \bar{\varepsilon} = \frac{2}{3} \frac{E}{V}
+\end{align*}
+
+Per ricavare la derivata $\partial \varepsilon_{\textbf{q}} / \partial V$\footnote{Perché gli impulsi sono proporzionali ai numeri d'onda, che scalano con $1/L \propto V^{-1/3}$} si è usato che l'energia dei microstati dipende da $V^{-2/3}$, cioè dalle lunghezze longitudinali del volume permesso. In realtà la relazione $PV = \frac{2}{3} E$ si può ricavare direttamente a partire da questa considerazione (\textit{esercizio}\footnote{Si usi l'\cref{es:micropress}}).
+
+L'equazione di stato non è stata ancora ricavata: bisognerebbe conoscere $E(T,V,N)$, cioè effettuare la somma. Questo è possibile farlo anche nell'ambito di questo metodo, ma con l'altro modo risulta molto più semplice e mette in evidenza la natura delle approssimazioni fatte.
+
+\paragraph{Secondo metodo} Si applica il secondo metodo allo studio dell'occupazione degli stati, per il quale è evidentemente il più adatto. Si ricaverà infine l'equazione di stato.
+
+Si considera come sistema un singolo stato, con energia e numero di particelle variabili. Si calcola quindi la funzione di partizione per questo stato:
+\begin{equation*}
+\Omega_{\textbf{q}} = - k_B T \log \sum_{n_{\textbf{q}}} \exp \left( - \frac{n_{\textbf{q}}{(\varepsilon_{\textbf{q}} - \mu)}}{k_B T}\right) \qquad \qquad n_{\textbf{q}} = 0, 1, 2, \dots
+\end{equation*}
+
+Dalla separabilità di $\mathcal{Z}$, in termini di funzioni di granpartizione di singola particella, si ottien $\Omega = \sum_{\textbf{q}} \Omega_{\textbf{q}}$. In questo modo si è effettuato il conteggio senza contare più volte alcuno stato.
+
+Per giustificare l'ipotesi di idealità del gas si consideri le probabilità di occupazione $w_{n_{\textbf{q}}}$:
+\begin{align*}
+w_\alpha &= \exp \left(\frac{\Omega - (E_\alpha - \mu N_\alpha)}{k_B T}\right) \implies w_{n_{\textbf{q}}} = \exp \left(\frac{\Omega_{\textbf{q}} - n_{\textbf{q}}{ (\varepsilon_{\textbf{q}} - \mu)}}{k_B T}\right)\\
+w_0 &= \exp \left(\frac{\Omega_{\textbf{q}}}{k_B T}\right) \simeq 1\\
+w_1 &= \exp \left(\frac{\Omega_{\textbf{q}}}{k_B T}\right) \exp \left(\frac{\varepsilon_{\textbf{q}} - \mu}{k_B T}\right)  \simeq \exp \left(\frac{\varepsilon_{\textbf{q}} - \mu}{k_B T}\right) \ll 1\\
+w_2 &= \exp \left(\frac{\Omega_{\textbf{q}}}{k_B T}\right) \exp \left(\frac{2(\varepsilon_{\textbf{q}} - \mu)}{k_B T}\right)  \simeq w_1^2 \ll w_1\\ 
+\end{align*}
+
+Si ha quindi che il gas è ideale se:
+\begin{equation*}
+e^{\mu/k_B T} \ll 1
+\end{equation*}
+
+cioè se $\mu/k_B T \ll -1$. Questa può essere anche usata come definizione di gas ideale: esso deve avere un potenziale chimico negativo e grande sulla scala dell'energia termica.
+
+\begin{oss}[Potenziale chimico]
+	Se si ha presente il significato fisico del potenziale chimico quest'ultimo fatto può risultare leggermente controintuitivo.
+	
+	Per chiarire il concetto fisico di potenziale chimico si osservi come esso entra nel differenziale dell'energia. Questo è esattamente ciò che è stato fatto nella \cref{def:ossint}, e in accordo con essa il potenziale chimico corrisponde alla \textit{variazione di energia} quando viene aggiunta una particella al sistema.
+	
+	Allora come è possibile che l'energia del gas ideale diminuisca molto quando si aggiunge una particella che può avere energia solo positiva al sistema?
+	
+	\noindent La risposta sta nel tipo di trasformazione: il potenziale chimico è la variazione di energia a \textit{volume e entropia fissati}. Ma se si aggiunge una particella, anche solo a energia nulla, a un sistema la sua entropia aumenta, perché acquisisce più modi per dividere l'energia che già possiede.
+	
+	\noindent Per bilanciare l'aumento di entropia è quindi necessario \textit{togliere} energia al sistema, abbastanza da bilanciare tutte le nuove alternative.
+	
+	Se invece il sistema fosse fortemente interagente (cioè molto \textit{imperfetto}) allora sarebbe impossibile aggiungere particelle a energia nulla, e il gas tenderebbe a occupare preferenzialmente un certo tipo di stati, rendendoli sempre più probabili. Per cui un gas \textit{abbastanza imperfetto} è anche non ideale.
+\end{oss}
+
+Si avrà quindi per il numero di occupazione medio:
+\begin{equation*}
+	\overline{n_{\textbf{q}}} = \frac{\sum_{n_{\textbf{q}}} n_{\textbf{q}}\exp [ - {n_{\textbf{q}}{(\varepsilon_{\textbf{q}} - \mu)}}/{k_B T}]}{\sum_{n_{\textbf{q}}} \exp [ - {n_{\textbf{q}}{(\varepsilon_{\textbf{q}} - \mu)}}/{k_B T}]} \simeq \exp \left( - \frac{{\varepsilon_{\textbf{q}} - \mu}}{k_B T}\right)
+\end{equation*}
+
+\noindent si sono considerate solamente gli ordini dominanti (primo sopra, zero sotto).
+
+Si ha quindi per le funzioni di granpartizione di singolo stato e complessiva, sempre al primo ordine non banale:
+\begin{align*}
+\Omega_{\textbf{q}} \simeq& - k_B T \log \left[ 1 + \exp \left( - \frac{{\varepsilon_{\textbf{q}} - \mu}}{k_B T}\right)\right] \simeq\\
+\simeq&- k_B T \log (1 + \overline{n_{\textbf{q}}}) \simeq\\
+\simeq&-k_B T \overline{n_{\textbf{q}}}\\
+\Omega =& - P V = - k_B T \sum_{n_{\textbf{q}}} \overline{n_{\textbf{q}}}= - k_B T N
+\end{align*}
+
+Si è infine trovata l'equazione di stato dei gas ideali:
+\begin{equation*}
+P V = N k_B T
+\end{equation*}
+
+\subparagraph{Assunzioni fatte} Per ottenere l'equazione di stato si è assunto solamente che il gas fosse perfetto e ideale: non si è assunto nulla sulla legge di dispersione o alcuna informazione sulla dinamica interna. Ci si aspetta dunque che questa equazione descriva bene qualunque sistema che soddisfi alle condizioni di \textbf{\textit{idealità e perfezione}}.
+\newline
+
+A quanto pare nel XIX secolo è stato proposto che gli atomi fossero piccoli vortici nell'etere, e che avessero una legge di dispersione $\varepsilon \propto p^2$, anzichè $\varepsilon \propto p^{1/2}$. Questo implica che le loro velocità, ottenute dalle equazioni di Hamilton:
+\begin{equation*}
+v = \partdev{\varepsilon}{p} \propto p^{-1/2} \propto \frac{1}{\varepsilon}
+\end{equation*}
+
+Cioè che più energia avessero più andassero lenti. Questo è tanto controintuitivo, rispetto all'esperienza con i corpi macroscopici, che c'è da chiedersi com'è possibile che un'ipotesi del genere sia venuta alla luce. La spiegazione è che questo modello verificava l'equazione di stato dei gas ideali.
+
+Qui si è appena dimostrato però che qualunque altro modello lo avrebbe fatto, ma evidentemente all'epoca non lo sapevano.
+
 \subsection{Integrazione sugli stati}
 \label{sec:sumasint}
 
+Si affronta ora un problema fondamentale legato ad uno dei due principi che si è assuno per la meccanica statistica: \textit{l'equiprobabilità a priori}.
+\newline
+
+Quando questo principio è stato assunto non si è stati molto chiari sul modo in cui andassero identificati gli stati. Si cerca quindi di esplicitare questo punto nei due casi della meccanica classica e quantistica.
+
+Il secondo caso è quello più semplice: per la meccanica quantistica uno stato è identificato da un insieme di numeri quantici, e finché ci si limita alla porzione di spettro discreta non ci sono problemi ulteriori\footnote{Per il caso dello spetro continuo si hanno gli stessi problemi della meccanica classica, legati alla misura in cui va integrata la densità di stati.}. L'insieme degli stati è quindi l'insieme delle combinazioni di tutti i possibili numeri quantici necessari a descrivere il sistema.
+
+Per la meccanica classica è più complesso: le proprietà delle particelle (posizioni, impulsi, \dots) possono assumere un insieme continuo di valori, se ognuno di questi costituisse un singolo stato divergerebbero, si definisce quindi la densità di stati (\cref{def:statdens}, in quel caso era definita nell'energia, ma si può procedere analogamente per ogni altra variabile), essa deve però rispettare il principio di equiprobabilità a priori, e quindi essere piatta sul suo supporto (stati accessibili) per sistemi isolati. Ma piatta \textit{in che misura?}\footnote{Infatti una distribuzione di probabilità che è costante in una certa variabile non rimane costante se si decide di cambiare variabile in modo non lineare (in generale in una trasformazione che non conservi i rapporti tra le aree, indipendentemente dalla struttura dello spazio).}
+\newline
+
+La risposta alla domanda posta è la seguente: \textit{piatta nello spazio delle fasi}. Questa risposta è legata al teorema di Liouville, che assicura che l'evoluzione temporale conservi i volumi dello spazio delle fasi.\footnote{Inoltre è evidente che un punto nello spazio delle fasi identifichi univocamene lo stato classico del sistema.} 
+
+Infatti poiché le proprietà di un sistema all'equilibrio devono essere stazionarie, densità degli stati inclusa, se i rapporti tra i volumi fossero modificati dall'evoluzione temporale allora sarebbe necessario specificare anche a che istante la densità degli stati è piatta, perché l'evoluzione temporale poi la deformerebbe. Questo è assurdo, proprio per la richiesta di stazionarietà, da cui la scelta della misura.
+\newline
+
+C'è un altro problema legato alla \textit{normalizzazione}: dato un certo volume di spazio delle fasi, quanti stati contiene?
+
+La risposta in meccanica classica è tanto arbitraria quanto fondamentale: l'unico effetto della definizione di un volume unitario è fissare la costante nell'entropia, ma una volta fissato si possono avere sistemi che occupino un volume più piccolo di quello unitario, ad esempio se si fissa l'energia lo spazio occupato dal sistema cambia dimensionalità, scendendo di $1$ a causa del vincolo, e l'entropia divergerebbe negativamente (questo caso corrisponde a fare il limite per un sistema arbitrariamente ben localizzato in energia).
+
+La risposta migliore sarebbe: per grossi volumi, cioè comprendenti un gran numero di stati, il problema è irrilevante, e anche se la costante nell'entropia rimane indeterminata questo non ha rilevanze fisica, mentre per sistemi in cui l'indeterminazione è molto piccola la meccanica classica fallisce miseramente contro il principio di Heisenberg, e quindi si deve adottare una descrizione completamente quantistica.
+
+Nonostante ciò ci si può addentrare un minimo nella questione e trovare un valore per questa costante universale dalla meccanica quantistica, e utilizzarla in meccanica classica come una specie di \textit{raccordo}.
+
+Si parte considerando come una somma può essere convertita in un opportuno integrale sullo spazio delle fasi:
+\begin{equation*}
+\sum_{\text{stati}} \rightarrow \frac{1}{\tau^f} \int \cdots \int \dd \{p_i\} \{r_i\} = \int \rho(\mathcal{E}) \dd \mathcal{E}
+\end{equation*}
+
+\noindent dove si è chiamato $\tau$ il volumetto unitario, $f$ il numero di gradi di libertà del sistema e con $\{p_i\}$ e $\{r_i\}$ si intende l'insieme di tutti gli impulsi e delle posizioni per ogni grado di libertà.
+
+Essendo il valore di $\tau$ universale si può considerare un qualunque sistema, perciò si prende in esame il più semplice: una particella in una scatola. Il numero di stati che hanno impulso compreso tra $p$ e $p + \Delta p$ è:
+\begin{equation*}
+\Delta l = \frac{L}{2\pi} \Delta q = \frac{L}{2 \pi \hbar} \Delta p
+\end{equation*}
+
+\noindent Se si esegue lo stesso calcolo mediante integrazione si ottiene:
+\begin{equation*}
+\frac{1}{\tau} \int_{L} \int_{\Delta p} \dd p \dd r = \frac{L \Delta p}{\tau}
+\end{equation*}
+
+\noindent Da cui si ottiene:
+\begin{equation*}
+\tau = 2 \pi \hbar = h
+\end{equation*}
+
+Il risutato è che d'ora in poi la misura adottata per l'integrazione sarà:
+\begin{equation*}
+	\frac{\dd^3p~\dd^3r}{(2\pi\hbar)^3} 
+\end{equation*}
+
+\subsubsection{Densità degli stati di singola particella}
+
+Per una singola particella di gas perfetto il numero di stati compresi fra $p$ e $p + \dd p$ si ottiene integrando la quantità scritta prima nello spazio fisico e nell'angolo solido degli impulsi, ottenendo infine:
+\begin{equation*}
+\frac{4\pi V}{(2\pi \hbar)^3}p^2 \dd p
+\end{equation*}
+
+\noindent mentre per il numero di stati in energia si ha:
+\begin{equation*}
+\rho(\varepsilon) \dd \varepsilon = \frac{4\pi V}{(2\pi \hbar)^3}p^2 \derivative{p}{\varepsilon}\dd \varepsilon
+\end{equation*}
+
+Si ottiene quindi la densità di stati in energia dalla legge di dispersione per una particella libera:
+\begin{align*}
+	\varepsilon &= \frac{p^2}{2m}\\
+	\rho(\varepsilon) \dd \varepsilon = &\frac{4\pi \sqrt{2}~V m^{3/2}}{(2\pi \hbar)^3}p^2 \varepsilon^{1/2}\dd \varepsilon
+\end{align*}
+
+\begin{es}[Uso della densità di stati]
+	Si calcola l'energia media di singola particella mediante la densità degli stati trovata:
+	\begin{equation*}
+	\bar{\varepsilon} = \frac{\int \varepsilon \rho(\varepsilon) e^{-\varepsilon/k_B T} \dd\varepsilon}{\int \rho(\varepsilon) e^{-\varepsilon/k_B T} \dd\varepsilon} = \frac{\int \varepsilon^{3/2} e^{-\varepsilon/k_B T} \dd\varepsilon}{\int \varepsilon^{1/2} e^{-\varepsilon/k_B T} \dd\varepsilon} = k_B T \frac{\int_0^\infty x^{3/2} e^{-x} \dd x}{\int_0^\infty x^{1/2} e^{-x} \dd x}
+	\end{equation*}
+	Si può valutare l'ultima espressione facendo uso delle proprietà della funzione $\Gamma$ di Eulero:
+	\begin{align*}
+	\begin{rcases*}
+	\Gamma(n + 1) = \int_0^\infty x^n e^{-x} \dd x\\
+	\frac{\Gamma(n + 1)}{\Gamma(n)} = n
+	\end{rcases*}&
+	\bar{\varepsilon} = \frac{3}{2} k_B T \implies\\
+	\implies PV &= N k_B T
+	\end{align*}
+	
+	Si è quindi ottenuta nuovamente l'equazione di stato dei gas sostituendo l'espressione per l'energia nell'espressione ricavata col primo metodo nella \cref{sec:idpart}.
+\end{es}
+
+Quella trovata è solo una possibile densità degli stati, ottenuta dalla legge di dispersione di una particella libera. Se cambiasse la legge di dispersione cambierebbe la densità degli stati, ma nulla cambierebbe del modo in cui la si applica.
+
+\begin{es}[Particella ultrarelativistica]
+	Per una particella \textit{ultrarelativistica}, cioè tale che $\varepsilon \gg mc^2$, la legge di dispersione è:
+	\begin{equation*}
+		\varepsilon = cp
+	\end{equation*}
+	
+	Da questa si ricava, esattamente nello stesso modo del caso precedente, la densità di stati in energia:
+	\begin{equation*}
+	\rho(\varepsilon) \dd \varepsilon = \frac{4\pi V}{(2\pi \hbar c)^3}\varepsilon^2\dd \varepsilon
+	\end{equation*}
+	\noindent Questa è la densità di stati per un gas di fotoni, ad esempio.
+\end{es}
+
+\subsubsection{Sistemi interagenti}
+Si cerca ora di impostare il problema per sistemi interagenti. Non si intende affrontarlo, ma solo cercare un buon modo di porre la questione.
+\newline
+
+Per i tipici sistemi interagenti la questione delle particelle identiche è ancora più netta: dato che i corpi classici sono impenetrabili\footnote{\`E un assunzione: anche in meccanica classica si possono descrivere urti fra corpi che si attraversano (esempio tipico: galassie), ma i corpi con cui si è alle prese più di frequente sono impenetrabili, ad esempio gli atomi o anche particelle più grosse.} non è possibile che due particelle occupino la stessa posizione nello spazio fisico, per cui la divisione per il fattore combinatorio che conta le permutazioni restituisce un risultato esatto (l'errore lo si fa se si somma anche su quelli stati, ma considerando un potenziale che descriva l'impenetrabilità è l'interazione stessa a sopprimerli). Si avrà quindi:
+\begin{equation*}
+\rho{\mathcal{E}} \dd \mathcal{E} = \frac{1}{N!} \frac{\dd\{p_i\} \dd \{ r_i\}}{(2\pi \hbar)^f}
+\end{equation*}
+
+\noindent con $f$ il numero di gradi di libertà del sistema.
+
+Il primo passo è sempre lo studio della funzione di partizione del sistema, che equivale a individuare l'energia libera nelle sue variabili proprie:
+\begin{align*}
+	Z = \int \rho(\mathcal{E}) e^{-\mathcal{E}/k_B T} \dd \mathcal{E} &= \frac{1}{(2\pi \hbar)^{3N} N!}\int \cdots \int e^{-\mathcal{E}/k_B T} \dd\{p_i\} \dd \{ r_i\}\\
+	\text{con}\qquad\mathcal{E}(\{p_i\}, \dd \{ r_i\}) &= \sum_{i =1}^{3N} \frac{p_i^2}{2m} + U(\{r_i\})
+\end{align*}
+
+\noindent dove $U$ è l'energia potenziale del sistema, e dipende \textit{istantaneamente} dalle posizioni di \textit{tutte} le particelle\footnote{\`E chiaro che si sta trattando il limite non relativistico, altrimenti andrebbero introdotti i campi per descrivere la velocià finita di propagazione}.
+
+Si ha che $Z$ è quindi separabile:
+\begin{equation*}
+Z = \frac{1}{(2\pi \hbar)^{3N} N!}\int \cdots \int \exp \left(- \sum \frac{p_i^2}{2 m k_B T}\right) \dd\{p_i\} \int \cdots \int \exp \left( - \frac{U}{k_B T}\right) \dd \{ r_i\}
+\end{equation*}
+
+L'integrale sugli impulsi è lo stesso del gas ideale:
+\begin{align*}
+Z &= \frac{1}{(2\pi \hbar)^{3N} N!}\int \cdots \int \exp \left(- \sum \frac{p_i^2}{2 m k_B T}\right) \dd\{p_i\} =\\ 
+&= \frac{1}{V^N (2\pi \hbar)^{3N} N!}\int \cdots \int \exp \left(- \sum \frac{p_i^2}{2 m k_B T}\right) \dd\{p_i\} \dd\{r_i\} =\\
+&= \frac{Z_{IG}}{V^N}
+\end{align*}
+
+\noindent con $Z_{IG}$ la funzionr di partizione del gas ideale.
+
+Quello che rimane da calcolare è quindi il cosiddetto \textit{integrale delle configurazioni}, cioè l'integrazione sulla parte spaziale:
+\begin{equation*}
+	Q = \int \cdots \int \exp \left( - \frac{U(\{r_i\})}{k_B T}\right) \dd \{ r_i\}
+\end{equation*}
+
+E infine la funzione di partizione totale sarà quindi:
+\begin{equation*}
+	Z = \frac{Z_{IG}}{V^N}~Q
+\end{equation*}
+
+\subsubsection{Funzioni di partizione del gas ideale}
+Si valutano ora la funziona di partizione del gas ideale, e quella di granpartizione.
+
+\paragraph{Funzione di partizione} Si esegue il calcolo dell'integrale degli impulsi:
+\begin{align*}
+\int \exp \left(- \frac{p^2}{2 m k_B T}\right) \dd^3 p &= 4 \pi \int e^{- \varepsilon/ k_BT} p^2 \dd p =\\
+&= 4 \pi \sqrt{2}~(mk_B T)^{3/2} \int e^{-x} x^{1/2} \dd x =\\
+&= 4 \pi \sqrt{2}~\Gamma\left(\frac{3}{2}\right)(mk_B T)^{3/2}
+\end{align*}
+\noindent Sfruttando quindi il valore della funzione $\Gamma$:
+\begin{align*}
+\Gamma\left(\frac{3}{2}\right) = \frac{\sqrt{\pi}}{2} \implies& Z_{IG} = \frac{1}{N!}\left(\frac{V}{\Lambda^3}\right)^N\\
+\Lambda = \frac{2\pi \hbar}{\sqrt{2 \pi m k_B T}}
+\end{align*}
+\noindent dove si è tenuto conto del fatto che l'integrale sulle posizioni è banale.
+
+La funzione di partizione del caso interagente sarà quindi $Z = Q / (N! ~\Lambda^{3N})$, da cui si ottiene un energia libera:
+\begin{equation*}
+	F =  k_B T (3N \log \Lambda + \log N! - \log Q)
+\end{equation*}
+
+\paragraph{Funzione di granpartizione} \`E tutto analogo al caso precedente:
+\begin{align*}
+	\mathcal{Z} = \sum_\alpha \exp \left(- \frac{E_\alpha - \mu N_\alpha}{k_B T}\right) = \sum_{N_\alpha} \exp \left( \frac{ \mu N_\alpha}{k_B T}\right) \sum_{\alpha'} \exp \left(- \frac{E_\alpha}{k_B T}\right) 
+\end{align*}
+
+\noindent dove si è indicato con $\alpha'$ i gradi di libertà residui una volta fissato $N_\alpha$.
+
+Si definisce ora la \textit{fugacità} $z= e^{\mu/k_B T}$, e si ha che per ogni $N_\alpha$:
+\begin{equation*}
+	z^{N_\alpha} \sum_{\alpha'} \exp \left(- \frac{E_\alpha}{k_B T}\right) = \frac{z^{N_\alpha}}{N_\alpha !} \int \exp \left(- \frac{\mathcal{E}}{k_B T}\right) \dd \{p_i\}_{3N_\alpha} \dd \{r_i\}_{3N_\alpha} = \frac{z^{N_\alpha} Q_{N_\alpha}}{{N_\alpha ! \Lambda^{3N_\alpha}}}
+\end{equation*}
+
+Per cui alla fine:
+\begin{equation*}
+\mathcal{Z} = \sum_N \frac{z^{N} Q_{N}}{{N!~\Lambda^{3N}}}
+\end{equation*}
+
 \subsection{Fluttuazioni}
 \label{sec:fluct}
+
+Si vuole studiare ora l'andamento delle fluttuazioni delle osservabili termodinamiche, per giustificare le affermazioni fatte sinora sulla possibilità di determinare tali osservabili con una buona precisione, tipicamente crescente con le dimensioni del sistema.
+\newline
+
+Si studia quindi il caso del gas ideale; esso ha energia:
+\begin{equation*}
+	\mathcal{E} = \frac{1}{2m} \sum_{i =1}^{3N} p_i^2
+\end{equation*}
+
+Per cui fissare una certa energia equivale a restringere lo spazio degli impulsi a una sfera $3N-1$ dimensionale di raggio:
+\begin{equation*}
+	P^{\ast 2} = 2m \mathcal{E} = \sum_{i} p_i^2
+\end{equation*}
+
+Per il gas immerso in un bagno termico (approccio canonico) le probabilità in energia sono:
+\begin{equation*}
+	w(\mathcal{E}) = \frac{1}{Z} \rho(\mathcal{E}) e^{- \mathcal{E}/k_B T}
+\end{equation*}
+
+\noindent con la densità degli stati proporzionale a una sfera:
+\begin{equation*}
+\rho(\mathcal{E}) \delta \mathcal{E} \propto \delta V^\ast(\mathcal{E}) \qquad \qquad \text{con }~ V^\ast \propto P^{\ast{3N}}
+\end{equation*}
+
+\noindent Più in dettaglio:
+\begin{align*}
+\rho{\mathcal{E}} \delta \mathcal{E} &\propto \partdev{V^\ast}{\mathcal{E}}\\
+&\propto P^{\ast{3N-1}} \partdev{P^\ast}{\mathcal{E}} \delta \mathcal{E}\\
+&\propto (\mathcal{E}^{1/2})^{3N-1}\mathcal{E}^{-1/2} \delta \mathcal{E} = \mathcal{E}^{(3N/2) - 1}\delta \mathcal{E}
+\end{align*}
+
+E quindi per le probabilità si ha:
+\begin{equation*}
+w(\mathcal{E}) = C_N \mathcal{E}^{(3N/2)-1}e^{-\mathcal{E}/k_B T} = \frac{1}{\Gamma(3N/2)}\left(\frac{\mathcal{E}}{k_B T}\right)^{(3N/2)-1}\frac{1}{k_B T} e ^{- \mathcal{E}/k_B T}
+\end{equation*}
+
+\noindent dove l'ultima uguaglianza è data dalla normalizzazione. Si osservi come tutte queste espressioni abbiano il corretto limite per $N = 1$, cioè coincidano con quanto calcolato nella \cref{sec:sumasint}.
+
+Conformemente a quanto detto in precedenza la probabilità in energia è il prodotto di due fattori: la probabilità di singolo stato, che decresce esponenzialmente, e la densità di stati, che cresce con una legge di potenza.
+
+Si può esaminare la distribuzione di probabilità studiando alcune proprietà tipiche:
+\begin{description}
+	\item[Moda] La moda di una distribuzione è il suo valore più probabile, quindi un massimo, per cui:
+	\begin{align*}
+	&0 = \partdev{w(\mathcal{E})}{w(\mathcal{E}} \propto \partdev{}{\mathcal{E}}[\mathcal{E}^{(3N/2)-1}e^{-\mathcal{E}/k_B T}]\\
+	&\text{cioè:} \qquad \qquad \mathcal{E}_M = \left(\frac{3N}{2} - 1\right) k_B T
+	\end{align*}
+	\item[Media] La media è quella quantità ben nota che è stata studiata fin qui:
+	\begin{align*}
+	\bar{\mathcal{E}} &= \int \mathcal{E} w(\mathcal{E}) \dd \mathcal{E} =\\
+	&= C_N \int \mathcal{E}^{3N/2}e^{-\mathcal{E}/k_B T} \dd \mathcal{E}\\
+	&= C_N (k_B T)^{(3N/2) + 1} \Gamma(3N/2 +1) =\\
+	&= \frac{3N}{2} k_B T
+	\end{align*}
+	Si nota quindi che la media e la moda distano sempre di $k_B T$, in particolare la moda è più piccola, ma questa differenza diventa sempre meno significativa man mano che le due migrano verso destra al crescere di $N$.
+	\item[RMS] Si vuole descrivere le fluttuazioni, quindi bisognerà prendere in esame la grandezza $\Delta E = \mathcal{E} - E$ e fissare una misura della larghezza della distribuzione.
+	
+	\`E chiaro che $\overline{\Delta E} = 0$, poiché $\bar{\mathcal{E}} = E$ per definizione. \'E necessario quindi una grandezza che caratterizzi lo spostamento dalla media, indipendentemente dalla direzione: si potrebbe pensare naturalmente al modulo, ma viene tipicamente scelto il quadrato perché ha migliori proprietà analitiche.
+	\begin{equation*}
+	\overline{(\Delta E)^2} = \overline{(\mathcal{E} - E)^2} = \overline{(\mathcal{E}^2 - 2\mathcal{E}E + E^2)} = \overline{\mathcal{E}^2} - 2\bar{\mathcal{E}}E + E^2 = \overline{\mathcal{E}^2} - E^2
+	\end{equation*}
+	
+	C'è un modo semplice di calcolare la quantità $\overline{\mathcal{E}^2}$, ed è il seguente:
+	\begin{align*}
+	\partdev{^2 F}{T^2} &= \partdev{^2}{T^2} (-k_B T \log Z) =\\
+	&= \frac{1}{K_B T^3}\left[\frac{(\int\mathcal{E} \rho(\mathcal{E})e^-{\mathcal{E}/k_B T} \dd \mathcal{E})^2}{Z^2}-\frac{1}{Z} \int \mathcal{E}^2\rho(\mathcal{E})e^{-\mathcal{E}/k_B T}\dd \mathcal{E}\right] =\\
+	&= \frac{E^2 - \overline{\mathcal{E}^2}}{k_B T^3}
+	\end{align*}
+	
+	Cioè:
+	\begin{equation*}
+	\overline{(\Delta E)^2} = \overline{\mathcal{E}^2} - E^2 = - k_B T^3 \partdev{^2 F}{T^2} = k_B T^2 C_V
+	\end{equation*}
+\end{description}
+
+\begin{figure}[t!]
+		\centering
+		\includegraphics[width=0.6\textwidth]{Immagini/Edistr1.png}
+		\caption{}
+		\label{fig:Edistr1}
+\end{figure}
+Si riporta in \cref{fig:Edistr1,fig:EdistrN} la forma delle distribuzioni di probabilità in energia per una particella e per $N \gg 1$.
+\newline
+
+Per capire meglio il comportamento delle fluttuazioni in esame si studia il modello di gas ideale, per cui:
+\begin{align*}
+E &= \bar{\mathcal{E}} = \frac{3}{2} N k_B T\\
+C_V &= \partdev{E}{T} = \frac{3}{2} N k_B
+\end{align*}
+
+\noindent Per cui si otttiene per le fluttuazioni relative:
+\begin{equation*}
+\frac{\sqrt{\overline{(\Delta E)^2}}}{E} = \frac{\sqrt{k_B T^2 \frac{3}{2}Nk_B}}{\frac{3}{2}Nk_B T} = \frac{\sqrt{N}}{N \sqrt{\frac{3}{2}}} \sim \frac{1}{\sqrt{N}}
+\end{equation*}
+
+\noindent e quindi vanno a $0$ per $N \rightarrow \infty$.
+
+\begin{figure}[b!]
+		\centering
+		\includegraphics[width=0.6\textwidth]{Immagini/EdistrN.png}
+		\caption{}
+		\label{fig:EdistrN}
+\end{figure}
+
+\subsubsection{Fluttuazioni della densità}
+Si possono studiare nello stesso modo le fluttuazioni della densità. Si prende quindi in esame il granpotenziale:
+\begin{equation*}
+\partfix{^2 \Omega}{\mu^2}{T,V} = \partdev{^2}{\mu^2} \left[ -k_B T \log \sum_{\alpha} \exp \left(- \frac{E_\alpha - \mu N_\alpha}{k_B T}\right)\right] = - \frac{1}{k_B T} (\overline{N_\alpha^2} - N^2)
+\end{equation*}
+
+\noindent cioè:
+\begin{equation*}
+\overline{(\Delta N)^2}(\overline{N_\alpha^2} - N^2) = - k_B T \partfix{^2 \Omega}{\mu^2}{T,V} = k_B T \partfix{N}{\mu}{T,V}
+\end{equation*}
+
+Inoltre, usando l'equazione di Gibbs-Duhem (vedi \cref{sec:thermquant}), si ottiene:
+\begin{equation*}
+\partfix{\mu}{N}{T,V} = \frac{V}{N} \partfix{P}{N}{T,V} = \frac{1}{N} \partfix{P}{\rho}{T,V}
+\end{equation*}
+
+\noindent dove $\rho = N/V$ è la densità. Ricordando or la definizione di compressibilità isoterma si ottiene:
+\begin{equation*}
+	K_T = - \frac{1}{V} \partfix{V}{P}{T} = - \rho \partfix{1/\rho}{P}{T} = \frac{1}{\rho} \partfix{\rho}{P}{T}
+\end{equation*}
+
+\noindent si trova infine il valore delle fluttuazioni in funzione di $N,T,\rho$:
+\begin{equation*}
+	\partfix{\mu}{N}{T,V} = \frac{1}{N \rho K_T} \qquad \implies \qquad \overline{(\Delta N)^2} = N k_B T \rho K_T
+\end{equation*}
+
+Si ottiene quindi per le fluttuazioni relative:
+\begin{equation*}
+	\frac{\overline{(\Delta V)^2}}{V^2} = \frac{\overline{(\Delta N)^2}}{N^2} = \frac{kT\rho}{N} K_T = \frac{kT}{V} K_T
+\end{equation*}
+
+\noindent dove la prima uguaglianza è giustificata dal fatto che si stanno considerando fluttuazioni della densità.
+
+Ancora una volta si prova il risultato ottenuto sul gas ideale:
+\begin{align*}
+PV &= Nk_B T\\
+K_T = - \frac{1}{V} \partfix{V}{P}{T} &= \frac{N k_B T}{P^2 V} = \frac{1}{P}\\
+\frac{\sqrt{\overline{(\Delta N)^2}}}{N} &= \frac{\sqrt{k_B T / PV}}{N} = \frac{1}{\sqrt{N}}
+\end{align*}
+
+\noindent cioè si è ottenuto ancora una volta che le fluttuazioni si annullano con $1/\sqrt{N}$ per $N \rightarrow \infty$.
+
+\subsubsection{Fluttuazioni nelle altre grandezze}
+Se la densità viene mantenuta fissa si ha che le fluttuazioni nelle altre osservabili termodinamiche sono determinate da quelle dell'energia.
+
+\begin{es}[Fluttuazioni nella temperatura, a densità fissata]
+	Si determinano quindi a partire dall'energia:
+	\begin{align*}
+		\Delta T &= \partfix{T}{E}{V,N} \Delta E = \frac{\Delta E}{C_V}\\
+		\overline{(\Delta T)^2} = \frac{\overline{(\Delta E)^2}}{C_V^2} = \frac{k_B T^2}{C_V}
+	\end{align*}
+	valido finché la densità è mantenuta costante.
+\end{es}
+
+\noindent Se la densità non fosse costante anche le fluttuazioni nell'energia sarebbero differenti, a causa del contributo della densità.
+
