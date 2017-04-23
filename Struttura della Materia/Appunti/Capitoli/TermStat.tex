@@ -17,6 +17,7 @@ Per rendere il sistema \textit{non integrabile}, e quindi \textit{ergodico}, si 
 Si vuole quindi indagare a livello microscopico l'origine di concetti macroscopici quali: \textit{entropia}, \textit{irreversibilità} e \textit{equilibrio}.
 
 \subsection{Principi della Meccanica Statistica}
+\label{sec:principles}
 Per colmare il salto che separa la descrizione \textit{microscopica} dalle proprietà \textit{macroscopiche} del sistema la Meccanica Statistica di equilibrio pone essenzialmente due principi:
 
 \begin{description}
@@ -466,6 +467,7 @@ Si posson ottenere considerando il sottosistema che fluttua alla ricerca dell'eq
 Dall'ultima espressione si ottiene facilmente l'enunciato per $F$, ponendo $\delta V = 0$ e $T \delta S = \delta (T S)$. Analogamente si può fare per gli altri due casi.
 
 \subsection{Derivate termodinamiche}
+\label{sec:thermdev}
 
 Si è visto nella \cref{sec:thermquant} come le variabili termodinamiche possano essere ottenute come derivate prime dei potenziali termodinamici, che costituisce la prima definizione data di alcune di esse (\cref{def:ossint}).
 
@@ -837,6 +839,7 @@ S &= - \sum_{\alpha} w_\alpha \log w_\alpha =\\
 Allo stesso modo si dimostra $F = E - T S = - k_B T \log Z$.
 
 \subsection{Densità di stati}
+\label{sec:stdens}
 
 Si osservi che si è ottenuta la probabilità di un singolo stato $\alpha$ del sottosistema dallo studio dell'entropia del mezzo. Quest'ultimo tuttavia non distingue i vari stati del sottosistema, ma rileva solo la sua energia e il numero di particelle (da qui in avanti il numero di particelle sarà considerato fisso).
 
@@ -1313,12 +1316,12 @@ Per il gas immerso in un bagno termico (approccio canonico) le probabilità in e
 
 \noindent Più in dettaglio:
 \begin{align*}
-\rho{\mathcal{E}} \delta \mathcal{E} &\propto \partdev{V^\ast}{\mathcal{E}}\\
+\rho(\mathcal{E}) \delta \mathcal{E} &\propto \partdev{V^\ast}{\mathcal{E}}\\
 &\propto P^{\ast{3N-1}} \partdev{P^\ast}{\mathcal{E}} \delta \mathcal{E}\\
 &\propto (\mathcal{E}^{1/2})^{3N-1}\mathcal{E}^{-1/2} \delta \mathcal{E} = \mathcal{E}^{(3N/2) - 1}\delta \mathcal{E}
 \end{align*}
 
-E quindi per le probabilità si ha:
+E quindi per le probabilità, nell'approccio canonico, si ha:
 \begin{equation*}
 w(\mathcal{E}) = C_N \mathcal{E}^{(3N/2)-1}e^{-\mathcal{E}/k_B T} = \frac{1}{\Gamma(3N/2)}\left(\frac{\mathcal{E}}{k_B T}\right)^{(3N/2)-1}\frac{1}{k_B T} e ^{- \mathcal{E}/k_B T}
 \end{equation*}
@@ -1334,6 +1337,7 @@ Si può esaminare la distribuzione di probabilità studiando alcune proprietà t
 	&0 = \partdev{w(\mathcal{E})}{w(\mathcal{E}} \propto \partdev{}{\mathcal{E}}[\mathcal{E}^{(3N/2)-1}e^{-\mathcal{E}/k_B T}]\\
 	&\text{cioè:} \qquad \qquad \mathcal{E}_M = \left(\frac{3N}{2} - 1\right) k_B T
 	\end{align*}
+	
 	\item[Media] La media è quella quantità ben nota che è stata studiata fin qui:
 	\begin{align*}
 	\bar{\mathcal{E}} &= \int \mathcal{E} w(\mathcal{E}) \dd \mathcal{E} =\\
@@ -1342,7 +1346,8 @@ Si può esaminare la distribuzione di probabilità studiando alcune proprietà t
 	&= \frac{3N}{2} k_B T
 	\end{align*}
 	Si nota quindi che la media e la moda distano sempre di $k_B T$, in particolare la moda è più piccola, ma questa differenza diventa sempre meno significativa man mano che le due migrano verso destra al crescere di $N$.
-	\item[RMS] Si vuole descrivere le fluttuazioni, quindi bisognerà prendere in esame la grandezza $\Delta E = \mathcal{E} - E$ e fissare una misura della larghezza della distribuzione.
+	
+	\item[Varianza] Si vuole descrivere le fluttuazioni, quindi bisognerà prendere in esame la grandezza $\Delta E = \mathcal{E} - E$ e fissare una misura della larghezza della distribuzione.
 	
 	\`E chiaro che $\overline{\Delta E} = 0$, poiché $\bar{\mathcal{E}} = E$ per definizione. \'E necessario quindi una grandezza che caratterizzi lo spostamento dalla media, indipendentemente dalla direzione: si potrebbe pensare naturalmente al modulo, ma viene tipicamente scelto il quadrato perché ha migliori proprietà analitiche.
 	\begin{equation*}
@@ -1433,17 +1438,247 @@ K_T = - \frac{1}{V} \partfix{V}{P}{T} &= \frac{N k_B T}{P^2 V} = \frac{1}{P}\\
 
 \noindent cioè si è ottenuto ancora una volta che le fluttuazioni si annullano con $1/\sqrt{N}$ per $N \rightarrow \infty$.
 
-\subsubsection{Fluttuazioni nelle altre grandezze}
-Se la densità viene mantenuta fissa si ha che le fluttuazioni nelle altre osservabili termodinamiche sono determinate da quelle dell'energia.
+\paragraph{Fluttuazioni nelle altre grandezze} Se la densità viene mantenuta fissa si ha che le fluttuazioni nelle altre osservabili termodinamiche sono determinate da quelle dell'energia.
 
 \begin{es}[Fluttuazioni nella temperatura, a densità fissata]
 	Si determinano quindi a partire dall'energia:
 	\begin{align*}
 		\Delta T &= \partfix{T}{E}{V,N} \Delta E = \frac{\Delta E}{C_V}\\
-		\overline{(\Delta T)^2} = \frac{\overline{(\Delta E)^2}}{C_V^2} = \frac{k_B T^2}{C_V}
+		\overline{(\Delta T)^2} &= \frac{\overline{(\Delta E)^2}}{C_V^2} = \frac{k_B T^2}{C_V}
 	\end{align*}
 	valido finché la densità è mantenuta costante.
 \end{es}
 
-\noindent Se la densità non fosse costante anche le fluttuazioni nell'energia sarebbero differenti, a causa del contributo della densità.
+\noindent Se la densità non fosse costante anche le fluttuazioni nell'energia sarebbero differenti, a causa del contributo della densità; infatti esse sono state calcolate nell'ambito dell'approccio canonico, dove l'unica quantità che può fluttuare è l'energia ($T,V,N$ sono fissati).
 
+\subsubsection{Fluttuazioni nel caso generale}
+Il caso generale a cui si fa riferimento è il caso in cui si fa riferimento è il caso in cui le fluttuazioni avvengono in un intero insieme di variabili termodinamiche indipendenti.
+
+\noindent In questo caso verranno scelte come variabili indipendenti $T$ e $V$, e le fluttuazioni delle altre grandezze dipendenti saranno determinate dalle fluttuazioni di queste due.
+
+\paragraph{Variabile generica} Per le fluttuazioni di una singola variabile generica è opportuno approssimare la distribuzione di probabilità con una gaussiana, cioè effettuare quella che è stata chiamata \textit{approssimazione di Einstein} (vedi \cref{sec:stdens}). Tale approssimazione consiste essenzialmente nel troncare il logaritmo della probabibilià al second'ordine nelle fluttuazioni, e questo è sufficiente per caratterizzare le fluttuazioni (eccetto casi singolari in cui il secondo ordine è nullo).
+
+Sia quindi $x$ la variabile generica, e si consideri $\bar{x} = 0$, in modo che essa sia già una misura dello spostamento dalla media. Si avrà quindi per la varianza:
+\begin{equation*}
+\overline{x^2} = \sqrt{\frac{\beta}{2\pi}} \int_{-\infty}^\infty x^2 \exp (-\beta x^2 /2) \dd x = \frac{1}{\beta}
+\end{equation*}
+
+Si consideri ora il caso di più variabili, come si è trovato precedentemente si ha che la distribuzione di probabilità è determinata dall'entropia, per cui:
+\begin{align*}
+w(\{x\}) &\propto \exp  \left(\frac{\Delta S_t}{k_B} \right) \\
+\text{con:} &\qquad \Delta S_t = S_t(\{x\}) - S_t(0)
+\end{align*}
+
+\noindent con $x$ sempre a media nulla e $S_t$ l'entropia totale del sottosistema e del mezzo. 
+
+Usando il fatto che il bagno termico sia sempre all'equilibrio si ottiene:
+\begin{align*}
+\Delta S' &= \frac{\Delta E' + P \Delta V'}{T} = \frac{- \Delta E + P \Delta V}{T} \implies\\
+&\implies w \propto \exp \left( - \frac{\Delta E - T \Delta S - P \Delta V}{k_B T}\right)
+\end{align*}
+
+Poiché la variabili indipendenti sono $T$ e $V$ la fluttuazione dell'energia va espressa in funzione di queste due variabili, e coerentemente con le approsimazioni già fatte, cioè al second'ordine:
+\begin{equation*}
+\Delta E = \partdev{E}{S} \Delta S + \partdev{E}{V} \Delta V + \frac{1}{2} \partdev{^2 E}{S^2} (\Delta S)^2 + \partdev{E}{S \partial V} \Delta S \Delta V + \frac{1}{2} \partdev{^2 E}{V^2} (\Delta V)^2
+\end{equation*}
+
+\noindent Le derivate prime possono essere individuate dal primo principio, e si ottiene:
+\begin{align*}
+\Delta E - T \Delta S + P \Delta V &= \frac{1}{2} \left[\partdev{^2 E}{S^2} (\Delta S)^2 + 2 \partdev{E}{S \partial V} \Delta S \Delta V + \partdev{^2 E}{V^2} (\Delta V)^2\right] =\\
+&=\frac{1}{2} \left[\Delta S \left(\partdev{^2 E}{S^2} \Delta S + \partdev{E}{S \partial V} \Delta V\right) + \Delta V  \left(\partdev{E}{S \partial V} \Delta S + \partdev{^2 E}{V^2} (\Delta V)\right)\right] =\\
+&= \frac{1}{2} \left[\Delta S \Delta \left(\partdev{E}{S}\right) + \Delta V \Delta \left(\partdev{E}{V}\right)\right] = \frac{1}{2} \left[\Delta S \Delta T + \Delta V \Delta P\right]
+\end{align*}
+
+\noindent Si ottiene quindi per la probabilità:
+\begin{equation*}
+	w \propto \exp \left(- \frac{\Delta S \Delta T - \Delta V \Delta P}{2 k_B T}\right)
+\end{equation*}
+
+Per concludere si cerca l'espressione di $\Delta S$ e $\Delta P$ in funzione delle variabili indipendenti al primo ordine; infatti essendo anch'esse a media nulla la probabilità è già al secondo ordine. Quindi:
+\begin{align*}
+\Delta S &= \partfix{S}{T}{V} \Delta T + \partfix{S}{V}{T} \Delta V = \frac{C_V}{T} \Delta T  + \partfix{P}{T}{V} \Delta V \\
+\Delta P &= \partfix{P}{T}{V} \Delta T + \partfix{P}{V}{T} \Delta V =   \partfix{P}{T}{V}\Delta T - \frac{1}{V K_T}  \Delta V\\
+\text{da cui:} \qquad  \Delta S &\Delta T - \Delta V \Delta P = \frac{C_V}{T} (\Delta T)^2 - \frac{1}{V K_T}  (\Delta V)^2
+\end{align*}
+
+\noindent e infine:
+\begin{equation*}
+w \propto \exp \left[- \frac{C_V (\Delta T)^2}{2 k_B T^2} + \frac{(\Delta V)^2}{2 V K_T k_B T}  \right]
+\end{equation*}
+
+Si è quindi ottenuta una distribuzione di probabilità di due variabili separabile:
+\begin{align*}
+w(x,y) &= \sqrt{\frac{\beta_1}{2\pi}}  \exp (-\beta_1 x^2 /2) \sqrt{\frac{\beta_2}{2\pi}}  \exp (-\beta_2 y^2 /2)\\
+\overline{x^2} &= \int x^2 w(x,y) \dd x \dd y = \frac{1}{\beta_1} \int w(y) \dd y = \frac{1}{\beta_1}\\
+\overline{y^2} &= \int y^2 w(x,y) \dd x \dd y = \frac{1}{\beta_2} \int w(x) \dd x = \frac{1}{\beta_2}
+\end{align*}
+
+\noindent con $x = \Delta T$ e $y = \Delta V$. Ricavando quindi $\beta_1$ e $\beta_2$ dall'espressione di $w$ si ottiene:
+\begin{equation*}
+\overline{(\Delta T)^2} = \frac{k_B T^2}{C_V} + k_B T V K_T
+\end{equation*}
+
+\noindent coerente con quanto trovato precedentemente. Inoltre si può calcolare la correlazione delle due variabili:
+\begin{equation*}
+\overline{\Delta T \Delta V} \propto \int \Delta T \exp [- \frac{C_V (\Delta T)^2}{2 k_B T^2}] \dd T \int \Delta V \exp [- \frac{(\Delta V)^2}{2 V K_T k_B T}] \dd V = 0
+\end{equation*}
+
+\noindent per cui sono statisticamente scorrelate. Si sarebbe trovato lo stesso risultato considerando come variabili indipendenti $P$ ed $S$.
+
+\subparagraph{Grandezze dipendenti} Le fluttuazioni delle altre grandezze si possono trovare partendo da quelle di $T$ e $V$ e sommando in quadratura i due contributi, come accade per qualunque distribuzione di probabilità di due o più variabili statisticamente indipendenti.
+
+\begin{es}
+	Si prenda in esame il caso dell'energia:
+	\begin{equation*}
+	\Delta E = \partfix{E}{T}{V} \Delta T + \partfix{E}{V}{T} \Delta V = C_V \Delta T + \left[ T \partfix{S}{V}{T} - P\right] \Delta V
+	\end{equation*}
+	Per cui facendo il quadrato di questa quantità e prendendo la media il termine misto, $\Delta T \Delta V$, si annulla e rimane solo il contributo delle somme in quadratura.
+\end{es}
+
+\begin{description}
+	\item[Energia] 
+	\begin{align*}
+	\overline{(\Delta E)^2} &= C_V^2 \overline{(\Delta T)^2} + \left[T\partfix{S}{V}{T} - P\right]^2 \overline{(\Delta V)^2} =\\
+	&= C_V^2 k_B T^2 + \left[T\partfix{P}{T}{V} - P\right]^2 k_B T V K_T
+	\end{align*}
+	\item[Entropia]
+	\begin{align*}
+	\overline{(\Delta S)^2} &= \left(\frac{C_V}{T}\right)^2 \overline{(\Delta T)^2} + \partfix{P}{T}{V}^2 \overline{(\Delta V)^2} =\\
+	&= k_B C_V + k_B T V K_T \partfix{P}{T}{V}^2 = k_B C_P
+	\end{align*}
+	per l'ultima uguaglianza si è usata la relazione ricavata nella \cref{sec:thermdev}.
+	\item[Pressione]
+	\begin{align*}
+	\overline{(\Delta P)^2} &= \frac{k_B T^2}{C_V} \partfix{P}{T}{V}^2 + \frac{1}{(K_T V)^2} k_B T V K_T=\\
+	&= \frac{k_B T^2}{C_V} \partfix{P}{T}{V}^2 + \frac{k_B T}{K_T V} = - \frac{k_B T}{V} K_S
+	\end{align*}
+	l'ultima uguaglianza non è banale, ma la si può ottenere sfruttando un po' di algebra sulle derivate.
+	\item[Correlazione pressione-entropia]
+	\begin{align*}
+	\overline{\Delta P \Delta S} &= \partfix{P}{T}{V} \frac{C_V}{T}~\overline{(\Delta T)^2} + \partfix{S}{V}{T} \partfix{P}{V}{T} \overline{(\Delta V)^2} =\\
+	&= \partfix{P}{T}{V} k_B T - \partfix{S}{V}{T} k_B T = 0
+	\end{align*}
+\end{description}
+
+\section{Commenti sui principi della Meccanica Statistica}
+
+\subsection{Incertezza quantistica e termodinamica}
+Nel corso del capitolo si è mostrato come fosse necessario introdurre una certa incertezza nell'energia, per due motivi:
+\begin{itemize}
+	\item nell'ambito di un conteggio classico degli stati sarebbe necessario per non avere un numero di stati nullo e un'entropia divergente a $-\infty$, per cui anziché semplicemente fissare un vincolo e scendere di dimensionalità si ammette che il guscio imposto dal vincolo avesse un piccolo spessore: tutti i risultati ottenuti sono indipendenti dall'entità di tale spessore;
+	\item nell'ambito della meccanica quantistica è ancora più necessario: se non ci fosse affatto incertezza sull'energia sarebbero vietate le transizioni, e il sistema sarebbe costantemente fisso in un microstato che coincide con uno degli stati stazionari dell'Hamiltoniano.
+\end{itemize}
+
+Per evitare di affrontare direttamente il primo problema si è evitato di applicare l'approccio microcanonico, preferendo quello canonico in cui l'energia non è più una quantità cnservata. Per cui anziché dover contare il numero di stati ad una data energia si è usata la densità di stati, contando il numero degli stati per intervalli di energia (che coincide esattamente con ciò che si farebbe introducendo un piccolo spessore nel microcanonico, che nel caso del canonico è il differenziale dell'energia su cui va integrata $\rho(\mathcal{E})$).
+\newline
+
+Si può però provare che anche un'incertezza consistente nel numero degli stati porta, per sistemi grandi, a una piccola incertezza sul suo logaritmo, cioè l'entropia
+\footnote{Il motivo principale dovrebbe essere noto a ogni fisico: sta nella propagazione dell'errore. Infatti se l'errore su $x$ è $\Delta$, l'errore per $y = \log x$ è al prim'ordine:
+\begin{equation*}
+\Delta y = \partdev{y}{x} \Delta x = \frac{\Delta x}{x}
+\end{equation*}
+Che quindi va si annulla per $x \rightarrow \infty$, per qualunque $\Delta x$ costante (oppure se si considera costante l'errore relativo chiaramente $\Delta y$ è costante, ma l'errore relativo su $y$ si annulla ancora).}.
+\newline
+
+Si stimerà quindi grossolanamente qual'è l'incertezza sull'entropia, ponendo un limite inferiore e superiore dati da considerazioni elementari.
+\begin{itemize}
+	\item \textit{il massimo di una funzione è più grande della sua media}, e tenendo conto che la funzione $\rho(\mathcal{E})$ è sempre crescente si ottiene:
+	\begin{align*}
+	\rho(\mathcal{E}_0) &= \frac{1}{\mathcal{E}_0} \int_{0}^{\mathcal{E}_0} \rho(\mathcal{E}) \dd \mathcal{E}
+	\end{align*}
+	\item \textit{il volume di una palla è maggiore di quello racchiuso attorno al suo guscio}, questo è tanto più vero quanto più la palla è grande, cioè quanto più il suo raggio è maggiore rispetto allo spessore con cui si prende il guscio\footnote{E fallisce per palle troppo piccole in tal senso.}:
+	\begin{equation*}
+	\int_{0}^{\mathcal{E}_0} \rho(\mathcal{E}) \dd \mathcal{E} \geq \rho(\mathcal{E}_0) \dd \mathcal{E}_0
+	\end{equation*}	
+\end{itemize}
+
+\noindent Si ottiene quindi per l'entropia $S = k_B \log[\rho(\mathcal{E}_0) \delta \mathcal{E}_0]$:
+\begin{equation*}
+k_B \log \left[\int_{0}^{\mathcal{E}_0} \rho(\mathcal{E}) \dd \mathcal{E} \right] \geq S \geq k_b \log \int_{0}^{\mathcal{E}_0} \rho(\mathcal{E}) \dd \mathcal{E} - k_B \log \frac{\mathcal{E}_0}{\delta \mathcal{E}_0}
+\end{equation*}
+
+\noindent Per cui un limite superiore per l'incertezza sull'entropia è $k_B \log( \mathcal{E}_0/\delta \mathcal{E}_0)$.
+
+Si ha che questa stima dell'incertezza diverge per $\delta \mathcal{E}_0 \rightarrow 0$.
+La qualità della stima fatta sul massimo della funzione è sostanzialmente indipendente dallo spessore del guscio scelto, che è stato aggiunto in un secondo momento nella disuguaglianza; quello che sta accadendo è che approssimare il guscio con la palla diventa una stima tanto peggiore quanto più il guscio è sottile, per questo la stima dell'incertezza diverge: l'entropia sta andando a $-\infty$, mentre quella stimata dalla palla è costante.\footnote{Il \textit{Goodstein} si fa una tirata sul fatto che i bordi di un guscio sottile sono più suscettibili a contare male gli stati che sono "un pezzo dentro e un pezzo fuori", ognuno è libero di rimuginarci.}
+\newline
+
+La stima fatta è invece molto utile nell'altro caso: se
+\begin{equation*}
+\frac{\mathcal{E}_0}{\delta \mathcal{E}_0} \ll e^{S/k_B}
+\end{equation*}
+\noindent allora l'entropia è esattamente determinata.
+
+Quantisticamente l'incertezza in energia è associata alla vita media degli stati, per cui la condizione per la determinazione dell'entropia diventa
+\begin{equation*}
+\tau \approx \frac{\hbar}{\delta \mathcal{E}_0} \qquad \implies \qquad \tau \ll \frac{\hbar}{\mathcal{E}_0} e^{S/k_B}
+\end{equation*}
+
+Quando si sono considerate le fluttuazioni delle grandezze termodinamiche (\cref{sec:fluct}) si studiava come il sistema potesse variare le sue proprietà di equilibrio. Se queste fluttuazioni fossero paragonabili a quelle quantistiche qui introdotte allora la descrizione che se ne è fatta non sarebbe più valida. Da questa osservazione otteniamo quindi un altro limite:
+\begin{align*}
+\delta \mathcal{E}_0 \ll &\sqrt{\overline{(\Delta E)^2}} = \sqrt{k_B C_V} T \implies\\
+&\implies \frac{\hbar}{\sqrt{k_B C_V} T} \ll \tau \ll \frac{\hbar}{\mathcal{E}_0} e^{S/k_B}
+\end{align*}
+
+\subsection{Principio di equiprobabilità a priori}
+Si può giustificare tale principio a posteriori, dal successo ottenuto nella predizione dei risultati sperimentali, oppure si può cercare di motivarlo a partire da altre considerazioni, che abbiamo comunque assunto\footnote{In realtà si è assume solo l'ipotesi ergodica, gli altri due sono teoremi nei rispettivi campi.}. Queste sono:
+\begin{enumerate}
+	\item l'ipotesi ergodica;
+	\item si deve distinguere tra meccanica classica e quantistica:
+	\begin{description}
+		\item[classica] il teorema di Liouville;
+		\item[quantistica] il principio del bilancio dettagliato.
+	\end{description}
+\end{enumerate}
+
+Si prova l'affermazione fatta nei due casi in modo distinto.
+
+\subsubsection{Meccanica Classica}
+\begin{enumerate}
+	\item L'\textit{ipotesi ergodica} implica che tutti i punti accessibili dello spazio delle fasi sono connessi tra loro dall'evoluzione temporale: infatti il sistema è istantaneamente un punto, ma per tale ipotesi nel corso del tempo li deve esplorare tutti;
+	\item la richiesta di \textit{equilibrio} termodinamico impone che anche la probabilità sia stazionaria $\partdev{\rho}{t} = 0$;
+	\item il teorema di Liouville impone che la densità di probabilità sia conservata dall'evoluzione temporale, cioè $\derivative{\rho}{t} = 0$.
+\end{enumerate}
+
+\noindent L'unica distribuzione compatibile con queste richieste è la distribuzione uniforme sulla regione accessibile (ovviamente fuori sarà nulla dato che non è possibile trovarci il sistema in tutta l'evoluzione temporale). Infatti se due punti avessero densità di probabilità diverse a un certo istante (sia esso $0$) $\rho_1(0)$ e $\rho_2(0)$, si può fare evolvere la prima ferma nel punto, e la seconda seguendo il flusso temporale. 
+
+Per l'ipotesi ergodica ci sarà un'istante $t$ in cui il trasportato del punto $2$ si troverà nel punto $1$, per cui $\rho_1(t) = \tilde{\rho}_2 (t)$, ma esse dovranno coincidere con le densità all'istante iniziale per i punti $2.$ e $3.$ esposti sopra, da cui l'assurdo.
+
+\subsubsection{Meccanica quantistica}
+In meccanica quantistica si comincia esaminando la variazione nel tempo della probabilità di uno stato $a$:
+\begin{equation*}
+\dot{w}_a = \sum_b w_b P_{ba} - w_a \sum_b P_{ab}
+\end{equation*}
+dove $P_{ba}$ e $P_{ab}$ sono rispettivamente le probabilità per unità di tempo di passare dallo stato $b$ ad $a$ e viceversa. 
+La richiesta di \textit{equilibrio} termodinamico impone anche qui che la distribuzione sia stazionaria, per cui $\dot{w} = 0$ per ogni stato. 
+Inoltre il principio del bilancio dettagliato afferma che $P_{ba} = P_{ab}$, per cui:
+\begin{equation*}
+0 = \sum_b P_{ba} (w_b - w_a) 	\qquad \forall a
+\end{equation*}
+
+Questo è un sistema omogeneo di equazioni lineari, poiché risulta che il determinante di $P_{ab}$ è non nullo $^{[\text{senza fonte}]}$, allora l'unica soluzione è $w_a = w_b$, cioè il postulato di equiprobabilità a priori.
+\newline
+
+Si noti che può risultare controintuitivo che uno stato su cui è più improbabile transire risulti tanto probabile quanto gli altri, ma questo è facilmente risolto osservando che per il principio del bilancio dettagliato se è più difficile da raggiungere sarà anche più difficile venirne fuori.
+
+\subsection{Ensemble}
+L'idea di \textit{ensemble} è dovuta a Gibbs, ed è principalmente una risposta al problema del fallimento dell'ipotesi ergodica per sistemi integrabili.
+\newline
+
+Si è già discusso in parte di questo nella \cref{sec:principles}, quindi il problema dovrebbe essere più o meno chiaro: per sistemi integrabili ci sono ulteriori leggi di conservazione che impediscono al sistema di esplorare tutti gli stati "possibili".
+
+Questo potrebbe essere risolto ridefinendo gli stati possibili come quelli integrabili, ma a quel punto non si avrebbe un'ottima descrizione della realtà sperimentale, poiché la condizione di \textit{integrabilità} è una condizione piuttosto speciale, e i sistemi integrabili sono un sottoinsieme a misura nulla dei sistemi possibili.
+
+Gibbs ha quindi pensato di risolvere la cosa nel seguente modo: anziché considerare l'evoluzione temporale di un singolo sistema si prende un gran numero di sistemi, i cui stati sono distribuiti secondo la distribuzione di probabilità asintotica.
+
+Si tratta solo di una questione di formalizzazione, perché sostanzialmente da una parte si assume l'ipotesi ergodica, che impone in qualunque caso che il sistema non sia sottoposto a ulteriori vincoli, dall'altra si impone direttamente la distribuzione sui sistemi e si elimina l'evoluzione temporale imponendo condizioni stazionarie.
+
+Il primo metodo si avvicina di più alla realtà sperimentale, trattando l'evoluzione temporale e facendo un'ipotesi concreta sulla realtà sperimentale, ma il secondo consente di trattare formalmente anche casi di sistemi integrabili,
+\footnote{Diverso è il caso in cui questi vincoli sono verificati sperimentalmente, e il sistema non si avvicina affatto a uno stato termico come quello discusso, anche se isolato. A quel punto è importante includere anche nell'ensemble il tipo di vincoli che si riscontrano nell'evoluzione temporale (è il caso degli \href{https://journals.aps.org/pr/abstract/10.1103/PhysRev.106.620}{ensemble di Gibbs generalizzati}).}
+\newline
+
+Queste difficoltà nella trattazione avvengono perché, come si è già detto, la meccanica statistica deve fare da \textit{ponte} fra due branche astratte della fisica, quella microscopica e quella macroscopica, le quali si confrontano entrambe con la realtà sperimentale, e spesso lo fanno indipendentemente.
+
+\section{Bibliografia}
+
+Il contenuto di questo capitolo è quasi interamente ispirato al primo capitolo di \textit{D.L. Goodstein - States of Matter}. La struttura è esattamente la stessa, ciò che differisce sono per lo più le considerazioni sulle questioni legate ai fondamenti della meccanica statistica.
