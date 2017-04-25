@@ -540,3 +540,159 @@ in questo modo si è misurato in modo indipendente il valore di $m^\ast$.
 Il valore trovato in questo modo dipende dalla direzione, a causa proprio dell'anisotropia dei cristalli, ma una volta opportunamente mediato esso è in ottimo accordo con i dati ottenuti dallo studio delle capacità termiche.
 
 \section{Gas di Bose molto degenere: condensati di Bose-Einstein}
+
+Le equazioni trovate nella \cref{sec:BFstat} per il gas di Bose sono estremamente simili in forma a quelle relative al gas di Fermi. I risultati a cui conducono sono però completamenti differenti.
+\newline
+
+Si inizia studiando il numero di particelle in un gas di Bose, dato da:
+\begin{equation*}
+N = \sum_{\textbf{q}}  \frac{1}{ \exp\left[(\varepsilon_{\textbf{q}} - \mu)/k_B T\right] - 1}
+\end{equation*}
+e considerando che a temperatura finita i la spaziatura tra i livelli è piccola in confronto all'energia termica (le grandezze che vanno confrontate sono la lunghezza d'onda termica con le dimensioni lineari del sistema) si può immediatamente convertire in un integrale:
+\begin{equation*}
+N =  \frac{4\pi V g \sqrt{2} m^{3/2}}{\hplanck^3} \int_{0}^{\infty}  \frac{\varepsilon^{1/2} \dd \varepsilon}{ \exp\left[(\varepsilon - \mu)/k_B T\right] - 1}
+\end{equation*}
+
+Inoltre nel caso del gas di Bose il potenziale chimico è strettamente negativo (al contrario nel caso dei fermioni era positivo).
+
+Si consideri ora la situazione di un gas in un contenitore a  $V$ fissato e in contatto con un bagno termico, che quindi fissa $ T $. Si consideri che il sistema non si ain grado di scambiare particelle con una riserva, e quindi $N$ è fissato, ma con la possibilità di aggiungere particelle dall'esterno (trovando nuovi stati di equilibrio di volta in volta).
+
+L'unica variabile libera nell'equazione scritta per $ N $ è $ \mu $, e $ N(\mu) $ è una funzione crescente. Poiché $\mu$ deve rimanere negativo è lecito chiedersi se esitìstono valori finiti di $ N $ per cui il potenziale chimico raggiunge il suo limite. Si impone quindi $ \mu = 0$ e si calcola il numero totale di particelle:
+\begin{align*}
+N &=  \frac{4\pi V g \sqrt{2} m^{3/2}}{\hplanck^3} (\kt)^{3/2} \int_{0}^{\infty}  \frac{x^{1/2} \dd x}{ e^x - 1}\\
+&\int_{0}^{\infty}  \frac{x^{1/2} \dd x}{ e^x - 1} \simeq 2.31 \simeq \frac{\sqrt{\pi}}{2} \cdot 2.612
+\end{align*}
+ottenendo quindi una densità critica di particelle, o una temperatura critica (se si immagini di abbassare la temperatura a densità costante):
+\begin{align*}
+\left(\frac{N}{V}\right)_c &= \frac{2.612}{\Lambda^3}\\
+T_c &= \frac{1}{2.31 m k_B} \left(\frac{N}{V}\right)^{2/3} \frac{(\hplanck)^2}{(4\pi \sqrt{2})^{2/3}}
+\end{align*}
+La presenza di una densità critica, espressa direttamente come funzione di $\Lambda$, rende conto del fatto che le particelle non possono più essere localizzate senza sovrapporsi quantisticamente.
+\newline
+
+Il problema è quindi il seguente: non ci sono ragioni evidenti per cui il sistema non possa contenere ulteriori particelle oltre le densità critica, a $ T $ e $ V $ fissati, ma poiché il potenziale chimico non può più crescere il conteggio rimane fisso al valore trovato per $ \mu = 0 $.
+
+La soluzione può essere compresa per analogia con un problema noto: in un gas ideale (ad esempio azoto N$_2$, a una temperatura di $ ~\unit{60}{\kelvin} $, appena sopra al punto triplo) $N = (V/\kt) P$, per cui a $ V $ e $ T $ fissati la pressione dovrebbe essere direttamente proporzionale al numero di particelle, ma sperimentalmente anche aumentando $ N $ a un certo punto la pressione si assesta su un valore costante: il gas sta subendo una transizione di fase, e la curva si assesta sulla pressione di vapore e le nuove particelle sono bilanciate da quelle che passano alla fase liquida. In \cref{fig:gastoliquid} si riporta il comportamento descritto.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Immagini/GasToLiquid.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:gastoliquid}
+	\vspace{-10pt}
+\end{figure}
+
+Si ottiene una figura analoga se si riporta su un grafico il caso del gas di Bose, mantenendo in ascissa $ N $ e ponendo in ordinata:
+\begin{equation*}
+	y =  \int_{0}^{\infty}  \frac{\varepsilon^{1/2} \dd \varepsilon}{ \exp\left[(\varepsilon - \mu)/k_B T\right] - 1}
+\end{equation*}
+
+La domanda diventa quindi: perché il conteggio delle particelle sta perdendo traccia di alcune di esse? Si riesamina quindi il procedimento adoprato.
+\begin{itemize}
+	\item Potrebbe essere a causa dll'approssimazione fatta integrando sugli stati, anziché sommare; essa è giustificata se il sistema soddisfa:
+	\begin{equation*}
+		\kt \gg \frac{\hbar^2}{2m} \left(\frac{2\pi}{L}\right)^2
+	\end{equation*}
+	Si sostituisce quindi la temperatura critica $ T_c $, e poiché $L^2 = V^{2/3}$ il risultato dipende solo dal numero di particelle:
+	\begin{equation*}
+	N^{2/3} \gg \frac{2.31(4\pi\sqrt{2})^{2/3}}{2}
+	\end{equation*}
+	ma il secondo membro è una costante dell'ordine dell'unità, perciò per qualunque numero macroscopico di particelle l'approssimazione è ben verificata.
+	
+	\item Potrebbe essere dovuto della densità di stati (e lo è); nel ricavare la densità di stati si è considerata una particella libera nel vuoto, ma questa è solo un'approssimazione se il volume in cui è confinata è finito.
+	
+	Gli stati quindi non sono realmente stati del continuo, ma discreti, per cui la densità di stati dovrebbe prevedere la presenza di uno stato anche a energia nulla \footnote{quasi in realtà, ma tende a $0$ con le dimensioni del sistema}, cioè il fondamentale. 
+	
+	Questo non ha creato problemi nel gas ideale e in quello di fermi: nel primo il numero di occupazione di ogni stato è piccolo per ipotesi, e nel secondo è $\leq g$ (la degenerazione di spin), per cui trascurare uno stato non può portare a effetti statisticamente rilevanti.
+	
+	Per il gas di Bose invece:
+	\begin{equation*}
+		\overline{n_0} = \frac{1}{e^{-\mu/\kt} - 1} \qquad \implies \qquad \overline{n_0} \simeq - \frac{\kt}{\mu} \qquad (\mu \rightarrow 0)
+	\end{equation*}
+	perciò quando il potenziale chimico si annulla il numero di particelle nel fondamentale diventa macroscopico, e si può identificare proprio con il fondamentale la nuova fase in equilibrio con il gas di Bose, ritrovando le particelle mancanti nel conteggio.
+	
+	Tale fase è detta \textit{condensato di Bose-Einstein}.
+\end{itemize}
+
+\subsubsection{Proprietà del condensato di Bose-Einstein}
+
+Le particelle che non sono nel fondamentale sono tutte correttamente incluse nel conteggio fatto per $ N $. Chiameremo ora questo numero $ N^\star $, per distinguerlo dal numero complessivo di particelle del sistema, che sarà sempre $ N $.
+Si ha quindi:
+\begin{equation*}
+N^\star = \int_{0}^{\infty}  \frac{\rho(\varepsilon) \dd \varepsilon}{ e^{\varepsilon/k_B T} - 1} = N \left(\frac{T}{T_C}\right)^{3/2}
+\end{equation*}
+mentre per le particelle nel fondamentale si ha:
+\begin{equation*}
+	N_0 = N - N^\star = N \left[1 - \left(\frac{T}{T_C}\right)^{3/2}\right]
+\end{equation*}
+
+L'energia del gas è tutta nelle particelle $ N^\star $, essendo le altre nel fondamentale, e quindi a energia nulla.
+\begin{equation*}
+	E = \int_{0}^{\infty}  \frac{\varepsilon \rho(\varepsilon) \dd \varepsilon}{ e^{\varepsilon/k_B T} - 1} = \frac{4\pi V g \sqrt{2} }{\hplanck^3} (m\kt)^{3/2} \kt \int_{0}^{\infty}  \frac{x^{3/2} \dd x}{ e^x - 1}
+\end{equation*}
+
+\begin{note}[Integrali notevoli]
+	Tutti gli integrali nella forma in cui è posto quello nell'espressione precedente possono essere valutati per mezzo di \textit{funzioni speciali}:
+	\begin{equation*}
+		\int_{0}^{\infty}  \frac{x^n \dd x}{ e^x - 1} = \Gamma(n+1) \zeta(n+1)
+	\end{equation*}
+	dove $ \Gamma(\cdot) $ è la funzione \textit{gamma di Eulero} e $ \zeta(\cdot) $ è la funzione \textit{zeta di Riemann}.
+\end{note}
+
+Nel caso in esame si ha:
+\begin{equation*}
+	\int_{0}^{\infty}  \frac{x^{3/2} \dd x}{ e^x - 1} = \frac{3\sqrt{\pi}}{4} \cdot 1.341
+\end{equation*}
+per cui l'energia è:
+\begin{equation*}
+	E = 0.770 \kt N^{\star} = 0.770 \kt N  \left(\frac{T}{T_C}\right)^{3/2}
+\end{equation*}
+perciò la dipendenza dalla temperatura dell'energia è $ E \propto T^{5/2} $. Conseguentemente la capacità termica è:
+\begin{equation*}
+	C_V = \partfix{E}{T}{V,N} = 1.9 k_B N  \left(\frac{T}{T_C}\right)^{3/2} = 1.9 N^\star k_B 
+\end{equation*}
+e quindi dal punto di vista della capacità termica il comportamento della parte eccitata non è molto diverso da quello del gas ideale, in cui $C_V = 1.5 N k_B$.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Immagini/BoseThermalCapacity.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:thermcapbose}
+	\vspace{-10pt}
+\end{figure}
+
+Si riporta il grafico della capacità termica in funzione della temperatura, in esso sono chiari i seguenti andamenti:
+\begin{itemize}
+	\item per temperature inferiori alla temperatura critica la capacità termica per singola particella va come $ T^{3/2} $, cioè è proporzionale alla frazione di particelle non condensate;
+	\item per temperature molto maggiori della temperatura critica la capacità termica per singola particella tende ad assestarsi su un valore costante, cioè $ 1.5 k_B $, il valore del gas ideale;
+	\item per temperature maggiori alla temperatura critica, avvicinandosi ad essa, il comportamento del gas si fa meno ideale, e inizia ad agire la forza efficace tra bosoni, per cui la capacità termica sale leggermente oltre il suo valore ideale a causa di tali interazioni efficaci, fino al valore di $ 1.9 k_Bf $.
+\end{itemize}
+
+\subsection{Approfondimenti sui condensati}
+Ci sono due ulteriori argomenti elementari d'interesse legati alla condensazione di Bose:
+\begin{itemize}
+	\item lo studio e la classificazione della transizione di fase;
+	\item la condensazione nello spazio fisico.
+\end{itemize}
+
+Il primo punto è connesso ad alcuni aspetti della teoria generale sulle transizioni di fase, cioè l'ordine della transizione: la condensazione è effettivamente una transizione del primo ordine, con un calore latente associato, anche se da quanto discusso non appare (la capacità termica è continua, e quindi a maggior ragione lo è l'entropia, ma si è studiato tutto a volume costante, mentre per caratterizzare adeguatamente la transizione di fase è necessario imporre che sia la pressione ad essere costante).
+\newline
+
+Il secondo punto riguarda il tipo di condensazione: il fondamentale è un autostato dell'impulso, quindi infinitamente delocalizzato sul volume disponibile. Eppure risulta che a pressione $ P $ e temperatura $ T $ costanti si può portare il \textit{vapore di Bose} (la porta non condensata in coesistenza) a passare tutto nella fase condensata mediante compressione, e il processo termina quando tutte le particelle del vapore finiscono nel condensato, e questo avviene a $ V = 0 $.
+
+Per questo si può affermare che la condensazione avvenga anche nello spazio fisico.
+\newline
+
+\begin{note}[Letture consigliate]
+	Per approfondire questi due argomenti si consiglia di leggere il \textit{Goodstein}, in particolare le pagine dalla $ 132 $ alla $ 139 $.
+\end{note}
+
+\section{Bibliografia}
+
+Il contenuto di questo capitolo è quasi interamente ispirato al secondo capitolo di \textit{D.L. Goodstein - States of Matter}. La struttura è esattamente la stessa, sono state omesse alcune parti riguardo alle proprietà termodinamiche del gas ideale già studiate nel \cref{chap:termstat} e alcuni argomenti relativi ai condensati non trattati a lezione, ma comunque abbondantemente citati qui per completezza.
+
+% TODO: Forse dovrei decidermi a imparare a usare la bibliografia di LaTeX
+
+% TODO: Potrei scrivere un appendice con gli argomenti tralasciati sulla condensazione.
