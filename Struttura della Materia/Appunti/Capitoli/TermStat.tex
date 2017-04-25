@@ -7,6 +7,7 @@
 In seguito si considera un modello di \textit{gas perfetto} per illustrare alcune delle affermazioni generali fatte.
 
 \begin{defn}[Gas perfetto]
+	\label{def:perfgas}
 	Un \textit{gas perfetto} è un insieme di particelle (o, generalizzando, strutture elementari) \textit{non interagenti}.
 \end{defn}
 
@@ -369,7 +370,7 @@ Si riporta solo il caso dell'energia libera a titolo di esempio:
 \begin{figure}[t]
 	\centering
 	\input{MaxRel.pdf_tex}
-	\caption{Diagramma illustrativo delle relazioni fra potenziali termodinamici (noto anche come \textit{diagramma di koenig} )}
+	\caption{Diagramma illustrativo delle relazioni fra potenziali termodinamici (noto anche come \textit{diagramma di koenig})}
 	\label{fig:maxrel}
 \end{figure}
 
@@ -377,7 +378,6 @@ Si riporta solo il caso dell'energia libera a titolo di esempio:
 Fino ad adesso si è considerato costante il numero di particelle, ma in base alla scelta che si fa del sottosistema anche esso può essere variabile: non è necessario che un sottosistema sia identificato dalla scelta di alcune particelle, che in generale è impossibile da effettuare (vedi \cref{secidpart}), ma potrebbe essere descritto da altre proprietà (es: il volume che occupa, un certo insieme di stati, \dots).
 
 Perciò, coerentemente con la \cref{def:ossint}, si può scrivere:
-
 \begin{equation*}
 \dd E = T \dd S - P \dd V + \mu \dd N
 \end{equation*}
@@ -386,7 +386,6 @@ Perciò, coerentemente con la \cref{def:ossint}, si può scrivere:
 
 \begin{note}
 	Un'importante osservazione è che le variazioni dei potenziali termodinamici rispetto a qualunque nuova osservabile, tenendo costanti le variabili proprie, sono tutte uguali, infatti:
-	
 	\begin{equation*}
 	\mu \delta N = (\delta E)_{S, V} = (\delta F)_{T,V} = (\delta G)_{T,P} = (\delta H)_{S,P}
 	\end{equation*}
@@ -400,7 +399,6 @@ Inoltre si noti che $E$ è una grandezza estensiva, le cui variabili proprie son
 \end{align*}
 
 Raccogliendo $\lambda$ e $\dd lambda$, e considerando che poiché $\lambda$ è arbitrario le due identità risultanti devono essere soddisfatte separatamente, si ottiene l'equazione di Eulero:
-
 \begin{equation*}
 E = TS - PV + \mu N
 \end{equation*}
@@ -418,13 +416,10 @@ G = \mu N
 \end{equation*}
 
 \paragraph{Gran Potenziale $\Omega$} Si può definire un ulteriore potenziale termodinamico, invertendo le nuove variabili $N \rightarrow \mu$. Le sue variabili proprie sono $T$, $V$ e $\mu$. La sua espressione in funzione dell'energia $E$ è:
-
 \begin{equation*}
 \Omega = F - \mu N = E - TS - \mu N
 \end{equation*}
-
-E dunque l'espressione del suo differenziale è:
-
+e dunque l'espressione del suo differenziale è:
 \begin{equation*}
 \dd \Omega = - S \dd T - P \dd V - N \dd \mu
 \end{equation*}
@@ -434,6 +429,11 @@ Dall'equazione di Eulero si ricava:
 \begin{equation*}
 \Omega = - P V
 \end{equation*}
+e infine:
+\begin{equation*}
+(\delta \Omega)_{T, V, \mu} = (\delta E)_{S, V, N} = (\delta F)_{T,V,N} = (\delta G)_{T,P,N} = (\delta H)_{S,P,N}
+\end{equation*}
+
 
 \subsection{Variabili Magnetiche}
 Lo studio del magnetismo in termodinamica è frequente, e la definizione di variabili magnetiche non è affatto dissimile dall'introduzione di pressione e volume per il gas perfetto come forza e spostamento \textit{generalizzati}.
@@ -496,14 +496,12 @@ C_V = \left(\frac{\partial E}{\partial T}\right)_V
 \noindent è però importante rendersi conto che la temperatura $T$ non è una delle variabili proprie dell'energia.
 
 Per entrambe le capacità termiche si può esprimere però propriamente in funzione dei potenziali termodinamici con le variabili proprie adeguate:
-
 \begin{align*}
 C_V = T \left(\frac{\partial^2 F}{\partial T^2}\right)_V\\
 C_P = T \left(\frac{\partial^2 G}{\partial T^2}\right)_P
 \end{align*}
 
 \noindent che giustifica il fatto che esse siano grandezze del \textit{secondo ordine} (d'ora in poi è omesso che si tratti di derivate).
-\newline
 
 Analogamente si possono definire le \textit{compressibilità}:
 
@@ -999,6 +997,7 @@ Ci sono essenzialmente due modi per affrontare il problema, a partire dagli stat
 \noindent \`E utile dare subito la definizione di \textit{gas ideale} per discutere i due metodi appena introdotti:
 
 \begin{defn}[Gas ideale]
+	\label{def:idgas}
 	Un gas è detto \textit{ideale} quando gli stati di singola particella non sono mai occupati da più di un corpo.
 \end{defn}
 
