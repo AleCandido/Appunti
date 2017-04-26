@@ -1,0 +1,427 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../Appunti.tex
+
+In questo capitolo viene affrontato il tema dei solidi. Questa affermazioni però apre uno spettro fin troppo ampio in confronto agli argomenti che verranno trattati, nei quali si discuterà delle proprietà dovute a un qualche tipo di reticolo cristallino.
+
+Da qui il nome del capitolo.
+
+\section{Il dilemma della capacità termica}
+
+La spiegazione dell'andamento con la temperatura della capacità termica dei solidi, illustrata in \cref{fig:heatcap}, è uno dei successi della teoria quantistica, ottenuto già nell'ambito della \textit{old quantum theory}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Immagini/HeatCapacity.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:heatcap}
+\end{figure}
+
+Si procederà esponendo i vari passaggi dell'evoluzione della teoria che sono stati compiuti storicamente: il teorema di equipartizione, il modello di Einstein e infine quello di Debye.
+
+\subsection{Teorema di equipartizione}
+
+Per studiare il comportamento degli atomi in un reticolo cristallino si introduce innanzi tutto l'\textit{approssimazione di campo medio}.
+
+\begin{defn}[Campo medio]
+	Si chiama \textit{approssimazione di campo medio} (o \textit{teoria}) un metodo che prevede di considerare, anziché per ogni particella le interazioni con ogni altra particella del sistema, solo un contributo mediato su tutte le altre particelle e incluso nella forma di un potenziale esterno in cui si trovi la singola particella in esame. 
+\end{defn}
+
+Nel caso in esame si considererà per ogni atomo del reticolo un potenziale efficace che lega il singolo atomo alla sua posizione di equilibrio.
+Sia quindi $ \textbf{r} $ il vettore che indica lo spostamento dalla posizione di equilibrio, e $ u $ il potenziale efficace.
+Poichè nella posizione di equilibrio non ci sono forze non bilanciate allora:
+\begin{equation*}
+	\partdev{u}{\textbf{\textbf{r}}} = 0	\qquad	\partdev{^2 u}{\textbf{\textbf{r}}^2} > 0
+\end{equation*}
+per cui si può espandere il potenziale efficace nel modo seguente:
+\begin{equation*}
+	u = u_0 + \frac{\alpha}{2} \textbf{r}^2
+\end{equation*}
+con $ \alpha = (\partial^2 u / \partial \textbf{r}^2)_{r=0} > 0 $. Con $ u_0 $ negativo, perché è l'energia di legame degli atomi ai siti dl reticolo.
+
+Da tale potenziale si ottiene la legge di dispersione:
+\begin{equation*}
+	\varepsilon(\textbf{r}, \textbf{p}) = u_0 + \frac{\textbf{p}^2}{2m} + \frac{\alpha\textbf{r}^2}{2}
+\end{equation*}
+
+Per cui si ottiene per la funzione di partizione di singola particella:
+\begin{align*}
+	Z_1 &= \frac{1}{(\hplanck)^3} \int \cdots \int \exp[-\frac{\varepsilon(\textbf{p},\textbf{r})}{\kt}] \dd^3 p ~\dd^3 r =\\
+	&= \frac{\exp(-u_0/\kt)}{(\hplanck)^3} \left[\int \exp(- \frac{p^2}{2 m \kt})\dd p\right]^3\left[\int \exp(- \frac{\alpha x^2}{2 \kt}) \dd x\right]^3
+\end{align*}
+Coefficienti a parte i due integrali che compaiono nell'espressione precedente sono identici:
+\begin{equation*}
+\int \exp(- \frac{a \xi^2}{\kt}) \dd xi = \frac{1}{2} \left(\frac{\kt}{a}\right)^{1/2} \int \eta^{1/2} e^{-\eta} \dd \eta
+\end{equation*}
+
+Riguardo i limiti di integrazione si nota che mentre per gli impulsi sono possibili tutti i numeri reali, per le posizioni ci si dovrebbe limitare ad una piccola area attorno alla posizione di equlibrio, che è quella in cui si è effettuato lo sviluppo.
+
+Questo non è strettamente rilevante, infatti l'esponenziale si smorza fortemente anche per spostamenti non troppo grandi, per cui si può integrare anche qui da $ - \infty $ a $ + \infty $.
+
+Si ha quindi per $ Z_1 $:
+\begin{equation*}
+	Z_1 = A (\kt)^3 \exp(-\frac{u_0}{\kt})
+\end{equation*}
+con $ A $ una costante (in cui è inclusa fra le altre cose la sesta potenza di $ \int_{0}^{\infty} \eta^{1/2} e^{-\eta} \dd \eta $).
+
+Nonostante le considerazioni fatte nella \cref{sec:idpart} riguardo alle particelle identiche, qui non si hanno effetti di questo tipo poiché le particelle possono essere distinte in base al sito del reticolo che occupano. Per cui:
+\begin{equation*}
+Z = Z_1^N = A^N (\kt)^{3N} \exp(-\frac{N u_0}{\kt})
+\end{equation*}
+da cui si ricava l'energia libera:
+\begin{equation*}
+F = - \kt \log Z = N u_0 -3 N \kt \log\kt - N\kt \log A
+\end{equation*}
+e quindi l'entropia:
+\begin{equation*}
+S = - \partfix{F}{T}{V,N} = 3 N k_B \log\kt + 3 N k_B - N k_B \log A
+\end{equation*}
+e infine la capacità termica e l'energia:
+\begin{align*}
+C_V &= T \partfix{S}{T}{V,N} = 3 N k_B\\
+E &= F + TS = 3 N \kt + N u_0
+\end{align*}
+
+I risultati ottenuti sono molto semplici e altrettanto chiari: l'energia è data dalla somma delle energie di legame di tutti gli atomi più il contributo termico per tutti i gradi di libertà.\footnote{La capacità termica trovata è nota come \textit{legge di Dulong-Petit.}}
+
+Allo stesso modo la capacità termica è la somma dei contributi dei vari gradi libertà, $ 6 $ per ogni particella: $ 3 $ traslazionali e $ 3 $ vibrazionali. Il fatto più rilevante è che questo contributo sia pari a $ \frac{1}{2} k_B$ per ogni grado di libertà, indipendentemente dalla tipologia e dai dettagli del modello, per cui le costanti non entrano in gioco.
+
+Questo è il contenuto del \textit{teorema di equipartizione}.
+
+\begin{es}[Gas ideale]
+	Nel modello di gas ideale i gradi di libertà erano solo 3, quelli traslazionali, e infatti la capacità termi trovata era $ \frac{3}{2} N k_B$.
+\end{es}
+
+Questo risultato è in accordo con i dati sperimentali ad alte temperature, ma non descrive l'andamento mostrato on \cref{fig:heatcap} per basse $ T $.
+
+\subsection{Modello di Einstein}
+\label{sec:einheatcap}
+
+Il modello di Einstein è anch'esso una teoria di campo medio, in cui si considera un insieme di $ 3N $ oscillatori armonici indipendenti, esattamente come nel caso precedente.
+
+L'unica differenza nelle ipotesi di partenza è nell'introduzione di un concetto quantistico: la \textit{quantizzazione dei livelli energetici} del singolo oscillatore.
+\newline
+
+Quanto scritto sopra si traduce in una enumerazione delle possibili energie del singolo oscillatore armonico:
+\begin{align*}
+	\varepsilon_\omega &= (n + 1/2) \hbar \omega + u_0/3 = \varepsilon_{0 \omega} + n \hbar \omega\\
+	con &\qquad \varepsilon_{0 \omega} =  \frac{\hbar \omega}{2}  + \frac{u_0}{3}
+\end{align*}
+dove $  \varepsilon_{0 \omega} $ è l'energia del fondamentale. Come nel paragrafo precedente la frequenza è la stessa per tutti gli oscillatori.
+
+La funzione di partizione del singolo oscillatore è:
+\begin{equation*}
+	Z_{1\omega} = \exp(-\frac{ \varepsilon_{0 \omega}}{\kt}) \sum_n \left[\exp(-\frac{ \hbar \omega}{\kt})\right]^n = \frac{\exp(- \varepsilon_{0 \omega}/\kt)}{1 - \exp(- \hbar \omega/\kt)}
+\end{equation*}
+
+Poiché i $ 3N $ oscillatori armonici sono tutti identici e indipendenti è sufficiente trovare le proprietà termodinamiche di singolo oscillatore, le altre si ottengono per estensività:
+\begin{align*}
+	F_{1\omega} &= - \kt \log Z_{1\omega}  = \varepsilon_{0 \omega} + \kt \log \left[1 - \exp(-\frac{ \hbar \omega}{\kt})\right]\\
+	S_{1\omega} &= - k_B \log \left[1 - \exp(-\frac{ \hbar \omega}{\kt})\right]  + \frac{\hbar \omega}{T} \frac{\exp(- \hbar \omega/\kt)}{1 - \exp(- \hbar \omega/\kt)}\\
+	E_{1\omega} &= 	F_{1\omega} + T S_{1\omega} = \varepsilon_{0 \omega} + \bar{n} \hbar \omega\\
+	\bar{n} &= \frac{\exp(- \hbar \omega/\kt)}{1 - \exp(- \hbar \omega/\kt)} = \frac{1}{\exp(\hbar \omega/\kt) - 1}
+\end{align*}
+si noti che $ \bar{n} $ coincide con il numero di occupazione medio di ogni stato di singola particella di un gas di Bose degenere ($ \mu = 0 $); questa corrispondenza non è casuale.
+
+Quindi per valutare le proprietà termodinamiche dell'intero sistema si moltiplicano per $ 3N $ quelle trovate per il singolo oscillatore. In particolare, per la capacità termica:
+\begin{equation*}
+	C_V = \partfix{E}{T}{V} = 3N \partfix{E_{1\omega}}{T}{V} = 3 N k_B \left(\frac{\hbar \omega_E}{\kt}\right)^2 \frac{\exp(\hbar \omega_E/\kt)}{[\exp( \hbar \omega_E/\kt) - 1]^2}
+\end{equation*}
+dove si è indicata con $ \omega_E $ la frequenza propria degli oscillatori, che sarà una proprietà del materiale. Si definisce frequentemente la temperatura di Einstein $ \Theta_E $:
+\begin{equation*}
+	k_B \Theta_E = \hbar \omega_E
+\end{equation*}
+in termini della quale si può riscrivere l'espressione della capacità termica.
+
+Ad alte temperature, $ T \gg \Theta_E $, si ha per la capacità termica, approssimando al primo ordine:
+\begin{equation*}
+	C_V \rightarrow 3N k_B
+\end{equation*}
+cioè il risultato classico.
+Nel limite opposto si ottiene invece:
+\begin{equation*}
+C_V \rightarrow 3N k_B \left(\frac{\hbar \omega_E}{\kt}\right)^2 \exp(-\frac{\hbar \omega_E}{\kt})
+\end{equation*}
+cioè che $ C_V \rightarrow_{T \rightarrow 0} ~0 $, che è in accordo con quanto mostrato in \cref{fig:heatcap}.
+
+Questo risultato poteva essere previsto dalla meccanica quantistica: a temperatura $ T \rightarrow 0 $ il sistema si trova nel fondamentale, e la probabilità di eccitazione va a $ 0 $ con la temperatura, poiché $ \partial S / \partial T $ è finito.
+\newline
+
+Il modello di Einstein presenta un paio di incongruenze rispetto alle proprietà di un cristallo reale:
+\begin{itemize}
+	\item La capacità termica si annulla troppo rapidamente per $ T \rightarrow 0 $, infatti in questo limite si trova sperimentalmente:
+	\begin{equation*}
+	C_V \propto T^3
+	\end{equation*}
+	
+	Il fatto che il modello di Einstein presenti un andamento esponenziale è dovuto alla struttura dei livelli energetici, in particolare alla presenza di un \textit{gap} finito tra il fondamentale e il primo eccitato.
+	A causa di questa separazione se l'energia termica a disposizione diminuisce la probabilità di eccitazione decresce esponenzialmente, e quindi anche la capacità termica.
+	\item L'altro problema è dato dai parametri del materiale $ u_0, \omega_E $. In una teoria di campo medio consistente queste quantità non possono dipendere dalla spaziatura tra gli atomi, poiché se così fosse il moto di un atomo influenzerebbe il vicino ed essi non sarebbero indipendenti.
+	
+	La spaziatura tra gli atomi non è altro che l'inverso della densità, e la richiesta che i parametri non dipendano dalla densità, e quindi dal volume se il numero di particelle è fissato, implica che:
+	\begin{equation*}
+		P = - \partfix{F}{V}{T,N} = 0
+	\end{equation*}
+	poiché la $ F $ dipende solo dalla $ F $ di singolo oscillatore, che contiene solo l'informazione sui parametri, e dal numero di oscillatori presenti.
+	
+	Analogamente la compressibilità isoterma diverge:
+	\begin{equation*}
+	K_T = - \frac{1}{V} \partfix{V}{P}{T,N} = - \left[V \partfix{^2 F}{V^2}{T,N}\right]^{-1}
+	\end{equation*}	
+\end{itemize}
+
+Ovviamente in un cristallo reale il potenziale su un atomo dipende dalla posizione dei vicini, e quindi non sono indipendenti. La cosa inattesa è che migliorando il modello per risolvere il secondo punto anche il comportamento della capacità termica diventa quello corretto.
+
+Si consideri un cristallo a temperatura nulla: esso sarà nel fondamentale e i suoi atomi saranno disposti in un reticolo regolare per minimizzare l'energia.
+Non appena si inserisce un minimo di energia nel sistema, aumentando così la temperatura, ogni possibile tipo di eccitazione ne acquisirà una parte proporzionale a $ e^{-\mathcal{E}/\kt} $, dove $ \mathcal{E} $ è l'energia dell'eccitazione, e quindi ognuna contribuirà alla capacità termica con un termine proporzionale a $ e^{-\mathcal{E}/\kt} $. Per cui più piccola sarà $ \mathcal{E} $, più grande sarà il contributo alla capacità termica.
+
+Si cerca quindi di costruire il primo livello eccitato del sistema, che sarà quello che maggiormente contribuirà alla capacità termica.
+
+Si immagini di spostare un atomo dalla sua posizione di equlibrio: questo aumenterà la sua energia e quella dei suoi vicini. Per ottenere una configurazione a energia più bassa si può pensare di spostare anche i vicini in modo solidale, e quindi i loro vicini, \dots.
+Se si estende questo procedimento a tutto il cristallo si è semplicemente spostato il suo centro di massa, senza modificare le posizioni relative, e quindi l'energia del sistema (in assenza di campi esterni ci sarà invarianza per traslazioni globali).
+
+Per ottenere un risultato significativo anziché spostare solidalmente ogni atomo e i suoi vicini si può applicare ai vicini uno spostamento coerente, ma leggermente ridotto, in modo che le distanze relative cambino poco fra primi vicini.
+Più esplicitamente, si pensi a un cristallo unidimensionale finito: si tengono fermi gli estremi, e partendo da uno dei due si aumenta gradualmente lo spostamento di ogni atomo dalla sua posizione di equilibrio, per poi diminuirlo  non appena superata la metà.
+
+In questo modo si ottengono le onde sonore nei cristalli.
+\newline
+
+Dal risultato ottenuto si evince che la capacità termica a bassa temperatura è dominata dai modi collettivi del sistema, piuttosto che da quelli incoerenti come nel caso del modello di Einstein.
+
+Si possono pensare questi modi organizzati come nel caso del modello di Einstein: un insieme di $ 3N $ oscillatori indipendenti, ciò che differisce dal caso precedente è che la frequenza non è unica, ma dipende dal modo considerato.
+
+\begin{defn}[Modi normali]
+	I modi collettivi descritti sono detti \textit{modi normali} e sono quelli che diagonalizzano l'Hamiltoniano del sistema (proprio per questo sono indipendenti).
+\end{defn}
+
+Le proprietà termodinamiche saranno quindi saranno calcolate in modo simile a quelle del modello di Einstein, ma per ottenere il risultato sarà necessario conoscere la distribuzione in frequenza dei modi normali.
+\begin{align*}
+	F &= E_0 + \kt \sum_\alpha \log \left[1 - \exp(-\frac{\hbar \omega_\alpha}{\kt})\right]\\
+	E &= E_0 + \sum_{\alpha} \bar{n}_\alpha \hbar \omega_\alpha\\
+	\text{con}	&\qquad  \bar{n}_\alpha = \frac{1}{\exp(\bar{n}_\alpha/\kt) - 1}
+\end{align*}
+
+\subsubsection{Numero di modi normali}
+
+Il modo più corretto per capire quanti modi normali ci siano è esaminare la struttura delle equazioni, e si ottiene facilmente che se le equazioni in campo medio hanno $ 3N $ soluzioni, corrispondenti al numero di oscillazioni indipendenti, allora modificando le equazioni si otterrano soluzioni più complicate, ma il numero sarà sempre lo stesso per i teoremi generali sulla teoria delle equazioni differenziali lineari.
+\newline
+
+C'è un altro modo però per ottenere tale numero nel caso del modello considerato, esaminando il limite per alte $ T $, cioè il limite classico.
+
+In tale limite il sistema soddisfa le ipotesi del teorema di equipartizione, e quindi studiando il valore dell'energia:
+\begin{align*}
+ \bar{n}_\alpha &\simeq \frac{\kt}{\hbar \omega_\alpha} \implies  \bar{n}_\alpha \hbar \omega_\alpha \simeq \kt \implies \\
+ &\implies E \simeq E_0 + \tilde{N} \kt
+\end{align*}
+è lo stesso teorema di equipartizione a imporre $ \tilde{N} = 3N  $, dove $ \tilde{N} $ è il numero di modi normali.
+
+\subsection{Modello di Debye}
+
+Quanto detto nella \cref{sec:einheatcap} a proposito delle onde sonore è alla base del modello di Debye. Si procederà quindi ricavando prima la legge di dispersione per basse frequenze, in modo da poter determinare il comportamento a bassa temperatura della capacità termica.
+
+\subsubsection{Legge di dispersione per onde lunghe}
+
+Nei cristalli le onde sonore hanno $ 3 $ polarizzazioni, due trasverse e una longitudinale, cui corrispondono anche due diverse velocità $ c_t $ e $ c_l $.
+Per semplificare la trattazione si considererà solamente quella longitudinale.
+Il risultato ottenuto sarà comunque applicabile esattamente per i liquidi\footnote{Essi non hanno polarizzazioni trasverse, perché gli strati scorrono l'uno sull'altro.}.
+\newline
+
+\noindent Poiché si sta cercando il comportamento delle onde lunghe si può trascurare la struttura atomica, e considerare il mezzo come un continuo.
+
+Dalla legge di Newton si ricava:
+\begin{equation*}
+\partdev{P}{x} + \rho\partdev{v}{t} = 0
+\end{equation*}
+mentre dalla conservazione della massa:
+\begin{equation*}
+\partdev{\rho}{t} + \partdev{\rho v}{x} = 0
+\end{equation*}
+dove in entrambe $ \rho $ è la densità, $ P $ la pressione, $ t $ il tempo, $ x $ la coordinata spaziale e $ v $ la velocità.
+
+Poiché si cerca il comportamento per piccoli spostamenti dalle posizioni di equilibrio è utile definire le equazioni proprio in termini di queste variazioni:
+\begin{align*}
+P &= P_0 + P'\\
+\rho &= \rho_0 + \rho'\\
+v &= v'
+\end{align*}
+e scrivendo le equazioni al prim'ordine in questi spostamenti (cioè eliminando i termini in cui compaiono più di un fattore primao):
+\begin{equation*}
+\begin{cases*}
+\partdev{P'}{x} + \rho_0 \partdev{v'}{t} = 0\\
+\partdev{\rho'}{t} + \rho_0 \partdev{v'}{x} = 0
+\end{cases*}
+\end{equation*}
+
+Si hanno perciò tre incognite e due equazioni. Per risolvere questo problema si considera quindi che la densità sia una funzione della sola pressione $ \rho \equiv \rho(P) $, e di conseguenza:
+\begin{equation*}
+\rho = \rho(P_0) + \partdev{\rho}{P} P' \qquad \implies \qquad \rho' = \partdev{\rho}{P} P' = \frac{1}{c^2} P'
+\end{equation*}
+dove si è definito\footnotemark:
+\footnotetext{Si ha infatti:
+	\begin{equation*}
+	\partfix{\rho}{P}{N,T/S} = \partfix{N/V}{P}{N,T/S} = - \frac{N}{V^2} \partfix{V}{P}{N,T/S} = \rho K_{T/S}
+	\end{equation*}
+}
+\begin{equation*}
+c^2 = \partdev{P}{\rho} = \frac{1}{K \rho}
+\end{equation*}
+Nell'equazione di stato la densità dipende sia dalla pressione che dalla temperatura. ignorare la dipendenza dalla temperatura corrisponde a ignorare la differenza tra $ C_P $ e $ C_V $, o tra $ K_T $ e $ K_S $, che è una buona approssimazione per i mezzi continui, dove le compressibilità sono piccole\footnote{Nella \cref{sec:thermdev} si è trovato infatti che la differenza delle capacità termiche è proporzionale al quadrato di $ (\partial V / \partial T)_P $.}. Perciò il $ K $ che appare nell'espressione precedente è indifferente quale sia.
+
+Si ottengono quindi le equazioni:
+\begin{equation*}
+\begin{cases*}
+c^2\partdev{\rho'}{x} + \rho_0 \partdev{v'}{t} = 0\\
+\partdev{\rho'}{t} + \rho_0 \partdev{v'}{x} = 0
+\end{cases*}
+\end{equation*}
+e prendendo $ \partial/\partial x $ della prima e $ \partial/\partial t $ della seconda e sottraendo si ha:
+\begin{equation*}
+	\partdev{^2\rho}{x^2} - \frac{1}{c^2} \partdev{^2\rho}{t^2} = 0
+\end{equation*}
+che è la nota equazione di D'Alembert che ammettono soluzioni propaganti con una legge di dispersione lineare.
+\begin{equation*}
+	\omega = \pm c q
+\end{equation*}
+
+Si ottiene infine che $ \omega $ assume un insieme di valori discreto, determinato dall'insieme di valori discreto che può assumere $ q $, fissando, ad esempio, condizioni periodiche al contorno:
+\begin{equation*}
+	\rho'(x=0) = \rho'(x=L)
+\end{equation*}
+che implicano per $ q $:
+\begin{equation*}
+	q = \frac{2\pi}{L}n
+\end{equation*}
+dove $ n $ è un numero intero, limitato dall'alto (se avessimo la legge di dispersione esatta il limite sarebbe fissato dal passo reticolare, ma poiché si sta trattando il caso di onde lunghe il limite è fissato dagli estremi di validità  dell'approssimazione).
+
+\subsubsection{Capacità termica e proprietà termodinamiche}
+
+Si applica quindi il risultato trovato per la legge di dispersione, distinguendo però le tre polarizzazioni. Per farlo si indica la generica velocità con $ c_i $, $ i = l,t $.
+\newline
+
+Poiché il numero di modi per ogni polarizzazione è molto grande, dell'ordine di $ N $, le somme possono essere convertite in integrali, per cui anche l'enumerazione dei modi va trasformata in una densità di modi.
+
+Per l'enumerazione si aveva:
+\begin{align*}
+	\textbf{q} &= \left(\frac{2\pi}{L}\right) \textbf{n}\\
+	\text{con} &\qquad \textbf{n} = n_1 \hat{\textbf{x}} + n_2 \hat{\textbf{y}} + n_3 \hat{\textbf{z}}
+\end{align*}
+e poiché il cristallo immaginato ha dimensione $ L $ per ogni lato si ha $ V = L^3 $. Il numero di modi compreso tra $ \textbf{n} $ e $ \textbf{n} + \dd \textbf{n} $, cioè $ \dd \textbf{n} $, è quindi un differenziale tridimensionale $ \dd \textbf{n} = \dd^3 n $.
+
+Il numero di modi compresi tra $ \textbf{q} $ e $ \textbf{q} + \dd \textbf{q} $ è:
+\begin{align*}
+	\dd^3 n &= \frac{V}{(2\pi)^3} \dd^3 q \implies\\
+	&\implies \dd^3 n = \frac{4\pi V q^2 \dd q}{(2\pi)^3}
+\end{align*}
+in cui nella seconda si è assunto che il solido sia isotropo.
+
+Dalla legge di dispersione si ottiene infine:
+\begin{equation*}
+	\rho_i(\omega) \dd \omega = \frac{4\pi V}{(2\pi)^3} q(\omega)^2 \dd q(\omega) = \frac{4\pi V}{(2\pi c_i)^3} \omega^2 \dd \omega
+\end{equation*}
+La densità di modi ha lo stesso ruolo che la densità di stati di singola particella aveva nel \cref{chap:gas}. La differenza principale tra i due casi sta proprio nella legge di dispersione, che implica una diversa densità, esattamente come si era trovato nell'\cref{es:lindisp}.
+
+Inoltre il ruolo del numero di particelle nello stato (numero di occupazione) è qui assunto dal numero di eccitazioni di un certo oscillatore.
+
+Tutte queste analogie portano a definire l'eccitazione elementare come una particella, o meglio una \textit{quasiparticella} (vedi \cref{sec:idpart}), e trattare l'insieme degli oscillatori come un gas perfetto di eccitazioni non interagenti: nei cristalli sono dette \textit{fononi}.
+\newline
+
+Se il cristallo è isotropo le due polarizzazioni trasverse hanno la stessa velocità di propagazione, e sommando sulle tre polarizzazioni si ottiene:
+
+\begin{equation*}
+\rho(\omega) \dd \omega = \frac{4\pi V}{(2\pi)^3}\left(\frac{1}{c_l^3} + \frac{2}{c_t^3}\right) \omega^2 \dd \omega
+\end{equation*}
+e definendo:
+\begin{equation*}
+	\frac{3}{\tilde{c}^3} = \frac{1}{c_l^3} + \frac{2}{c_t^3}
+\end{equation*}
+si ha:
+\begin{equation*}
+\rho(\omega)= \frac{12\pi V}{(2\pi\tilde{c})^3}\omega^2 
+\end{equation*}
+
+La formula trovata è stata ricavata assumendo la legge di dispersione per onde lunghe, quindi è valida solo nel limite di bassa frequenze, ma a bassa temperatura, cioè se $ \omega $ è abbastanza grande tale che:
+\begin{equation*}
+\hbar \omega \gg \kt
+\end{equation*}
+allora è il numero di eccitazioni a essere esponenzialmente smorzato (vedi \cref{sec:einheatcap}), per cui anche estendendo l'integrale fino a $ \infty $ si commette un errore piccolo.
+
+Si ha quindi per l'energia:
+\begin{align*}
+	E_{th} = \int_{0}^{\infty} \bar{n}(\omega)\rho(\omega) \hbar \omega \dd \omega = \frac{12\pi V}{(2\pi\tilde{c})^3}\hbar \int_{0}^{\infty} \frac{\omega^3 \dd \omega}{\exp(\hbar\omega/\kt)-1} = \frac{12\pi V}{(2\pi\hbar\tilde{c})^3} (\kt)^4 \int_{0}^{\infty} \frac{x^3 \dd x}{e^x -1}
+\end{align*}
+L'integrale definito può essere valutato e risulta essere pari a $ \pi^4 / 15 $.
+
+La cosa più importante è che la dipendenza dell'energia è $ E \propto T^4 $ e di conseguenza $ C_V = \partfix{E}{T}{V} \propto T^3$, cioè l'andamento sperimentalmente verificato.
+\newline
+
+Si sono trascurati del tutto i modi ad alta frequenza, per cui non è stata neanche trovata la legge di dispersione. Essi però non contribuiscono sostanzialmente in nessuno dei due limiti: per basse temperature sono i coinvolti solo i modi a bassa frequenza, perché quelli ad alta frequenza sono congelati, mentre per temperature alte il teorema di equipartizione impone che l'unica informazione rilevante sia il numero di modi.
+
+Per questo è naturale raccordare i due andamenti semplicemente estendendo il limite di validità della densità di modi e considerando $ \rho(\omega) \propto \omega^2 $ fino a una certa frequenza massima $ \omega_m $ fissata da:
+\begin{equation*}
+	3N = \int_0^{\omega_m} \rho(\omega) \dd \omega
+\end{equation*}
+tale interpolazione è proprio ciò che viene chiamato \textit{modello di Debye}.
+
+La frequenza massima $ \omega_m $ è come $ \omega_E $ nel modello di Einstein una proprietà del materiale, e può essere espresso per mezzo della velocità media di propagazione del suono e della densità del materiale:
+\begin{equation*}
+	\omega_m = 2 \pi \tilde{c} \left(\frac{3N}{4\pi V}\right)^{1/3}
+\end{equation*}
+
+Si sarebbe potuto decidere di porre il cutoff in un altro modo, ad esempio facendolo in modo ditinto per ogni polarizzazione, che va pure bene, ma a questo livello è una complicazione non necessaria.
+
+Come nel caso di Einstein anche qui si può definire una temperatura caratteristica, detta \textit{temperatura di Debye} $ \Theta_D $:
+\begin{equation*}
+\hbar \omega_m = k_B \Theta_D
+\end{equation*}
+e riportando in un grafico (come in \cref{fig:heatcapdeb}) $ C_V/N k_B $ contro $ T/\Theta_D $ si otttiene un andamento universale, coerente con i dati sperimentali, contrariamente alla \cref{fig:heatcap}.
+\newline
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Immagini/HeatCapacityDebye.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:heatcapdeb}
+\end{figure}
+
+Per evidenziare la natura quasiparticellare dei fononi si descrivono in termini delle stessa grandezze tipiche delle particelle:
+\begin{align*}
+	\varepsilon &= \hbar \omega \qquad p = \hbar q\\
+	\varepsilon &= \tilde{c} p \qquad \rho(\varepsilon) \dd \varepsilon =  3 \frac{4\pi V}{(2\pi)^3} p^2 \dd p \iff 
+	\rho(\varepsilon)= \frac{12\pi V}{(2\pi\tilde{c})^3}\varepsilon^2 
+\end{align*}
+il fattore $ 3 $ è inserito nell'ultima equazione per contare le polarizzazione, e corrisponde in modo non ancora evidente alla degenerazione di spin.
+
+Non ci sono limiti all'occupazione di un dato stato per i fononi, quindi essi seguono la statistica di Bose. Il numero di particelle non è fissato, ma libero di fluttuare ed esso cerca di minimizzare l'energia libera, per cui:
+\begin{equation*}
+\mu_{ph} = \partfix{F}{n_{ph}}{T,V} = 0
+\end{equation*}
+per cui i fotoni si comportano come il \textit{vapore di Bose}, cioè la parte non condensata di un gas totalmente degenere, da cui il numero di occupazione è:
+\begin{equation*}
+\bar{n} = \frac{1}{\exp(\varepsilon/\kt)}
+\end{equation*}
+
+Si possono quindi usare le formule del gas perfetto per trovare le proprietà termodinamiche. Si esprime innanzi tutto la densità di stati in funzione della temperatura di Debye piuttosto che della velocità del suono:
+\begin{align*}
+&\begin{rcases*}
+\rho(\varepsilon) = A \varepsilon^2\\
+3N = \int_0^{k_B \Theta_D} \rho(\varepsilon) \dd \varepsilon
+\end{rcases*}
+3N = A \int_0^{k_B \Theta_D} \varepsilon^2 \dd \varepsilon \implies\\
+&\implies \rho(\varepsilon) = \frac{9N}{(k_B \Theta_D)^3}\varepsilon^2
+\end{align*} 
+per cui si ha per l'energia:
+\begin{equation*}
+E_{th} = \int_0^{k_B \Theta_D} \varepsilon \rho(\varepsilon) \bar{n}(\varepsilon)\dd \varepsilon = 9 N \kt \left(\frac{T}{\Theta_D}\right)^3  \int_0^{k_B \Theta_D} \frac{x^3 \dd x}{e^x -1}
+\end{equation*}
+dove l'ultimo integrale dipende da $ T $ tramite l'estremo superiore, e in generale non può essere fatto analiticamente. A basse temperature, cioè $ T \ll \Theta_D $ il limite superiore può essere rimpiazzato da $ + \infty $ e si ottiene:
+\begin{align*}
+E_{th} &= \frac{3}{5} \pi^4 N \kt \left(\frac{T}{\Theta_D}\right)^3\\
+C_V &= \frac{12}{5} \pi^4 N k_B \left(\frac{T}{\Theta_D}\right)^3
+\end{align*}
+mentre nel limite opposto  $ T \gg \Theta_D $ il denominatore dell'integrando può essere espanso e $ e^x -1 \simeq x $, per cui l'integrale diventa facilmente svolgibile e si ottine:
+\begin{equation*}
+E_{th} = 3 N \kt
+\end{equation*}
+che verifica la coerenza con quanto imposto.
