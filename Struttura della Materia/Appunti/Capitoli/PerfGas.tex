@@ -3,6 +3,7 @@
 % !TEX root = ../Appunti.tex
 
 \section{Gas ideale}
+\label{sec:idgas}
 
 Le definizioni di gas perfetto e ideale sono state date nel primo capitolo, e sono rispettivamente la \cref{def:perfgas} e la \cref{def:idgas}.
 
@@ -267,6 +268,7 @@ Osservando il segno delle correzioni si nota che:
 \end{itemize}
 
 \section{Gas di Fermi molto degenere: elettroni nei metalli}
+\label{sec:fermigas}
 La descrizione del comportamento degli elettroni nei metalli, e quindi delle peculiari proprietà che distinguono i metalli dagli altri elementi, è uno dei grandi successi della teoria del gas di Fermi degenere.
 \newline
 
@@ -698,20 +700,407 @@ Per questo si può affermare che la condensazione avvenga anche nello spazio fis
 
 Si raccolgono in questa sezione diversi argomenti che riguardano in particolare l'applicazione dei concetti statistici esposti nel \cref{chap:termstat} e quelli riguardanti i fermioni in questo.
 
-\subsection{Equazione del trasporto di Boltzmann}
+\subsection{Conduzione nei metalli}
+
+Il trasporto di corrente elettrica da parte degli elettroni in un metallo, sotto l'azione di un campo esterno, è dovuto all'azione simultanea dell'accelerazione prodotta dal campo e dalla perdità di energia e quantità di moto nelle collisioni con le impurità.
+
+\subsubsection{Modello di Drude}
+Sotto l'azione del campo esterno $ E $ gli elettroni subiscono un'accelerazione $ a = e E /m $ in direzione opposta al campo, con $ e $ e $ m $ rispettivamente la carica e la massa dell'elettrone.
+
+In assenza di campo gli elettroni si muovono termicamente, per cui la media della distribuzione delle velocità è nulla $ \expval{v_0} = 0 $. Si ha quindi che in presenza di campo:
+\begin{align*}
+\expval{\Delta v} = \expval{v} \qquad \text{con}~ \Delta v = v - v_0
+\end{align*}
+si ha quindi per la corrente:
+\begin{equation*}
+J = n e \expval{v} = n e \expval{\Delta v}
+\end{equation*}
+con $ n $ la densità di elettroni.
+
+Introducendo una termine di attritto\footnote{Esso condurrà a un'evoluzione esponenziale verso l'equilibrio, che si può giustificare sulla base della teoria delle perturbazioni dipendenti dal tempo.} si ottiene l'equazione:
+\begin{equation*}
+\derivative{\expval{\Delta v}}{t} = e \frac{E}{m} - \frac{\expval{\Delta v}}{\tau_c}
+\end{equation*}
+dove si è introdotto un tempo caratteristico $ \tau_c $. L'equazione precedente ha uno stato stazionario:
+\begin{equation*}
+\expval{\Delta v} = \frac{e \tau_c}{m} E
+\end{equation*}
+per cui la corrente e la conducibilità risultanti sono:
+\begin{equation*}
+J = e^2 n \frac{E \tau_c}{m} \qquad \implies \qquad \sigma = \frac{J}{E} = \frac{n e^2 \tau_c}{m}
+\end{equation*}
+
+\subsubsection{Modello di Drude quantistico}
+
+Il modo corretto di tenere conto della distribuzione di Fermi-Dirac è quello esposto nella sezione seguente, basato sull'equazione del trasporto di Boltzmann. Si può però ottenere un risultato quantitativamente corretto a partire da delle considerazioni sul gas di Fermi, che in parte sono già state esaminate nella \cref{sec:fermigas}.
+
+Gli elettroni che contribuiscono alla conduzione sono solo quelli del guscio esterno del mare di Fermi, la cui velocità è data da:
+\begin{equation*}
+\frac{1}{2} m v^2 = \mu \qqimplies v = \sqrt{\frac{2\mu}{m}}
+\end{equation*}
+dove $ \mu $ è il potenziale chimico.
+
+Il numero di elettroni che contribuiscono è dato dalla densità di stati in energia:
+\begin{equation*}
+\rho(\varepsilon) \Delta \varepsilon = \frac{3 n}{2 \mu^{3/2}} \sqrt{\varepsilon} \Delta \varepsilon
+\end{equation*}
+con $ \varepsilon $ l'energia degli elettroni di conduzione, e quindi $ \varepsilon = \mu $. L'intervallo di energia degli elettroni coinvolti è invece determinato dall'energia messa a disposizione dal campo per il singolo elettrone:
+\begin{equation*}
+\Delta \varepsilon = e E l = e E v \tau_c
+\end{equation*}
+dove $ l $ è il \textit{libero cammino medio}, cioè si sta considerando come energia disponibile la differenza di potenziale che può accelerare un elettrone senza che esso collida. 
+
+Si ottiene quindi per corrente e conducibilità:
+\begin{align*}
+J &= e \rho(\mu) v \Delta \varepsilon = e \frac{3n}{2 \mu^{3/2}} \sqrt{\mu} e E v^2 \tau_c = \frac{3ne^2 \tau_c}{m} E\\
+\sigma &= \frac{3ne^2 \tau_c}{m}
+\end{align*}
+
+Il risultato ottenuto è qualitativamente equivalente a quello del modello classico, ciò che differisce sostanzialmente è l'interpretazione. Nel caso classico tutti gli elettroni contribuiscono alla conduzione, da cui il fattore $ n $ nella conducibilità. Nel caso quantistico solo gli elettroni del guscio conducono, ma il fattore $ n $ compare lo stesso: esso è dovuto all'energia dei fermioni del guscio, cioè a quanto è profondo il mare di Fermi, e quindi è determinata da $ n $.
+
+\subsubsection{Equazione del trasporto di Boltzmann}
+
+Si analizza ora il fenomeno della conduzione esaminando l'evoluzione della distribuzione nello spazio delle fasi.
+\newline
+
+Si considera come spazio delle fasi di singola particella $ \dd^3 r \dd^3 v $, in cui si è scritta la velocità delle particelle anziché gli impulsi, ma in assenza di campo magnetico (o in generale di interazioni che coinvolgano la velocità delle particelle, oltre alle posizioni) questo è del tutto equivalente; infatti impulsi e velocità sono proporzionali attraverso la massa delle particelle, che qui è pure la stessa per tutti i componenti del sistema.
+
+Sia quindi $ f(t,\textbf{r},\textbf{v}) $ il numero di particelle contenute del volumetto di spazio delle fasi di singola particella al tempo $ t $ (cioè la densità di probabilità nello spazio delle fasi di singola particella).
+\footnote{Per l'esattezza si indica la densità di probabilità di occupazione con $ f(t,\textbf{r},\textbf{v})  $, mentre il numero delle particelle sarà $ f g \dd^3 r \dd^3 v $, dove $ g $ è il numero complessivo di celle dello spazio delle fasi a disposizione delle particelle.}
+
+Dal teorema di Liouville si ha:
+\begin{equation*}
+f(t + \dd t,\textbf{r} + \dd \textbf{r},\textbf{v} + \dd \textbf{v}) = f(t,\textbf{r},\textbf{v}) 
+\end{equation*}
+per descrivere i processi dissipativi si deve però includere un termine di perdita nell'evoluzione da $ t $ a $ t + \dd t $, esso sarà dovuto alle collisioni. L'equazione diventa quindi:
+\begin{equation*}
+f(t + \dd t,\textbf{r} + \dd \textbf{r},\textbf{v} + \dd \textbf{v}) - f(t,\textbf{r},\textbf{v}) = \dd t \partfix{f}{t}{\text{coll}}
+\end{equation*}
+e si ottiene, dividendo per $ \dd t $:
+\begin{equation*}
+\partdev{f}{t} + \textbf{v} \grad_r f + \textbf{a} \grad_v f = \partfix{f}{t}{\text{coll}}
+\end{equation*}
+quest'ultima è detta \textit{equazione del trasporto di Boltzmann}.
+
+L'ipotesi più semplice per le collisioni è supporre un andamento smorzato:
+\begin{equation*}
+\partfix{f}{t}{\text{coll}} = - \frac{f - f_0}{\tau_c}
+\end{equation*}
+$ f_0 $ rappresenta la distribuzione delle particelle nello spazio delle fasi all'equilibrio.
+
+\begin{es}[Sistema isolato]
+	Nel caso in cui i gradienti nell'equazione del trasporto di Boltzmann, prodotti dagli agenti esterni\footnote{Citazione dall'\textit{Arimondo}, pag.88; questa frase mi sembra inutile e falsa.}, siano nulli, e quindi $ f $ sia uniforme, l'equazione diventa:
+	\begin{equation*}
+	\partdev{f}{t} = -  \frac{f - f_0}{\tau_c}
+	\end{equation*}
+	e la soluzione è:
+	\begin{equation*}
+	(f-f_0)(t) = -  (f - f_0)e^{-\frac{t}{\tau_c}}
+	\end{equation*}
+	cioè evolve esponenzialmente verso lo stato di equilibrio (anche quest'ultimo dovrà essere a gradienti nulli, altrimenti compariranno nell'equazione subito dopo l'istante iniziale).
+\end{es}
+
+Il termine $ \tau_c $, che descrive il tempo caratteristico introdotto dalle collisioni, può essere modificato dall'azione di campi esterni. Tuttavia la forma del termine collisionale è giustificato dalla teoria delle perturbazioni dipendenti dal tempo, quindi, in linea con l'approccio perturbativo, si trascurerà la possibile dipendenza di $ \tau_c $ dagli agenti esterni.
+
+\paragraph{Trasporto di carica} Si applica un campo elettrico esterno $ E $, e si cerca lo stato stazionario $ \partial f / \partial t = 0 $, che però non rappresenta lo stato di equilibrio termodinamico, che è sempre $ f_0 $.
+
+Per lo stato stazionario l'equazione di Boltzmann sarà:
+\begin{equation*}
+\textbf{v} \grad_r f + \textbf{a} \grad_v f =  -  \frac{f - f_0}{\tau_c}
+\end{equation*}
+Si supponga inoltre che il campo elettrico sia diretto lungo l'asse $ \textbf{x} $, perciò nell'equazione il contributo delle altre direzioni sarà nullo.
+
+Si ottiene quindi:
+\begin{equation*}
+f = f_0 - \tau_c(\textbf{v} \grad_r f + \textbf{a} \grad_v f) \simeq f_0 - \tau_c(\textbf{v} \grad_r f_0 + \textbf{a} \grad_v f_0)
+\end{equation*}
+dove si è approsimato $ f $ con $ f_0 $ nel secondo membro, in accordo con il calcolo dell'ordine perturbativo più basso.
+
+Per elettroni nella distribuzione di Fermi-Dirac:
+\begin{equation*}
+f_0 (\varepsilon) = \frac{1}{\exp(\frac{\varepsilon - \mu}{\kt}) + 1}
+\end{equation*}
+da cui:
+\begin{align*}
+\partdev{f_0}{x} &= \partdev{f_0}{\mu} \partdev{\mu}{x} + \partdev{f_0}{T} \partdev{T}{x}\\
+\partdev{f_0}{v_x} &= \partdev{f_0}{\varepsilon} \partdev{\varepsilon}{v_x} = m v_x \partdev{f_0}{\varepsilon}
+\end{align*}
+nel caso della conduzione elettrica si porrà però nullo il gradiente di temperatura $ \partial T / \partial x = 0 $, e ci si limita a esaminare il comportamento di un elemento di volume dentro il quale $ \partial N / \partial x = 0 $ (da cui si deduce $ \partial \mu / \partial x = 0$).
+
+Imponendo infine che l'accelerazione sia $ a = e E / m $, cioè quella determinata dal campo elettrico, si ottiene:
+\begin{equation*}
+f \simeq f_0 - \tau_c \frac{e E}{m} m v_x \partdev{f_0}{\varepsilon}
+\end{equation*}
+All'ordine più basso, per il caso realistico di temperature basse rispetto a quella di Fermi (vedi \cref{sec:fermigas}), si ha:
+\begin{equation*}
+\partdev{f_0}{\varepsilon} = - \delta (\varepsilon - \mu_0)
+\end{equation*}
+dove è stato posto $ \mu = \mu_0  $, cioè il potenziale chimico a temperatura nulla, coerentemente con l'approssimazione fissata.
+Inoltre per la conduzione elettrica la densità di corrente nella direzione dell'asse $ x $ è definita come:
+\begin{equation*}
+J_x = \int e v_x \rho(\textbf{v}) \dd^3 v
+\end{equation*}
+dove $ \rho(\textbf{v}) $ è la densità di stati nelle velocità, calcolata in assenza di campo elettrico (infatti il contributo dato dagli agenti esterni opera sull'occupazione degli stati $ f $, e non sulla densità $ \rho $).
+
+Si ottiene quindi:
+\begin{equation*}
+J_x = \int e v_x f_0 \rho(\textbf{v}) \dd^3 v - e^2 E \int \tau_c v_x ^2 \partdev{f_0}{\varepsilon} \rho(\textbf{v}) \dd^3 v
+\end{equation*}
+in cui il primo integrale si annulla poiché l'integrando è dispari in $ v_x $ (non dipendendo dai campi esterni la funzione $ \rho(\textbf{v}) $ non può che essere pari), mentre il secondo termine è:
+\begin{equation*}
+J_x = e^2 E \int \tau_c  v_x ^2 \delta (\varepsilon - \mu_0) \rho(\textbf{v}) \dd^3 v
+\end{equation*}
+
+Utilizzando coordinate polari si ha:
+\begin{align*}
+v_x &= v \cos \theta\\
+v_x^2 &= v^2 \cos^2 \theta = \frac{2 \varepsilon}{m} \cos^2 \theta\\
+\rho(\textbf{v}) \dd^3 v = \rho(\varepsilon) \dd \varepsilon \frac{\sin \theta \dd \theta \dd \varphi}{4\pi}
+\end{align*}
+e quindi:
+\begin{align*}
+J_x &= e^2 E \frac{2}{m} \int_0^\infty \tau_c \delta (\varepsilon - \mu_0) \varepsilon \rho(\varepsilon) \dd \varepsilon \frac{1}{2} \int_0^\pi \cos^2 \theta \dd \cos\theta \dd \sin\theta =\\
+&= e^2 E \frac{2}{m} \frac{3n}{2 \mu_0^{3/2}} \int_0^\infty \tau_c \delta (\varepsilon - \mu_0) \frac{1}{3} \varepsilon \sqrt{\varepsilon} \dd \varepsilon = \frac{e^2 E}{m} n \tau_{c,F}
+\end{align*}
+dove si è indicato con $ \tau_{c,F} $ il tempo di collisione per elettroni al livello di Fermi. Si trova infine una coduttività elettrica pari a:
+\begin{equation*}
+\sigma = \frac{n e^2}{m} \tau_{c,F}
+\end{equation*}
+che è identica a quanto trovato nel caso classico, come preannunciato, ma l'interpretazione è quella data relativamente al \textit{modello di Drude quantistico} nella sezione precedente.
 
 \subsection{Elettroni in un campo magnetico}
 
 \subsubsection{Modello classico}
 
+Si supponga di avere un sistema di particelle non interagenti fra loro, ma interagenti con un campo magnetico esterno $ \textbf{B} $ attraverso i loro momenti magnetici $ \bm{\mu} $, uguali fra loro in modulo e costanti (sempre in modulo). Si supponga inoltre che tali momenti magnetici possano assumere solo due configurazioni, parallela e antiparallela, per cui si ha per l'energia:
+\begin{equation*}
+E = - \bm{\mu}\textbf{B} = \mp \mu B
+\end{equation*}
+Questo sistema è noto come \textit{modello di Ising classico}.
+
+In seguito le particelle con momento magnetico parallelo al campo magnetico saranno indicate con $ \uparrow $, mentre quelle con momento antiparallelo con $ \downarrow $.
+
+Il numero di particelle nei due stati è dato dalla distribuzione di Boltzmann (approccio canonico) ed è:
+\begin{align*}
+N_\downarrow &= \frac{N}{Z_1} e^{\frac{\mu B}{\kt}}\\
+N_\uparrow &= \frac{N}{Z_1} e^{-\frac{\mu B}{\kt}}
+\end{align*}
+con la funzione di partizione $ Z_1 $ data da:
+\begin{equation*}
+Z_1 = e^{-\frac{\mu B}{\kt}} + e^{\frac{\mu B}{\kt}} = 2 \cosh\left(\frac{\mu B}{\kt}\right)
+\end{equation*}
+
+Se si considera il limite per alte temperature $ \mu B \ll \kt $, sviluppando le varie quantità al prim'ordine:
+\begin{align*}
+Z &\simeq 2\\
+N_\downarrow &\simeq \frac{N}{2} \left(1 + \frac{\mu B}{\kt}\right) \qquad N_\uparrow \simeq \frac{N}{2} \left(1 - \frac{\mu B}{\kt}\right)\\
+\end{align*}
+e quindi il momento magnetico totale risulta:
+\begin{equation*}
+M = \mu N_\downarrow - \mu N_\uparrow = N \frac{\mu^2 B}{\kt}
+\end{equation*}
+e quindi il sistema risulta paramagnetico. Tale comportamento è detto \textit{paramegnetismo di Curie.}
+\newline
+
+Anche senza imporre l'approssimazione precedente si può trovare un risultato in forma chiusa:
+\begin{equation*}
+U = (N_\uparrow - N_\downarrow) \mu B = \mu B N \tanh(-\frac{\mu B}{\kt}) = -M B
+\end{equation*}
+e per la capacità termica:
+\begin{equation*}
+C_P = \partfix{U}{T}{N,P} = N \frac{\mu^2 B^2}{\kt^2} \left[\cosh(-\frac{\mu B}{\kt})\right]^{-2}
+\end{equation*}
+che ha i seguenti limiti:
+\begin{align*}
+C_P &\simeq N k_B \left(\frac{\mu B}{\kt}\right)^2 \frac{4}{\exp(\frac{2\mu B}{\kt})} \rightarrow 0 \qquad (T\rightarrow 0)\\
+C_P &\simeq N k_B \left(\frac{\mu B}{\kt}\right)^2 \rightarrow 0 \qquad (T \rightarrow \infty)
+\end{align*}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Immagini/IsingCl.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:isingcp}
+	\vspace{-10pt}
+\end{figure}
+
+La funzione $ C_P $ tende a $ 0 $ sia per $ T \rightarrow 0 $ che per $ T \rightarrow \infty $. Nel primo caso perché il sistema ha un \textit{gap} finito di energia tra il fondamentale e il primo eccitato (si veda il \cref{chap:crystals}) e quindi i gradi di libertà sono "congelati" a bassa temperatura: non c'è abbastanza energia termica per accedere all'eccitazione unitaria. Nel secondo caso pure la capacità termica si annulla, ma accade perché il sistema è completamente \textit{randomizzato}, per cui le popolazioni nei due stati sono già uguali, e un ulteriore aumento della temperatura non porta a una sostanziale variazione delle popolazioni, e quindi dell'energia.
+
+Il massimo della funzione si ha per $ \mu B / \kt \simeq 1.2 $.
+
+\paragraph{Entropia} L'entropia può essere calcolata a partire dalla funzione di partizione:
+\begin{equation*}
+S = \frac{E - F}{T} = N k_B \log Z_1 + N \kt \derivative{\log Z_1}{T} = N k_B \log 2 + N k_B \log \cosh(\frac{\mu B}{\kt}) - N K_B \left(\frac{\mu B}{\kt}\right) \tanh(\frac{\mu B}{\kt})
+\end{equation*}
+che ha i seguenti limiti:
+\begin{align*}
+S &\simeq N k_B \log 2 \qquad (T\rightarrow \infty)\\
+S &= N k_B \log 2 + N k_B \log \frac{e^{\frac{\mu B}{\kt}} + e^{-\frac{\mu B}{\kt}}}{2} - N k_B \left(\frac{\mu B}{\kt}\right) \frac{e^{\frac{\mu B}{\kt}} - e^{-\frac{\mu B}{\kt}}}{e^{\frac{\mu B}{\kt}} + e^{-\frac{\mu B}{\kt}}} \rightarrow 0  \qquad (T \rightarrow 0)
+\end{align*}
+
+In accordo con il terzo principio l'entropia si annulla per $ T \rightarrow 0 $, mentre per $ T \rightarrow \infty $ il sistema evolve in uno stato con massima entropia, in cui tutte le $ 2^N $ configurazioni totali sono equiprobabili e l'entropia quindi vale:
+\begin{equation*}
+S = k_B \log 2^N = N k_B \log 2
+\end{equation*}
+La funzione entropia è mostrata in \cref{fig:isingentropy}.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Immagini/IsingEntropy.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:isingentropy}
+	\vspace{-10pt}
+\end{figure}
+
+\paragraph{Demagnetizzazione adiabatica} Nella \textit{demagnetizzazione adiabatica} si utilizza questa variazione dell'entropia per raffreddare un campione a temperature molto basse.
+
+Si applicano in sequenza due trasformazioni:
+\begin{description}
+	\item[isoterma] Partendo da un campo $ B_1 $ si aumenta il campo magnetico fino al valore $ B_2 $, tenendo il sistema a contatto con un bagno termico, in modo che la temperatura sia fissata. In tal modo si genera una diminuzione dell'entropia del sistema.
+	\item[adiabatica] Si isola il sistema dal bagno, e quindi esso non scambia calore e mantiene costante la propria entropia. Si riporta quindi il campo magnetico al valore iniziale $ B_1 $.
+\end{description}
+il processo è mostrato in \cref{fig:demagnad}.
+\newline
+
+Applicando le equazioni trovate si ottiene:
+\begin{equation*}
+T_f = \frac{B_1}{B_2} T_i
+\end{equation*}
+dove $ T_f, T_i $ sono la temperaura iniziale e finale.
+
+Se il campo magnetico $ B_1 $ si annullasse allora anche la temperatura finale tenderebbe a $ 0 $. Questo però non è realizzabile, infatti è da considerare il campo residuo prodotto dagli altri atomi, che in assenza di campo esterno diventa dominante e pone un limite al minimo raggiungibile per $ B_1 $.
+
+Questo metodo si applica al raffreddamento degli elettroni in un solido, e partendo da temperature $ \sim 1 \kelvin $ si arriva fino a $ \sim 1-10 \milli\kelvin $. Se il metodo è applicato al raffredamento di nuclei, che interagiscono più debolmente, si possono raggiungere anche temperature molto più basse: partendo da $ \sim 10 \milli\kelvin $ si arriva fino a $ \sim 10^{-6} \kelvin $.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Immagini/DemagnAdiabatica.png}
+	\vspace{-10pt}
+	\caption{}
+	\label{fig:demagnad}
+	\vspace{-10pt}
+\end{figure}
+
 \subsubsection{Gas di Fermi}
 
-\subsection{Effetto termoionico}
+Per calcolare la magnetizzazione nel caso di un gas di fermioni si può applicare il ragionamento semplicistico degli elettroni al livello di Fermi, affermando che in presenza di un campo magnetico debole (rispetto alla scala dell'energia di Fermi $ \mu B \ll \varepsilon_F $) gli unici elettroni in grado di cambiare stato siano quelli vicino a tale livello.
 
-\subsection{Effetto fotoelettrico}
+Si applica quindi il risultato classico a quesi elettroni ottenendo:
+\[ M = \left(N \frac{\mu^2 B}{\kt}\right) \frac{\kt}{\mu_{0,F}} = N \frac{\mu^2}{\mu_{0,F}} B\]
+con $ \mu_{0,F} $ il potenziale chimico dei fermioni a temperatura nulla. 
+
+Da questa espressione risulta quindi che la suscettività magnetica $ \chi = M/B $di un metallo è indipendente dalla temperatura e più piccola di un fattore $ \kt/\mu_{0,F} $ rispetto al caso classico. Ambedue risultati in accordo con le osservazioni sperimentali.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{Immagini/FermiMagnSusc.png}
+\vspace{-10pt}
+\caption{}
+\label{fig:fermimagnsusc}
+\vspace{-10pt}
+\end{figure}
+
+Si può ottenere un risultato più accurato considerando separatamente le occupazioni degli stati con le due possibili orientazioni di spin (e quindi momento magnetico).
+A $ T=0, B=0 $ lo spin agisce solo come un'ulteriore degenerazione, e gli stati sono simmetricamente pieni rispetto all'orientazione, mentre se il campo magnetico è $ B\ne 0 $ l'effetto è quello di sommare un energia $ \mu B $ a tutti gli stati in una configurazione, e sottrarla nell'altra. Quant descritto è mostrato in \cref{fig:fermimagnsusc} (la quantità $ g(u) $ indicata in figura è la densità di stati, che solitamente è stata indicata con $ \rho(\varepsilon) $ in queste dispense).
+
+A bassa temperatura i fermioni riempiono prima i livelli a più bassa energia, per cui la magnetizzazione si potrebbe determinare integrando il numero di elettroni paralleli (quelli che si trovano a energia più bassa dopo l'accensione del campo) in più rispetto a quelli antiparalleli, e moltiplicando per il momento magnetico.
+Supponendo che al livello raggiunto dagli elettroni, cioé l'energia di Fermi $ \mu_F $, la funzione $ \rho(\varepsilon) $ sia approssimativamente costante per variazioni dell'ordine di $ \mu B $, si può stimare l'integrale con un rettangolo, la cui base è $ 2 \mu B $ e l'altezza è pari alla densità di stati $ \rho(\varepsilon)/2 $\footnote{Il fattore $ 1/2 $ compare perché nella densità complessiva è contata anche la doppia degenerazione di spin, mentre qui si sta considerando solo uno stato di spin.}:
+\[ \Delta N = 2 \mu B \frac{1}{2} \rho(\mu_F) = \frac{3N}{2} \frac{\mu B}{\mu_F}\]
+per cui la magnetizzazione risulta:
+\[ M = \mu \Delta N = \frac{3N}{2} \frac{\mu^2 B}{\mu_F} \]
+e la suscettività:
+\[ \chi = \frac{M}{B} = \frac{3N}{2} \frac{\mu^2}{\mu_F} \]
+
+\subsection{Emissione di elettroni da un metallo}
+
+Per studiare l'emissione degli elettroni da parte di un metallo, sia per eccitazione termica che sotto l'effetto di uno stimolo esterno, si considera che essi all'interno del metallo siano in una buca di potenziale, e si trovino a energia $ - W $, mentre per un elettrone sulla superficie del metallo l'energia potenziale è nulla.
+
+Gli elettroni quindi per fuggire dal metallo devono superare una barriera di potenziale alta $ W $, e quindi devono avere un energia cinetica maggiore o uguale associata alla velocità \textit{perpendicolare} alla superficie.
+
+Questa condizione è necessaria, ma non sufficiente, perché non è trascurabile il coefficiente di riflessione dell'interfaccia, per cui i risultati trovati coincideranno con i risultati sperimentali a meno di un fattore $ (1 - r) $, con $ r $ il \textit{coefficiente di riflessione} della superficie.
+
+\subsubsection{Effetto termoionico}
+
+Si consideri la superficie d'interfaccia perpendicolare all'asse $ z $. Si ha allora che il \textit{rate} di emissione per unità di superficie, cioè il numero di elettroni emessi per unità di tempo e di superficie, è:
+\[ R = \int_{p_z = (2mW)^{1/2}}^{\infty}\int_{p_x = -\infty}^{\infty} \int_{p_y = -\infty}^{\infty} \frac{2p_z \dd p_x \dd p_y \dd p_z}{m p_z}\frac{1}{e^{\varepsilon - \mu / \kt} + 1} \]
+ed esprimendo $ p_x $ e $ p_y $ attraverso coordinate polari $ (p', \varphi) $ si ottiene:
+\begin{align*}
+R &= \frac{2}{\hplanck^3}\int_{p_z = (2mW)^{1/2}}^{\infty} \frac{p_z}{m} \dd p_z \int_{p' = 0}^{\infty} \frac{2\pi p' \dd p'}{\exp[(p'^2/2m) + (p_z^2/2m) - \mu / \kt] + 1} =\\
+&= \frac{4\pi \kt}{\hplanck^3} \int_{p_z = (2mW)^{1/2}}^{\infty} p_z \dd p_z \log[1 + \exp((\mu - p_z^2/2m)/\kt)]=\\
+&= \frac{4\pi m \kt}{\hplanck^3} \int_{\varepsilon_z = W}^{\infty} \dd \varepsilon_z \log[1 + e^{(\mu - \varepsilon_z)/\kt}]
+\end{align*}
+Risulta inoltre, a tutte le temperature d'interesse, che $ \varepsilon_z \gg \kt + \mu $, per cui si può approssimare il logaritmo al prim'ordine:
+\[ R = \frac{4\pi m \kt}{\hplanck^3} \int_{\varepsilon_z = W}^{\infty} \dd \varepsilon_z e^{(\mu - \varepsilon_z)/\kt} = \frac{4\pi m (\kt)^2}{\hplanck^3} e^{(\mu - W)/\kt} \]
+per cui la corrente termoionica è:
+\[ J = e R =  \frac{4\pi m e k_B^2}{\hplanck^3} T^2 e^{(\mu - W)/\kt} \]
+
+L'unica cosa ancora incognita è il potenziale chimico $ \mu $, o, più direttamente, la fugacità $ z = e^{\mu/\kt} $. Questa è determinata dalla statistica, perciò:
+\begin{itemize}
+	\item per particelle classiche la fugacità è data da (vedi \cref{sec:idgas}):
+	\[ z = e^{\mu/\kt} = \frac{n \Lambda^3}{g} = \frac{n \hplanck^3}{2(2\pi m \kt)^{3/2}} \]
+	dove $ \Lambda $ è la lunghezza d'onda termica di De Broglie e $ g $ e un peso che deriva dalla struttura interna (ad esempio lo spin)\footnote{Il peso $ g $ deriva dalla degenerazione di spin presente nella densità di stati $ \rho(\varepsilon) $, anche se nella formula in \cref{sec:idgas} è assente perché si ignoravano i gradi di libertà di spin.}, pari a $ 2 $ in questo caso. La corrente è quindi:
+	\[  J_{\text{class}} = ne \left(\frac{k_B}{2\pi m}\right)^{1/2} T^{1/2} e^{-\phi/\kt} \quad (\phi = W)\]
+	\item mentre 
+	per il gas di Fermi altamente degenere si ha $ \mu \simeq \mu_0 = \varepsilon_F $, e si ottiene per la corrente:
+	\[  J_{F.D.} =  \frac{4\pi m e k_B^2}{\hplanck^3} T^2 e^{-\phi/\kt} \quad (\phi = W - \varepsilon_F)\]
+\end{itemize}
+
+\subsubsection{Effetto fotoelettrico}
+
+Il problema è simile al precedente effetto termoionico, ma la differenza sostanziale è il contributo energetico di un agente esterno: i fotoni.
+
+Si cerca la corrente prodotta da quegli elettroni che vengono emessi dal metallo in seguito all'assorbimento di un fotone. La condizione che essi devono soddisfare è:
+\[ (p_z^2 / 2m) + h \nu > W \] dove $ \nu $ è la frequenza della radiazione incidente.
+
+Procedendo come nel caso precedente si trova:
+\[ R = \frac{4\pi m \kt}{\hplanck^3} \int_{\varepsilon_z = W - h\nu}^{\infty} \dd \varepsilon_z \log[1 + e^{(\mu - \varepsilon_z)/\kt}]  \]
+
+In generale non è più possibile in questo caso approssimare il logartimo come nella sezione predente. Si opera quindi un cambiamento di variabile, introducendo $ x $.
+\begin{align*}
+x &= (\varepsilon_z - W + h\nu)/\kt\\
+R &= frac{4\pi m (\kt)^2}{\hplanck^3} \int_{0}^{\infty} \dd x \log[1 + \exp(\frac{h(\nu - \nu{_0})}{\kt} - x)]\\
+&\text{con} \qquad h\nu_0 = W -\mu \simeq W - \varepsilon_F = \phi
+\end{align*}
+la quantità $ \phi $ è quella definita nell'ambito dell'effetto termoionico, mentre $ \nu_0 $ è la \textit{frequenza di soglia} per l'effetto fotoelettrico, quella in risonanza col gap di energia fra gli elettroni nel metallo e quelli sulla superficie.
+
+La densità di corrente di emissione fotoelettrica è quindi:
+\begin{align*}
+J &= \frac{4\pi m e k_B^2}{\hplanck^3} T^2 \int_{0}^{\infty} \dd x \log( 1 + e^{\delta -x}) = \frac{4\pi m e k_B^2}{\hplanck^3} T^2 \int_{0}^{\infty} \frac{x \dd x}{e^{x-\delta}+1} \\
+&\text{con} \qquad h(\nu - \nu_0)/\kt
+\end{align*}
+dove la seconda uguaglianza nella prima equazione è ottenuta tramite integrazione per parti.
+
+Si possono studiare i casi di valori limite per le frequenze dei fotoni incidenti:
+\begin{itemize}
+	\item per $ h(\nu - \nu_0) \gg \kt $ si ha $ e^\delta \gg 1 $ e si può calcolare:
+		\[ \int_{0}^{\infty} \frac{x \dd x}{e^{x-\delta}+1} \simeq \delta^2/2 \]
+		per cui la corrente fotoelettrica diventa:
+		\[ J \simeq \frac{me}{\hbar} (\nu - \nu_0)^2\]
+		
+		Si ha quindi che se l'energia dei fotoni incidenti in eccesso supera di molto l'energia termica la temperatura diventa irrilevante nel processo di emissione.
+	\item per $ h(\nu_0 - \nu) \gg \kt $ si ha $ e^{-\delta} \gg 1 $ per cui l'$ 1 $ al denominatore diventa trascurabile:
+		\[ \int_{0}^{\infty} \frac{x \dd x}{e^{x-\delta}+1} \simeq e^\delta \int_{0}^{\infty} x e^{-x} \dd x = e^\delta\]
+		da cui si ottiene per la corrente:
+		\[ J = \frac{4\pi m e k_B^2}{\hplanck^3} T^2 e^{(h\nu - \phi)/\kt}\]
+		che è esattamente con l'effetto termoionico, e l'unica conseguenza dei fotoni incidenti è abbassare leggermente il livello della barriera.
+	\item per $ \nu = \nu_0 $ si ha $ \delta = 0 $ e si può calcolare:
+		\[ \int_{0}^{\infty} \frac{x \dd x}{e^{x}+1} = \frac{\pi^2}{12} \]
+		per cui si ottiene la corrente:
+		\[ J = \frac{m e k_B^2}{24 \hbar^3} T^2 \]
+\end{itemize}
+
+Il fatto che si ottenga una fotocorrente finita anche per fotoni al di sotto della soglia imposta dalla barriera di potenziale è del tutto naturale: quella fotocorrente è generata dagli elettroni della coda termica della distribuzione, per cui i fotoni incidenti vanno a colmare il gap fra quella energia e quella necessaria per la fuga.
+Essendo però elettroni appartenenti alle code la fotocorrente sarà esponenzialmente smorzata per barriere sempre più alte, poiché è il numero di elettroni della coda che è esponenzialmente smorzato.
+
+Quest'ultima osservazione non è altro che un modo per reinterpretare il risultato ottenuto al secondo punto \footnote{Abbassare la barriera e poi considerare l'effetto termoionico o considerare direttamente gli elettroni ad alta energia termica e farci incidere i fotoni è la stessa cosa}.
+
 
 \section{Bibliografia}
 
 Il contenuto di questo capitolo è quasi interamente ispirato al secondo capitolo di \textit{D.L. Goodstein - States of Matter}. La struttura è esattamente la stessa, sono state omesse alcune parti riguardo alle proprietà termodinamiche del gas ideale già studiate nel \cref{chap:termstat} e alcuni argomenti relativi ai condensati non trattati a lezione, ma comunque abbondantemente citati qui per completezza.
 
 La sezione sugli elettroni contiene un certo numero di argomenti tratti da \textit{E. Arimondo - Lezioni di Struttura della Materia}, cioè le dispense del corso tenuto dal prof. Arimondo all'università di Pisa, lo stesso corso cui si riferiscono queste dispense, e due argomenti (effetto termoionico e fotoelettrico) tratti da \textit{R. K. Pathria, P. D. Beale - Statistical Mechanics}.
+
+Seguire più libri porta qualche incongruenza nella notazione. Le variabili usate sono di volta in volta specificate, per cui non c'è ambiguità sul loro significato, però non è garantito che fra sezioni diverse la notazione rimanga la stessa. Spesso è stato preferito riportare direttamente la notazione dei libri usati per limitare gli errori di battitura (se qualcuno volesse normalizzare la notazione è il benvenuto, per cui prenda il \code{tex} e corregga, e se vuole invii una copia corretta all'autore, all'indirizzo: \href{mailto:candido.ale@gmail.com}{candido.ale@gmail.com}).

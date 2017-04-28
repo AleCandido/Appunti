@@ -399,7 +399,7 @@ Non ci sono limiti all'occupazione di un dato stato per i fononi, quindi essi se
 \end{equation*}
 per cui i fotoni si comportano come il \textit{vapore di Bose}, cioè la parte non condensata di un gas totalmente degenere, da cui il numero di occupazione è:
 \begin{equation*}
-\bar{n} = \frac{1}{\exp(\varepsilon/\kt)}
+\bar{n} = \frac{1}{\exp(\varepsilon/\kt) - 1}
 \end{equation*}
 
 Si possono quindi usare le formule del gas perfetto per trovare le proprietà termodinamiche. Si esprime innanzi tutto la densità di stati in funzione della temperatura di Debye piuttosto che della velocità del suono:
@@ -425,3 +425,79 @@ mentre nel limite opposto  $ T \gg \Theta_D $ il denominatore dell'integrando pu
 E_{th} = 3 N \kt
 \end{equation*}
 che verifica la coerenza con quanto imposto.
+
+\subsubsection{Fotoni}
+
+Le stesse considerazioni applicate al caso dei fononi possono essere applicate al caso dei \textit{fotoni}, applicando la sostituzione:
+\begin{equation*}
+\frac{3}{\tilde{c}^3} \rightarrow \frac{2}{c^3}
+\end{equation*}
+dove $ c $ è la velocità della luce. Questa sostituzione è necessaria perché cambia il \textit{"mezzo di propagazione"} (in particolare nel caso dei fotoni manca del tutto) e le polarizzazioni possibili: i fotoni possono essere polarizzati solo trasversalmente.
+
+\paragraph{Potenziale chimico} Nel caso dei fotoni è più intuitivo il significato del potenziale chimico nullo: se consideriamo come sistema un gas di fotoni, allora un qualche \textit{corpo nero} è in grado di assorbire i fotoni che riceve a qualunque frequenze, e riemetterne altri a frequenze diverse da quelli ricevuti, e quindi anche in numero diverso. Per cui l'energia, o l'energia libera, non hanno una relazione diretta con il numero di particelle, per cui si può aumentare o diminuire il numero di particelle senza indurre variazioni nei potenziali termodinamici, da cui la condizione per $ \mu $.
+
+\paragraph{Legge di dispersione} I risultati ottenuti nel caso dei fotoni erano validi a bassa temperatura, perché la legge di dispersione trovata è valida solo nel regime di onde lunghe. Per i fotoni invece la legge di dispersione è esatta, essa deriva dall'elettrodinamica covariante.
+\newline
+
+Si danno dunque le seguenti definizioni:
+
+\begin{defn}[Emissività]
+	L'\textit{emissività} $ e_\nu $ è l'energia emessa per unità di superficie emessa in un intervallo di frequenza $ \nu $ e $ \nu + \dd \nu $.
+\end{defn}
+
+\begin{defn}[Assorbività]
+	L'\textit{assorbività} $ a_\nu $ è la frazione di energia incidente assorbita per unità di superficie in un intervallo di frequenza $ \nu $ e $ \nu + \dd \nu $.
+\end{defn}
+
+Per qualunque corpo si ha che $ a_\nu \leq 1 $, mentre:
+
+\begin{defn}[Corpo nero]
+	Un \textit{corpo nero} è un corpo la cui assorbività è massima, cioè $ a_\nu = 1~ \forall \nu $
+\end{defn}
+
+Si può dimostrare, applicando il secondo principio, che il rapporto fra emissività e assorbività è una funzione della sola temperatura, indipendente dal tipo di corpo.
+Per cui l'emissività di qualunque corpo è minore di quella di corpo nero, inoltre la determinazione di quest'ultima fissa il rapporto dell'emissività di ogni corpo con la propria assorbività, dato che quella di corpo nero è nota.
+
+Applicando la sostituzione scritta all'inizio di questa sezione alle formule dei fononi si ottengono:
+\begin{align*}
+u &= \frac{8 \pi^5 k_B^4}{15 \hplanck^3 c^3} T^4\\
+c_V &= \derivative{u}{T} = \frac{32 \pi^5 k_B^4}{15 \hplanck^3 c^3} T^4
+\end{align*}
+
+Si nota esplicitamente che si può ottenere la densità di energia per unità di frequenza nel seguente modo\footnote{Si scrive tutto in funzione di $ \omega $ anziché di $ \nu $, in modo da rendere più immediato il confronto con le formule precedenti.}:
+\begin{equation*}
+u_\omega (\omega, T) = \hbar \omega  \frac{\rho(\omega)}{V} \bar{n}(\omega) = \hbar \omega  \frac{8\pi}{(2\pi c)^3}\omega^2 \frac{1}{\exp(\hbar\omega/\kt) - 1}
+\end{equation*}
+che prende il nome di \textit{distribuzione di Planck}.
+
+\begin{wrapfigure}{R}{0.4\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.4\textwidth]{Immagini/CorpoNero.png}
+	\caption{}
+	\label{fig:corponero}
+	\vspace{-10pt}
+\end{wrapfigure}
+
+Si noti che la distribuzione di Planck in funzione della lunghezza d'onda prenderebbe invece la forma:
+\begin{equation*}
+u_\omega (\omega, T) = \frac{8\pi h c}{\lambda^5} \frac{1}{\exp(hc/\lambda\kt) - 1}
+\end{equation*}
+essa ha un massimo per:
+\begin{equation*}
+\lambda_m T \simeq \frac{h c}{k_B} \frac{1}{4.965} \simeq \unit{2897}{\micro\meter  ~\kelvin}
+\end{equation*}
+Questa relazione è nota come \textit{legge di spostamento di Wien}.
+\newline
+
+In realtà ciò che si misura sperimentalmente è la quantità di energia emessa per unità di area e per unità di tempo da una cavità al cui interno si trova la radiazione di corpo nero, cioè l'emissività del corpo nero $ e_\nu (\nu,T) $.
+
+Se $ c\cos \theta $ è il volume occupato dai fotoni che escono sotto l'angolo $ \theta $ nell'unità di tempo da una superficie unitaria (vedi \cref{fig:corponero}), l'emissività è:
+\begin{equation*}
+e_\nu (\nu,T) = u_\nu \int c \cos \theta \frac{\dd \Omega}{4\pi} = u_\nu \frac{c}{4}
+\end{equation*}
+e l'energia totale emessa per unità di tempo:
+\begin{equation*}
+e_\nu (\nu,T) = \int_{0}^{\infty} u_\nu \frac{c}{4} = \frac{2 \pi^5 k_B^4}{15h^3c^2}T^4 = \sigma T^4
+\end{equation*}
+ed è nota come \textit{legge di Stefan}, mentre $ \sigma $ è la \textit{costante di Stefan-Boltzmann}.
