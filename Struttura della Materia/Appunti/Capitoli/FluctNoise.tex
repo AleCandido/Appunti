@@ -332,12 +332,12 @@ per cui in un intervallo di frequenza $ \Delta \nu $ ci saranno $ 2l \Delta \nu 
 Secondo la statistica di Bose ad ogni modo è associata un'energia:
 \[ h\nu \bar{n} = h \nu \frac{1}{\exp[\frac{h\nu}{\kt}] - 1} \]
 e nel limite classico $ h\nu \ll \kt $ l'energia diventa proprio $ \kt $. L'energia associata alla linea quindi risulta:
-\[ h\nu \bar{n} \frac{2l}{c'} \Delta f \simeq \kt \frac{2l}{c'} \Delta f \]
+\[ h\nu \bar{n} \frac{2l}{c'} \Delta\nu \simeq \kt \frac{2l}{c'} \Delta\nu \]
 e l'energia che si propaga per ogni direzione è la metà.
 
 Questa energia viene portata alla resistenza in un tempo $ l/c' $, per cui la potenza per unità di tempo dissipata a carico della resistenza è:
-\[ P_{\Delta f} = \kt \Delta f \]
-Poiché si è all'equilibrio anche il carico $ R $ emette energia allo stesso ritmo, per cui la resistenza stessa genera alla temperatura $ T $ una potenza $ P_{\Delta f} $.
+\[ P_{\Delta\nu} = \kt \Delta\nu \]
+Poiché si è all'equilibrio anche il carico $ R $ emette energia allo stesso ritmo, per cui la resistenza stessa genera alla temperatura $ T $ una potenza $ P_{\Delta\nu} $.
 
 \begin{figure}[t]
 	\centering
@@ -350,33 +350,33 @@ Poiché si è all'equilibrio anche il carico $ R $ emette energia allo stesso ri
 
 Il sistema può essere schematizzato sostituendo la linea di trasmissione con un generatore di rumore e un filtro per la banda di frequenza d'interesse, come mostrato in \cref{fig:nyqgen}.
 
-Nella resistenza di carico scorre quindi una corrente $ I_{\Delta f} $ tale che la potenza sia quella prodotta dalla linea, cioè:
-\[ I_{\Delta f}^2 R = \kt \Delta f \]
-allora il generatore di rumore è un generatore di tensione $ V_{\Delta f} $ con:
-\[ V_{\Delta f} = 2 R I_{\Delta f} \]
+Nella resistenza di carico scorre quindi una corrente $ I_{\Delta\nu} $ tale che la potenza sia quella prodotta dalla linea, cioè:
+\[ I_{\Delta\nu}^2 R = \kt \Delta\nu \]
+allora il generatore di rumore è un generatore di tensione $ V_{\Delta\nu} $ con:
+\[ V_{\Delta\nu} = 2 R I_{\Delta\nu} \]
 % non capisco perché il 2
 e quindi:
-\[ V_{\Delta f}^2 = 4 R \kt \Delta f \]
+\[ V_{\Delta\nu}^2 = 4 R \kt \Delta\nu \]
 che è esattamente la tesi del teorema di Nyquist.
 
 \paragraph{Generalizzazione ad impedenze complesse} Il teorema può essere generalizzato per impedenze complesse, semplicemente considerando un circuito costituito da tre elementi in serie: una resistenza $ R $, un'impedenza complessa $ Z = X + i Y $ e un filtro, che selezioni la banda d'interesse.
 
-Sia $ \overline{V_{\Delta f}^2(R)} $ il quadrato della tensione di rumore prodotta da $ R $ in una banda di frequenza $ \Delta f $. La potenza dissipata in $ Z $ sarà:
-\[ P_Z = \overline{\Re\{IZ\} \Re\{I\}} = \frac{1}{2} \Re\{(IZ) I^\ast\} = \frac{1}{2} ((IZ) I^\ast + (IZ)^\ast I) = \frac{1}{2}\abs{I}^2 (Z + Z^\ast) = \frac{\overline{V_{\Delta f}^2(R)}}{(R+X)^2 + Y^2}X\]
+Sia $ \overline{V_{\Delta\nu}^2(R)} $ il quadrato della tensione di rumore prodotta da $ R $ in una banda di frequenza $ \Delta\nu $. La potenza dissipata in $ Z $ sarà:
+\[ P_Z = \overline{\Re\{IZ\} \Re\{I\}} = \frac{1}{2} \Re\{(IZ) I^\ast\} = \frac{1}{2} ((IZ) I^\ast + (IZ)^\ast I) = \frac{1}{2}\abs{I}^2 (Z + Z^\ast) = \frac{\overline{V_{\Delta\nu}^2(R)}}{(R+X)^2 + Y^2}X\]
 dove si è usato che:
-\[ I = \frac{\overline{V_{\Delta f}^2(R)}}{R + X +iY} \]
+\[ I = \frac{\overline{V_{\Delta\nu}^2(R)}}{R + X +iY} \]
 
-Viceversa associando una tensione $ V_{\Delta f}(Z) $ di rumore all'impedenza $ Z $ si scrive la potenza dissipata in $ R $ come:
-\[  P_R = \frac{\overline{V_{\Delta f}^2(Z)}}{(R+X)^2 + Y^2}R \]
+Viceversa associando una tensione $ V_{\Delta\nu}(Z) $ di rumore all'impedenza $ Z $ si scrive la potenza dissipata in $ R $ come:
+\[  P_R = \frac{\overline{V_{\Delta\nu}^2(Z)}}{(R+X)^2 + Y^2}R \]
 
 Essendo all'equilibrio le due potenza scritte sopra devono essere uguali, per cui:
-\[ \overline{V_{\Delta f}^2(Z)} R = \overline{V_{\Delta f}^2(R)} X \]
-da cui si ricava facilmente il valore per $ \overline{V_{\Delta f}^2(Z)} $:
-\[ V_{\Delta f}^2(Z) = 4 X \kt \Delta f\]
+\[ \overline{V_{\Delta\nu}^2(Z)} R = \overline{V_{\Delta\nu}^2(R)} X \]
+da cui si ricava facilmente il valore per $ \overline{V_{\Delta\nu}^2(Z)} $:
+\[ V_{\Delta\nu}^2(Z) = 4 X \kt \Delta\nu\]
 
 \begin{es}
 	Per una temperatura pari a $ 293 \kelvin $, una banda di frequenza $ 1 \hertz $ e una resistenza di carico di $ 1 \mega\ohm $ si ottiene:
-	\[ \sqrt{V_{\Delta f = 1}^2} = 0.127 \micro\volt \]
+	\[ \sqrt{V_{\Delta\nu = 1}^2} = 0.127 \micro\volt \]
 \end{es}
 
 \subsection{Teorema di Wiener-Khintchine}
