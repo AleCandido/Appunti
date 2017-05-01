@@ -294,6 +294,7 @@ Si osserverà quindi una forte correlazione per ritardi $ \tau < \tau_c $, mentr
 \section{Rumore}
 
 \subsection{Teorema di Nyquist}
+\label{sec:nyquistth}
 
 Nel $ 1927 $ Johnson ha osservato che ai capi di un elemento generico di un circuito elettrico (tipicamente il più semplice: una resistenza) sono presenti della fluttuazioni nel segnale dovute alla temperatura finita del componente. Tali fluttuazioni sono perciò definite \textit{rumore termico} o \textit{Johnson}.
 La spiegazione fu immediatamente fornita Nyquist, da cui il risultato teorico noto come \textit{teorema di Nyquist}.
@@ -380,7 +381,203 @@ da cui si ricava facilmente il valore per $ \overline{V_{\Delta\nu}^2(Z)} $:
 \end{es}
 
 \subsection{Teorema di Wiener-Khintchine}
+\label{sec:fluctdiss}
+
+\subsubsection{Serie di Fourier}
+
+Si supponga di avere una variabile fluttuante $ V(t) $, osservata per un intervallo temporale $ T $ (da $ -T/2 $ a $ T/2 $). Si introduce quindi un ensemble, che in questo caso corrisponde a una molteplicità di osservazioni di durata $ T $, distribuite secondo la probabilità legata alla variabile scelta.
+
+Il generico elemento dell'ensemble sarà quindi:
+\[ V(t) = \sum_{n=1}^{\infty} a_n \cos(2\pi \nu_n t) + b_n \sin(2\pi\nu_n t)\]
+dove $ \nu_n = n/T $ e, poiché la media temporale è supposta nulla non è stato incluso il termine in $ n = 0 $, in accordo con l'ipotesi ergodica (sarà nullo per tutti gli elementi dell'ensemble). Si introducono quindi le medie sull'ensemble delle componenti spettrali, esse saranno indicate con $ \expval(a_n) $ e $ \expval(b_n) $.
+
+Se per $ V(t) $ si considera una tensione fluttuante ai capi di una resistenza $ R $ la potenza elettrico dissipata per effetto Joule è $ V^2(t)/R $. La $ n $-esima componente di Fourier si ottiene come una media sul tempo:
+\[ P_n = \overline{F_n} \]
+dove:
+\[ F_n = \frac{(a_n \cos(2\pi \nu_n t) + b_n \sin(2\pi\nu_n t))^2}{R} \]
+e non ci sono termini misti fra le varie frequenze perché le oscillazioni sono sfasate e mediano quindi a $ 0 $, e in tal modo si annulla anche la media del doppio prodotto nell'espressione precedente. Si ha dunque:
+\[ P_n = \frac{a_n^2 + b_n^2}{R} \]
+e introducendo una media sull'ensemble:
+\[ \expval{P_n} = \frac{\expval{a_n^2 }+ \expval{b_n^2}}{2R} \]
+
+Si ottiene quindi per la potenza totale dissipata:
+\[ \frac{\expval{V^2(t)}}{R} = \sum_n \expval{P_n} =\frac{1}{R} \sum_n \frac{\expval{a_n^2 }+ \expval{b_n^2}}{2}\]
+
+Si può quindi definire $ G(\nu_n) \Delta \nu $ la potenza spettrale mediata sull'intervallo di frequenze fra $ (n-1)/2T $ e $ (n+1)/2T $, e scrivere quindi:
+\[ \frac{\expval{V^2(t)}}{R} = \sum_n G(\nu_n) \Delta \nu \qquad \qquad \text{con} \quad G(\nu_n) \Delta \nu = \frac{\expval{a_n^2 }+ \expval{b_n^2}}{2R} \]
+
+\subsubsection{Trasformata di Fourier}
+
+Dopo aver esaminato lo sviluppo in serie di Fourier si può passare ad una trattazione più generale facendo uso della trasformata di Fourier.
+
+Sia ora la variabile stocastica $ x(t) $, che può essere scritta:
+\[ x(t) = \int_{-\infty}^{\infty} \tilde{x}(\nu) e ^{i 2\pi \nu t} \dd \nu \]
+dove la variabile $ x(t) $ è supposta nulla al di fuori dell'intervallo $ (-T/2, T/2) $\footnote{A questo livello questa non è altro che una restrizione della classe di funzioni considerate, ma non ha nessun effeto sull'espressione in trasformata. Non è possibile scrivere una funzione del genere in serie di Fourier, infatti essa non è periodica, perché anche se è definita banalmente al di fuori dell'intervallo d'interesse il dominio della funzione è l'intera retta reale.}.
+
+\subparagraph{Modulo della trasformata}	Se $ x(t) $ deve essere una funzione reale allora si ha $ \tilde{x}(-\nu) = \tilde{x}^\ast(\nu) $, come noto dalla teoria generale delle trasformate, e moltiplicando questa uguaglianza per quella corrispondente con $ \nu \rightarrow - \nu $ si ottiene che il modulo $ \abs{\tilde{x}(\nu)}^2 $ è una funzione pari della frequenza.
+\newline
+
+Si applica quindi il \textit{teorema di Parseval}, noto dalla teoria generale, per le funzioni $ \mathbb{L}^2 $.
+\[ \int_{-T/2}^{T/2} x^2(t) \dd t = \int_{-\infty}^{\infty} \abs{x}^2(t) \dd t = \int_{-\infty}^{\infty} \abs{\tilde{x}}^2(\nu) \dd \nu = 2 \int_{0}^{\infty} \abs{\tilde{x}}^2(\nu) \dd \nu \]
+dove si è usata la restrizione su $ x(t) $ nella prima uguaglianza, il teorema di Parseval nella seconda e la partià del modulo nella terza. Dalla precedente espressione si ottiene:
+\[ \overline{x^2} = \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-T/2}^{T/2} x^2(t) \dd t = \lim\limits_{T \rightarrow \infty} \frac{2}{T} \int_{0}^{\infty} \abs{\tilde{x}}^2(\nu) \dd \nu \]
+
+Ricordando che un processo stocastico è definito da un ensemble, si effetua la media sugli elementi di questo:
+\[ \expval{\overline{x^2}} = \lim\limits_{T \rightarrow \infty} \frac{2}{T} \int_{0}^{\infty} \expval{\abs{\tilde{x}}^2(\nu)} \dd \nu = \int_{0}^{\infty} \lim\limits_{T \rightarrow \infty} \frac{2}{T} \expval{\abs{\tilde{x}}^2(\nu)} \dd \nu  = \int_{0}^\infty G(\nu) \dd \nu \]
+dove nell'ultimo passaggio è stata definita la \textit{densità spettrale mediata sul tempo e sull'ensemble}, $ G(\nu) $\footnote{E nel penultimo è stato applicato il noto \textit{teorema fisico}, descritto in \cref{note:physth} nella \cref{sec:fermigas}.}.
+
+Dopo aver introdotto la densità spettrale per caratterizzare una variabile stocastica, si può esamnare un'alra quantità che da informazioni dirette sull'andamento temporale delle fluttuazioni, cioè la \textit{correlazione mediata sul tempo e sull'ensemble}, $ C(\tau) $.\vspace*{-10pt}
+\[ C(\tau) = \expval{\overline{x(t)x(t+\tau)}} = \expval{\lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-T/2}^{T/2} x(t)x(t+\tau) \dd t} \]
+
+\hrule
+\subparagraph{Manipolazioni algebriche} Si studia quindi l'espressione algebrica della correlazione.
+\begin{align*}
+&\lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-T/2}^{T/2} x(t)x(t+\tau) \dd \tau = \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-T/2}^{T/2} \dd t \int_{-\infty}^{\infty} \tilde{x}(\nu) e^{i 2\pi \nu t} \dd \nu \int_{-\infty}^{\infty} \tilde{x}(\nu') e^{i 2\pi \nu' (t + \tau)} \dd \nu'  =\\
+&\qquad = \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-\infty}^{\infty} \tilde{x}(\nu) \dd \nu \int_{-\infty}^{\infty} \tilde{x}(\nu') e^{i 2\pi \nu' \tau} \dd \nu' \int_{-T/2}^{T/2} e ^{i 2\pi (\nu + \nu') t}  \dd t  =\\
+&\qquad = \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-\infty}^{\infty} \tilde{x}(\nu) \dd \nu \int_{-\infty}^{\infty} \tilde{x}(\nu') e^{i 2\pi \nu' \tau} \dd \nu' \delta_T(\nu + \nu')
+\end{align*}
+dove nella prima uguaglianza è stata usata la definizione della trasformata, nella seconda si è commutato gli integrali sulle frequenza con quello sui tempi\footnote{In sostanza è sempre il \textit{teorema fisico}, perché gli integrali prevedono un limite sugli estremi.} e nella terza si è introdotta la definizione di $ \delta_T(\nu + \nu') $:
+\[ \delta_T(\nu + \nu') = \frac{\sin(\pi T x)}{\pi x} \]
+Usando ora l'importante proprietà che $ \delta_T(\nu + \nu') ~\rightarrow_{T \rightarrow \infty}~ \delta(x) $ si ottiene:
+\[ \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-\infty}^{\infty} \tilde{x}(\nu) \tilde{x}(- \nu) e^{- i 2\pi \nu \tau} \dd \nu \]
+e sfruttando la relazione trovata sopra che lega componenti a frequenza positiva e negativa per trasformate di funzioni reali si ottiene:
+\begin{align*}
+&\lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-\infty}^{\infty} \tilde{x}(\nu) \tilde{x}^\ast(\nu) e^{- i 2\pi \nu \tau} \dd \nu = \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-\infty}^{\infty} \abs{\tilde{x}(\nu)}^2 e^{- i 2\pi \nu \tau} \dd \nu =\\
+&=  \lim\limits_{T \rightarrow \infty} \frac{1}{T} \int_{-\infty}^{\infty} \abs{\tilde{x}(\nu)}^2 [\cos( 2\pi \nu  \tau) - \sin( 2\pi \nu \tau)] \dd \nu 
+= \lim\limits_{T \rightarrow \infty} \frac{2}{T} \int_{0}^{\infty} \abs{\tilde{x}(\nu)}^2 [\cos( 2\pi \nu \tau)] \dd \nu  
+\end{align*}
+\hrule\vspace*{12pt}
+
+Nell'espressione ottenuta dalle manipolazione eseguite si introduce infine la media sull'ensemble:
+\begin{align*}
+C(\tau) &= \expval{\lim\limits_{T \rightarrow \infty} \frac{2}{T} \int_{0}^{\infty} \abs{\tilde{x}(\nu)}^2 [\cos( 2\pi \nu \tau)] \dd \nu  } =\\
+&= \int_{0}^{\infty}  \expval{\frac{2}{T} \lim\limits_{T \rightarrow \infty} \abs{\tilde{x}(\nu)}^2} [\cos( 2\pi \nu \tau)] \dd \nu = \int_{0}^{\infty}  G(\nu) [\cos( 2\pi \nu \tau)] \dd \nu
+\end{align*}
+
+Si è quindi dimostrato che la funzione di correlazione è la coseno trasformata di Fourier della densità spettrale. Questa relazione e la sua inversa costituiscono il teorema in oggetto.
+
+\begin{thm}[Teorema di Wiener-Khintchine]
+	Data la densità spettrale $ G(\nu) $ e la funzione di correlazione temporale $ C(\tau) $, entrambe mediate sui tempi e sull'ensemble, esse sono direttamente legate da una coseno trasformata, come espresso nelle seguenti relazioni:
+	\begin{align*}
+		C(\tau) &= \int_{0}^{\infty} G(\nu) [\cos( 2\pi \nu \tau)] \dd \nu\\
+		G(\nu) &= 4 \int_{0}^{\infty} C(\tau) [\cos( 2\pi \nu \tau)] \dd \tau
+	\end{align*}
+\end{thm}
+
+Questo teorema esprime in modo quantitativo l'osservazione intuitiva che un sistema co una risposta veloce, quindi con componenti ad alta frequenza, può rilassare rapidamente all'equilibrio in conseguenza di uno spostamento. Per questo è anche detto \textit{teorema di fluttuazione-dissipazione}, come sarà chiaro nella prossima sezione.
+
+\begin{es}
+	\label{es:expcorr}
+	Si supponga un andamento esponenziale delle correlazioni, su una scala data da $ \tau_c $, tempo tipico di correlazione (è una misura del tempo medio in cui il sistema mantiene lo stato corrente, prima di perderlo e acquisirne uno nuovo casuale).
+	\[ C(\tau) = C(0) e^{-\tau/\tau_c} \]
+	Dal teorema di Wiener-Khintchine si può derivare la sua densità spettrale:
+	\[ G(\nu) = 4 \int_{0}^{\infty} C(0) e^{-\tau/\tau_c} [\cos( 2\pi \nu \tau)] \dd \tau = \frac{4 C(0) \tau_c}{1 + (2\pi \nu \tau_c)^2} \]
+	dove si è usata la relazione:
+	\[ \int_0^\infty e^{-ax} \cos mx \dd x = \frac{a}{a^2 + m^2} \]
+	
+	Lo spettro ottenuto per $ G(\nu) $ è bianco per frequenze molto più piccole della frequenza di taglio $ \nu_c = 1/2\pi\tau_c$, e smorzato dopo essa.
+\end{es}
 
 \subsection{Derivazione microscopica del Teorema di Nyquist}
 
+Utilizzando il teorema di Wiener-Khintchine dimostrato nella sezione precedente si può dare una dimostrazione del teorema di Nyquist basata sulle caratteristiche microscopiche della materia.
+
+Si mostrerà inizialmente la dimostrazione supponendo che gli elettroni obbediscano alla statistica di Maxwell-Boltzmann, come nel caso in cui fossero verificate le condizioni per il limite classico, e a partire da questo si dimostrerà che il teorema è ugualmente valido anche nel caso più generale in cui essi obbediscano alla statistica di Fermi-Dirac.
+
+\subsubsection{Statistica di Maxwell-Boltzmann}
+Si consideri un conduttore con $ n $ elettroni per unità di volume e di sezione $ S $, lunghezza $ l $, conducibilità $ \sigma $ e resistenza $ R $. Il numero totale degli elettroni sarà quindi $ N = S l n $. Gli elettroni collidono col reticolo con un tempo medio $ \tau_c $ fra collisioni successive.
+
+Come è stato mostrato nella \cref{sec:elecconduct} sotto l'applicazione di un campo elettrico $ E $ lungo la direzione $ \textbf{x} $ il cambiamento di velocità degli elettroni risulta essere:
+\[ \expval{\Delta v_x} = \frac{e E}{m} \tau_c \]
+d'ora in poi sarà omesso il segno di media.
+La densità di corrente elettrica è quindi:
+\[ J_x = e \Delta v_x n = e^2 n \frac{ \tau_c}{m} E = \sigma E\]
+e la resistenza:
+\[ R = \frac{l}{\sigma S} = \frac{lm}{n e^2 \tau_c S} \]
+per cui la legge di Ohm può essere scritta esplicitando le quantità trovate:
+\[ V = RI = R S J_x = R S n e \Delta v_x = \frac{R e}{l} \sum_{i=1}^{N} \Delta v_{x,i} = \frac{R e}{l} \sum_{i=1}^{N} v_{x,i} = \sum_{i=1}^{N} V_{i} \]
+dove, nella penultima uguaglianza, si sono considerate direttamente le velocità degli elettroni e non le loro variazioni, infatti il contributo in assenza di campo elettrico si annulla sommando su tutte le particelle. La velocità dell'elettrone $ i $-esimo, $ v_{x,i} $, e le grandezze $ V_i $ e $ V $ sono variabili aleatorie.
+
+Poiché le variabili $ v_{x,i} $ sono fra loro indipendenti, per cui le fluttuazioni della variabile al $ V $ in una banda di frequenza $ \Delta \nu $ possono essere scritte:
+\[ \overline{V_{\Delta \nu}^2} = \left(\frac{R e}{l}\right)^2 \sum_{i=1}^{N} \overline{v_{x,i,\Delta \nu}^2} = \left(\frac{R e}{l}\right)^2 \sum_{i=1}^{N} G_i(\nu) \Delta \nu\]
+
+Inoltre considerando che il tempo $ \tau_c $ descriva bene il tempo di rilassamento degli elettroni la  velocità $ v_{x,i} $ decadrà esponenzialmente con la distanza temporale $ \tau $ e si può quindi scrivere per la funzione di correlazione:
+\[ C_i(\tau) = \expval{\overline{v_{x,i}(t) v_{x,i}(t + \tau)}} = \expval{v_{x,i}^2} \exp(-\tau/\tau_c) \]
+e applicando il teorema di Wiener-Khintchine, come nell'\cref{es:expcorr}:
+\[ G_i(\nu) = \frac{4\expval{v_{x,i}^2}\tau_c}{1 + (2\pi \nu \tau_c)} \simeq 4\expval{v_{x,i}^2}\tau_c \]
+avendo utilizzato che nelle condizioni ordinarie $ \nu \tau_c \ll 1 $.
+Inoltre all'equilibrio si può applicare il teorema di equipartizione, per cui $ m4\expval{v_{x,i}^2}/2 = \kt/2 $ e si ottiene infine:
+\[ \overline{V_{\Delta \nu}^2} = \left(\frac{R e}{l}\right)^2 \sum_{i=1}^{N} 4\frac{\kt}{m}\tau_c \Delta \nu = n l S \frac{R e^2}{l^2} = \frac{lm}{ne^2 \tau_c S} 4\frac{\kt}{m}\tau_c \Delta \nu = 4 R \kt \Delta \nu \]
+cioè il teorema di Nyquist. Inoltre, grazie alla dimostrazione fatta, si è trovato che lo spettro del rumore è approssimativamente piatto fino alla frequenza di taglio $ \nu_c = 1/2\pi\tau_c $ (si veda l'\cref{es:expcorr}).
+
+\subsubsection{Statistica di Fermi-Dirac}
+
+Si dimostrerà che a causa del secondo principio il meccanismo che genera la conduzione non è importante per il teorema di Nyquist.
+
+Si consideri un circuito fatto da due resistenze, una che obbedisce alla statistica di Boltzmann $ R_{BM} $ e una che obbedisce alla statistica di Fermi $ R_{FD} $, analogo a quello descritto nella \cref{sec:nyquistth}.
+Come dimostrato in tale sezione la tensione di rumore $\overline{V_{MB,\Delta\nu}^2}$ sarà data dalla relazione appena trovata per la statistica di Maxwell-Boltzmann. La corrente prodotta nel circuito sarà:
+\[ \overline{I_{MB,\Delta\nu}^2} = \frac{\overline{V_{MB,\Delta\nu}^2}}{(R_{MB} + R_{FD})^2}\]
+e la potenza dissipata in $ R_{FD} $ sarà $ P_{FD,\Delta\nu} = R_{FD} \overline{I_{MB,\Delta\nu}^2}$.
+Supponendo che la resistenza $ R_{FD} $ generi a sua volta una tensione di rumore, $ \overline{V_{FD,\Delta\nu}^2} $ si ottiene che la potenza dissipata nella resistenza $ R_{MB} $ è:
+\[ P_{MB,\Delta\nu} = R_{MB} \overline{I_{FD,\Delta\nu}^2} = \frac{R_{MB} \overline{V_{FD,\Delta\nu}^2}}{(R_{MB} + R_{FD})^2}\]
+ma per il secondo principio nessuna delle due resistenze può essere scaldata a spese dell'altra, per cui le due potenze devono essere uguali, si ha dunque:
+\[ \frac{\overline{V_{FD,\Delta\nu}^2} }{R_{FD}} = \frac{\overline{V_{MB,\Delta\nu}^2} }{R_{MB}} =  4 \kt \Delta\nu\]
+per cui l'affermazione fatta sull'indipendenza dal meccanismo di conduzione è dimostrata (se anziché indicare tutto con $ FD $ si fosse indicato con $ X $ per un meccanismo generico sarebbe stato lo stesso: non si è mai usata alcuna proprietà della distribuzione di Fermi).
+
 \subsection{Shot noise}
+
+Il rumore termico è la sorgente principale in esperimente a bassa frequenza, ma un'altra sorgente importante è quella dovuta alla natura corpuscolare degli elettroni, per cui la corrente, per valori piccoli, appare come una funzione discontinua nel tempo, poiché è possibile distinguere il contributo dei singoli elettroni. Tale rumore è detto \textit{shot noise}.
+
+Sia $ n $ il numero di elettroni che raggiunge il rivelatore nel tempo $ T_m $, che caratterizza il tipo di misura con cui viene determinata la corrente, e $ I $ la corrente che scorre entro questo lasso di tempo.
+
+Se $ \expval{n} $ è la media di $ n $ sull'ensemble allora la corrente media è:
+\[ \expval{I} = \expval{n} \frac{e}{T_m} \]
+e anche la varianza di $ I $ sarà associata nello stesso modo a quella di $ n $.
+
+Si immagini di dividere l'intervallo temporale $ T_m $ in $ N $ parti uguali, e poiché si è in regime di corrente debole si può supporre che in ogni intervallino si possa verificare al più un evento di passaggio di un elettrone.
+Sia dunque $ p $ la probabilità che nell'intervallino passi un elettrone, la probabilità che in $ T_m $ ne passino $ n $ è quindi data dalla distribuzione binomiale:
+\[ P(n, T) = \binom{N}{n} p^n (1-p)^{N-n} \]
+
+Facendo il limite $ N \rightarrow \infty $, $ p \rightarrow 0 $ con $ Np = \expval{n} $ costante, si ottiene dalla distribuzione binomiale una distribuzione di Poisson, la cui probabilità è espressa da:
+\[ P(n,T) = \frac{\expval{n}}{n!} e^{-\expval{n}} \]
+si ha inoltre nella distribuzione di Poisson:
+\[ \expval{(\Delta n)^2} = \expval{n} \]
+per cui si trova per la corrente (moltiplicando la precedente per $ (e/T_m)^2 $):
+\[ \expval{(\Delta I)^2} = \frac{e\expval{I}}{T_m} \]
+
+Si noti che se la carica non fosse discretizzata, cioè nel limite $ e \rightarrow 0 $, questo rumore sarebbe assente.
+
+\subsubsection{Distribuzione spettrale}
+
+Per calcolare $ G_I(\nu) $ si utilizza un modello di variabile stocastica $ I_{T_m}(t) $ che rappresenta la corrente al tempo $ t $ e riproduce la conduzione nell'intervallo $ T_m $. Tale variabile casuale è composta da eventi individuale di passaggio di singoli elettroni, distribuiti a tempi $ t_i $ casuali entro l'intervallo totale di misura $ T_m $.
+
+Tutti gli eventi individuali sono identici fra loro, e quindi descritti dalla stessa funzione $ F(t) $, si può quindi scrivere:
+\[ I_{T_m}(t) = \sum_{i =1}^n F(t-t_i) \]
+con
+\[ \int_{-\tau_c/2}^{\tau_c/2} = e \]
+dove $ \tau_c $ è il tempo di correlazione associato al passaggio di un singolo elettrone. Si ha dunque:
+\[ \expval{I} = \frac{1}{T_m} \expval{\int_{0}^{T_m} I_{T_m}(t) \dd t} \]
+
+La correlazione sarà quindi:
+\begin{align*}
+C(\tau) = \expval{\overline{I_{T_m}(t) I_{T_m}(t + \tau)}} = \expval{\overline{\sum_{i =1}^n F(t-t_i) \sum_{i =1}^n F(t + \tau -t_i)}} = \sum_{i =1}^{\expval{n}} \overline{F(t) F(t + \tau)}
+\end{align*}
+dove si è utilizzato che le correnti associate ai singoli elettroni sono indipendenti.
+
+Dato che la correlazione temporale è determinata dalla scala temporale $ \tau_c $ di ciascun elettrone il teorema di Wiener-Khintchine afferma che la distribuzione spettrale $ G_I(\nu) $ si estende su un intervallo di frequenze dell'ordine di $ 1/\tau_c $ (è l'espressione del principio di indeterminazione per trasformte di Fourier).
+Poiché il tempo di correlazione $ \tau_c $ è molto breve il rumore shot ha praticamente uno spettro bianco, infatti la formula per la varianza della corrente corrisponde ad un rumore bianco rivelato in un intervallo di frequenza $ 1/T_m $.
+
+Si ottiene infine per la densità spettrale:
+\[ G_I (\nu) = 2 e \expval{I} \]
+per cui si trova che questo rumore è più grande del rumore Johnson se la tensione ai capi della resistenza è superiore a $ 2\kt/e $, cioè $ 50 \milli\volt $ a temperatura ambiente.
+
+\begin{oss}[Indipendenza dei portatori]
+	Lo shot noise è stato derivato nell'ipotesi che le cariche contribuiscano in modo indipendente. Questa indipendenza è verificata in sistemi come i diodi a giunzione (in cui le cariche passan attraverso una barriera), ma non nel caso di conduttori metallici, dove esistono correlazioni a lungo raggio fra i portatori di carica.
+\end{oss}
+\begin{oss}[Unificazione al rumore Johnson]
+	\`E possibile trattare in modo unificato i rumori termico e shot, per cui si ottiene che il rumore è del tipo shot quando la lunghezza del dispositivo è minore del libero cammino medio degli elettroni, per cui essi contribuiscono in modo indipendente, mentre diventa di tipo termico nel caso opposto.
+\end{oss}
+
+\section{Bibliografia}
+
+Questa sezione è stata interamente tratta dal testo di \textit{E. Arimondo}, anche se spesso le notazioni usate sono leggermente diverse, e si è cercato di uniformare la terminologia al resto delle dispense, quindi di adattarla al linguaggio impiegato nel testo di \textit{D.L. Goodstein}.

@@ -295,7 +295,7 @@ N = \lim_{T\rightarrow 0} \sum_{\textbf{q}} \frac{1}{\exp\left[(\varepsilon_{\te
 
 Anche in questo caso le somme saranno convertite in integrali, e i livelli energetici saranno considerati un insieme continuo. La giustificazione qui non può più essere data dal confronto con la scala di energia termica, che qui è nulla, ma la scala di energia rilevante qui è proprio quella indotta da $\mu_0$, ed è rispetto ad essa che i livelli energetici sono fini, ed è strettamente connesso al fatto che si sta considerando una quantità macroscopica di particelle.
 
-Si ha dunque che l'equazione diventa\footnote{Usando il solito \textit{teorema fisico} che afferma che limiti e integrali commutano. Formalmente non funziona, ma praticamente sì. La giustificazione migliore è che le funzioni per cui fallisce hanno un comportamento particolare, concettualmente allargano infinitamente il loro supporto \textit{efficace} nel passaggio al limite, e sono una classe ristretta.}:
+Si ha dunque che l'equazione diventa\footnote{\label{note:physth} Usando il solito \textit{teorema fisico} che afferma che limiti e integrali commutano. Formalmente non funziona, ma praticamente sì. La giustificazione migliore è che le funzioni per cui fallisce hanno un comportamento particolare, concettualmente allargano infinitamente il loro supporto \textit{efficace} nel passaggio al limite, e sono una classe ristretta.}:
 \begin{equation*}
 N = \lim_{T\rightarrow 0} \int_{0}^{\infty} \frac{\rho(\varepsilon)}{\exp\left[(\varepsilon_{\textbf{q}} - \mu)/k_B T\right] + 1} \dd \varepsilon = \int_{0}^{\mu_0} \rho(\varepsilon) \dd \varepsilon
 \end{equation*}
@@ -701,6 +701,7 @@ Per questo si può affermare che la condensazione avvenga anche nello spazio fis
 Si raccolgono in questa sezione diversi argomenti che riguardano in particolare l'applicazione dei concetti statistici esposti nel \cref{chap:termstat} e quelli riguardanti i fermioni in questo.
 
 \subsection{Conduzione nei metalli}
+\label{sec:elecconduct}
 
 Il trasporto di corrente elettrica da parte degli elettroni in un metallo, sotto l'azione di un campo esterno, è dovuto all'azione simultanea dell'accelerazione prodotta dal campo e dalla perdità di energia e quantità di moto nelle collisioni con le impurità.
 
