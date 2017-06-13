@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt]{beamer}	%,handout
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[italian]{babel}
@@ -34,6 +34,7 @@
 \usepackage{booktabs}
 \usepackage{subfig}
 \usepackage{float}
+\usepackage{transparent}
 
 \usepackage[italian, sort, noabbrev, capitalise]{cleveref}
 \usepackage[bottom]{footmisc}
@@ -55,6 +56,14 @@
 \begin{document}
 
 \begin{frame}
+	\begin{center}
+%		\vspace{-1cm}
+		{\transparent{0.1}\includegraphics[scale=0.3]{./Images/logo.jpg}}
+		\vspace{-8cm}
+		{\transparent{0.8}\textcolor{white}{\rule{\paperwidth}{\paperheight}}}
+	\end{center}
+	\vspace{-9cm}
+	
 	\maketitle
 \end{frame}
 
@@ -66,12 +75,11 @@
 	\begin{columns}
 		\begin{column}{0.45\textwidth}
 			Per un sistema in uno stato termico:
-			\begin{itemize}[<+->]
+			\begin{itemize}
 				\item i valori delle osservabili del sistema devono essere stazionari;
 				\item lo stato asintotico non deve dipendere strettamente dalle condizioni iniziali.
 			\end{itemize}
 		\end{column}
-		\pause
 		\begin{column}{0.55\textwidth}
 			\centering
 			\includegraphics[width=0.9\columnwidth]{./Images/ErgodicHypothesis.png}
@@ -80,6 +88,7 @@
 		\end{column}
 	\end{columns}
 
+	\pause
 	\begin{block}{Meccanica classica}
 	L'ipotesi ergodica è ben definita: essa afferma che il sistema esplora ogni regione accessibile dello spazio delle fasi per un tempo proporzionale alla sua area.
 	\end{block}
@@ -88,7 +97,7 @@
 	\textbf{Il sistema non perde memoria.}
 	
 	Infatti, nella base degli stati stazionari l'evoluzione temporale:
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item fa oscillare le fasi, con frequenze fissate dalle rispettive energie;
 		\item ma \textbf{conserva le ampiezze} (i moduli).
 	\end{itemize}
@@ -128,6 +137,17 @@
 	
 	\pause
 	Il problema si sposta quindi sulla definizione di un insieme \textbf{minimale} di osservabili macroscopiche, cioè il \textit{macrostato} del sistema.
+	
+	\vfill
+	
+	\begin{thebibliography}{9}
+		\bibitem[von Neumann, 1929]{vonneumann1929} 
+		von Neumann, John
+		\newblock \emph{Beweis des Ergodensatzes und des H-Theorems in der neuen Mechanik}
+		\newblock {Zeitschrift fuer Physik, Vol. 57, 1929, p. 30-70}
+	\end{thebibliography}
+	\vspace*{-25pt}
+	
 \end{frame}
 
 %\begin{frame}
@@ -164,7 +184,8 @@
 \section{Il principio canonico generale}
 
 \begin{frame}
-	\transpush[direction = 180]
+	\transpush[direction = 180]<1>
+	\transwipe<2->
 	\frametitle{Definizioni}
 	
 	\begin{block}{Sistema}
@@ -173,6 +194,7 @@
 		La porzione residua dell'universo è detta ambiente, E.
 	\end{block}
 	\begin{columns}
+		\pause
 		\begin{column}{0.5\textwidth}
 			Si avranno allora $\mathcal{H}_R, \mathcal{H}_E, \mathcal{H}_S$ gli spazi di Hilbert dei tre sistemi, e $d_R, d_E, d_S$ le loro dimensioni, con:
 			\begin{equation*}
@@ -184,6 +206,7 @@
 			\rho_S = \Tr_E \ket{\varphi}\bra{\varphi}
 			\end{equation*}
 		\end{column}
+		\pause
 		\begin{column}{0.5\textwidth}
 %			Lo stato di un sottosistema è ottenuto tracciando lo stato del sistema sui gradi di libertà complementari al sottosistema.
 			\begin{block}{Stato canonico}
@@ -204,31 +227,40 @@
 
 \begin{frame}
 	\transpush[direction = 180]<1>
+	\transwipe<2->
 	\frametitle{Il principio canonico generale}
 	
 	\begin{block}{Enunciato}
 		Dato un sottosistema sufficientemente piccolo di un sistema quantistico isolato, detto \textit{universo}, per quasi ogni stato puro dell'universo il sottosistema è approssimativamente nello stato canonico $\Omega_S$.
 		
-		\qquad Cioè, per quasi ogni $\ket{\varphi} \in \mathcal{H}_R$:
-		\begin{equation*}
-			\rho_S \approx \Omega_S
-		\end{equation*}
+		\qquad Cioè: per quasi ogni $\ket{\varphi} \in \mathcal{H}_R$ $\qquad \rightarrow \qquad \rho_S \approx \Omega_S$
 		
 	\end{block}
-
+	\pause
+	
 	Il \textit{principio canonico generale} si propone di \textbf{sostituire} l'ipotesi di \textit{equiprobabilità a priori}, e conseguentemente anche la stessa \textit{ipotesi ergodica}, nel caso di sottosistemi.
 	\newline
 	
 	\pause
-	
-	Il principio canonico generale è un teorema:
-	
+	\vspace*{-5pt}
+	Il principio canonico generale \textbf{è un teorema}:
+	\vspace*{-5pt}
+	\begin{block}{}
+		\begin{description}
+			\item[Ipotesi] L'unica ipotesi è che il sottosistema sia sufficientemente piccolo.
+			\item[Tesi] La tesi è \textbf{quantitativa}: pone un limite alla frazione di volume dello spazio occupato dagli stati del sottosistema abbastanza lontani dallo stato canonico.
+		\end{description}
+	\end{block}
+	\vspace*{-3pt}
 	\pause
-	\begin{description}[<+->]
-		\item[Ipotesi] L'unica ipotesi è che il sottosistema sia sufficientemente piccolo.
-		\item[Tesi] La tesi è \textbf{quantitativa}: pone un limite alla frazione di volume dello spazio occupato dagli stati del sottosistema abbastanza lontani dallo stato canonico.
-	\end{description}
-Sia la frazione che il discrimine sulla distanza vanno a $ 0 $ quando $ d_S / d_R \rightarrow \infty$
+	Sia la frazione che il discrimine sulla distanza vanno a $ 0 $ quando $ d_S / d_R \rightarrow \infty$
+	\vspace*{-4pt}
+	\begin{thebibliography}{9}
+		\bibitem[Popescu, 2006]{popescu2006} 
+		Popescu, Sandu; Short, Anthony J.; Winter, Andreas
+		\newblock \emph{Entanglement and the foundations of statistical mechanics}
+		\newblock {Nature Physics, Vol. 2, No. 11, 11.2006, p. 754-758}
+	\end{thebibliography}
 \end{frame}
 
 \begin{frame}
@@ -257,6 +289,24 @@ Sia la frazione che il discrimine sulla distanza vanno a $ 0 $ quando $ d_S / d_
 			che può essere interpretato come un ensemble canonico con $T \rightarrow \infty$
 		\end{itemize}
 	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+%	\frametitle{Ringraziamenti}
+	
+	\begin{center}
+		\vspace{-0.8cm}
+		{\transparent{0.2}\includegraphics[scale=0.3]{./Images/cards.jpg}}
+		\vspace{-8cm}
+		{\transparent{0.8}\textcolor{white}{\rule{\paperwidth}{\paperheight}}}
+	\end{center}
+	\vspace{-5cm}	
+	
+	\centering
+	\Huge{
+	Grazie a tutti!}
+%	\centering
+%	\huge{Grazie per l'attenzione}
 \end{frame}
 %
 %\begin{frame}
